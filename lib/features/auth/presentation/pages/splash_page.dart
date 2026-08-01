@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/dependency_injection/service_locator.dart';
+import '../../../../core/services/onboarding_storage.dart';
 import '../../../../core/theme/app_colors.dart';
 
-/// Animated Splash Screen displaying ZapShift branding.
+/// Animated Splash Screen displaying ZapShift branding and initial route routing.
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
@@ -43,9 +45,14 @@ class _SplashPageState extends State<SplashPage>
 
     _controller.forward();
 
-    _timer = Timer(const Duration(seconds: 2), () {
+    _timer = Timer(const Duration(seconds: 2), () async {
+      if (!mounted) return;
+      bool completed = false;
+      if (sl.isRegistered<OnboardingStorage>()) {
+        completed = await sl<OnboardingStorage>().isOnboardingCompleted();
+      }
       if (mounted) {
-        context.go('/login');
+        context.go(completed ? '/login' : '/onboarding');
       }
     });
   }
