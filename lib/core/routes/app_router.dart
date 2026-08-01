@@ -10,7 +10,12 @@ import '../../features/auth/presentation/pages/onboarding_page.dart';
 import '../../features/auth/presentation/pages/register_page.dart';
 import '../../features/auth/presentation/pages/splash_page.dart';
 import '../../features/auth/presentation/pages/welcome_page.dart';
+import '../../features/home/presentation/pages/citizen_main_shell.dart';
 import '../../features/home/presentation/pages/home_page.dart';
+import '../../features/issues/presentation/pages/explore_issues_page.dart';
+import '../../features/issues/presentation/pages/my_issues_page.dart';
+import '../../features/issues/presentation/pages/report_issue_page.dart';
+import '../../features/profile/presentation/pages/citizen_profile_page.dart';
 
 /// Centralized GoRouter navigation configuration.
 abstract class AppRouter {
@@ -50,16 +55,63 @@ abstract class AppRouter {
         builder: (context, state) => const AccountBlockedPage(),
       ),
       GoRoute(
-        path: '/home',
-        builder: (context, state) => const HomePage(),
-      ),
-      GoRoute(
         path: '/update',
         builder: (context, state) => const AppUpdatePage(),
       ),
       GoRoute(
         path: '/maintenance',
         builder: (context, state) => const MaintenancePage(),
+      ),
+
+      // -----------------------------------------------------------------------
+      // Citizen Main Stateful Shell (5 Tabs)
+      // -----------------------------------------------------------------------
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return CitizenMainShell(navigationShell: navigationShell);
+        },
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/home',
+                builder: (context, state) => const HomePage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/issues',
+                builder: (context, state) => const ExploreIssuesPage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/report-issue',
+                builder: (context, state) => const ReportIssuePage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/my-issues',
+                builder: (context, state) => const MyIssuesPage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/profile',
+                builder: (context, state) => const CitizenProfilePage(),
+              ),
+            ],
+          ),
+        ],
       ),
     ],
   );
