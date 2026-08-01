@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/utils/validators.dart';
 
 /// Login Page UI for ZapShift user authentication.
 class LoginPage extends StatefulWidget {
@@ -86,15 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                       labelText: 'Email Address',
                       prefixIcon: Icon(Icons.email_outlined),
                     ),
-                    validator: (value) {
-                      if (value == null || value.trim().isEmpty) {
-                        return 'Please enter your email';
-                      }
-                      if (!value.contains('@')) {
-                        return 'Please enter a valid email';
-                      }
-                      return null;
-                    },
+                    validator: Validators.validateEmail,
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
@@ -117,15 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                         },
                       ),
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your password';
-                      }
-                      if (value.length < 6) {
-                        return 'Password must be at least 6 characters';
-                      }
-                      return null;
-                    },
+                    validator: Validators.validatePassword,
                   ),
                   const SizedBox(height: 8),
                   Align(

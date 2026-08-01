@@ -1,8 +1,9 @@
+import '../config/env_config.dart';
+
 /// API Constants containing base URL, timeouts, and API paths.
 abstract class ApiConstants {
-  /// Base URL for the PIIRS backend server.
-  static const String baseUrl =
-      'https://public-infrastructure-issue-reporti-pearl.vercel.app';
+  /// Dynamic Base URL for the PIIRS backend server.
+  static String get baseUrl => EnvConfig.baseUrl;
 
   /// Network connection & response timeout duration (30 seconds).
   static const Duration timeout = Duration(seconds: 30);

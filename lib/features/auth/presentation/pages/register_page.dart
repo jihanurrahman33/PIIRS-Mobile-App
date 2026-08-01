@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/utils/validators.dart';
 
 /// Registration Page UI for creating new citizen accounts.
 class RegisterPage extends StatefulWidget {
@@ -92,12 +93,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       labelText: 'Full Name',
                       prefixIcon: Icon(Icons.person_outlined),
                     ),
-                    validator: (value) {
-                      if (value == null || value.trim().isEmpty) {
-                        return 'Please enter your full name';
-                      }
-                      return null;
-                    },
+                    validator: Validators.validateName,
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
@@ -108,15 +104,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       labelText: 'Email Address',
                       prefixIcon: Icon(Icons.email_outlined),
                     ),
-                    validator: (value) {
-                      if (value == null || value.trim().isEmpty) {
-                        return 'Please enter your email';
-                      }
-                      if (!value.contains('@')) {
-                        return 'Please enter a valid email';
-                      }
-                      return null;
-                    },
+                    validator: Validators.validateEmail,
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
@@ -139,15 +127,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         },
                       ),
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter a password';
-                      }
-                      if (value.length < 6) {
-                        return 'Password must be at least 6 characters';
-                      }
-                      return null;
-                    },
+                    validator: Validators.validatePassword,
                   ),
                   const SizedBox(height: 24),
                   ElevatedButton(
