@@ -12,6 +12,9 @@ import '../../features/auth/presentation/pages/splash_page.dart';
 import '../../features/auth/presentation/pages/welcome_page.dart';
 import '../../features/home/presentation/pages/citizen_main_shell.dart';
 import '../../features/home/presentation/pages/home_page.dart';
+import '../../features/home/presentation/pages/issue_categories_page.dart';
+import '../../features/home/presentation/pages/notifications_page.dart';
+import '../../features/home/presentation/pages/search_issues_page.dart';
 import '../../features/issues/presentation/pages/explore_issues_page.dart';
 import '../../features/issues/presentation/pages/my_issues_page.dart';
 import '../../features/issues/presentation/pages/report_issue_page.dart';
@@ -61,6 +64,18 @@ abstract class AppRouter {
       GoRoute(
         path: '/maintenance',
         builder: (context, state) => const MaintenancePage(),
+      ),
+      GoRoute(
+        path: '/search',
+        builder: (context, state) => const SearchIssuesPage(),
+      ),
+      GoRoute(
+        path: '/notifications',
+        builder: (context, state) => const NotificationsPage(),
+      ),
+      GoRoute(
+        path: '/categories',
+        builder: (context, state) => const IssueCategoriesPage(),
       ),
 
       // -----------------------------------------------------------------------
