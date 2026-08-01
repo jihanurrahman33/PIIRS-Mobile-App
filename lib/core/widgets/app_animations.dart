@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 /// Direction of entrance slide animation.
@@ -29,6 +31,7 @@ class _FadeInSlideState extends State<FadeInSlide>
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
+  Timer? _delayTimer;
 
   @override
   void initState() {
@@ -71,7 +74,7 @@ class _FadeInSlideState extends State<FadeInSlide>
     if (widget.delay == Duration.zero) {
       _controller.forward();
     } else {
-      Future.delayed(widget.delay, () {
+      _delayTimer = Timer(widget.delay, () {
         if (mounted) {
           _controller.forward();
         }
@@ -81,6 +84,7 @@ class _FadeInSlideState extends State<FadeInSlide>
 
   @override
   void dispose() {
+    _delayTimer?.cancel();
     _controller.dispose();
     super.dispose();
   }

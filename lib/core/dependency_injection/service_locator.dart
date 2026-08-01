@@ -1,5 +1,15 @@
 import 'package:get_it/get_it.dart';
 
+import '../../features/auth/data/datasources/auth_local_datasource.dart';
+import '../../features/auth/data/datasources/auth_remote_datasource.dart';
+import '../../features/auth/data/repositories/auth_repository_impl.dart';
+import '../../features/auth/domain/repositories/auth_repository.dart';
+import '../../features/auth/domain/usecases/get_user_role_usecase.dart';
+import '../../features/auth/domain/usecases/login_usecase.dart';
+import '../../features/auth/domain/usecases/logout_usecase.dart';
+import '../../features/auth/domain/usecases/register_usecase.dart';
+import '../../features/auth/domain/usecases/send_password_reset_usecase.dart';
+import '../../features/auth/presentation/bloc/auth_bloc.dart';
 import '../network/api_client.dart';
 import '../network/auth_token_provider.dart';
 import '../network/http_api_client.dart';
@@ -40,6 +50,44 @@ Future<void> setupServiceLocator() async {
   sl.registerLazySingleton<ApiClient>(
     () => HttpApiClient(
       tokenProvider: sl<AuthTokenProvider>(),
+    ),
+  );
+
+  // ---------------------------------------------------------------------------
+  // Auth Feature Data & Domain Layers
+  // ---------------------------------------------------------------------------
+  sl.registerLazySingleton<AuthRemoteDataSource>(
+    () => AuthRemoteDataSourceImpl(apiClient: sl<ApiClient>()),
+  );
+
+  sl.registerLazySingleton<AuthLocalDataSource>(
+    () => AuthLocalDataSourceImpl(storageService: sl<SecureStorageService>()),
+  );
+
+  sl.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(
+      remoteDataSource: sl<AuthRemoteDataSource>(),
+      localDataSource: sl<AuthLocalDataSource>(),
+      networkInfo: sl<NetworkInfo>(),
+    ),
+  );
+
+  // Auth UseCases
+  sl.registerLazySingleton(() => LoginUseCase(sl<AuthRepository>()));
+  sl.registerLazySingleton(() => RegisterUseCase(sl<AuthRepository>()));
+  sl.registerLazySingleton(() => GetUserRoleUseCase(sl<AuthRepository>()));
+  sl.registerLazySingleton(() => LogoutUseCase(sl<AuthRepository>()));
+  sl.registerLazySingleton(
+      () => SendPasswordResetUseCase(sl<AuthRepository>()));
+
+  // Auth BLoC
+  sl.registerFactory(
+    () => AuthBloc(
+      loginUseCase: sl<LoginUseCase>(),
+      registerUseCase: sl<RegisterUseCase>(),
+      logoutUseCase: sl<LogoutUseCase>(),
+      sendPasswordResetUseCase: sl<SendPasswordResetUseCase>(),
+      repository: sl<AuthRepository>(),
     ),
   );
 }
