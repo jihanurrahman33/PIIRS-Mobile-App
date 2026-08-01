@@ -15,9 +15,23 @@ import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/home/presentation/pages/issue_categories_page.dart';
 import '../../features/home/presentation/pages/notifications_page.dart';
 import '../../features/home/presentation/pages/search_issues_page.dart';
+import '../../features/issues/presentation/pages/all_issues_page.dart';
+import '../../features/issues/presentation/pages/assigned_issues_page.dart';
 import '../../features/issues/presentation/pages/explore_issues_page.dart';
+import '../../features/issues/presentation/pages/image_gallery_page.dart';
+import '../../features/issues/presentation/pages/image_preview_page.dart';
+import '../../features/issues/presentation/pages/issue_comments_page.dart';
+import '../../features/issues/presentation/pages/issue_details_page.dart';
+import '../../features/issues/presentation/pages/issue_timeline_page.dart';
+import '../../features/issues/presentation/pages/latest_issues_page.dart';
+import '../../features/issues/presentation/pages/location_picker_page.dart';
 import '../../features/issues/presentation/pages/my_issues_page.dart';
+import '../../features/issues/presentation/pages/pending_issues_page.dart';
+import '../../features/issues/presentation/pages/rejected_issues_page.dart';
 import '../../features/issues/presentation/pages/report_issue_page.dart';
+import '../../features/issues/presentation/pages/report_success_page.dart';
+import '../../features/issues/presentation/pages/resolved_issues_page.dart';
+import '../../features/issues/presentation/pages/trending_issues_page.dart';
 import '../../features/profile/presentation/pages/citizen_profile_page.dart';
 
 /// Centralized GoRouter navigation configuration.
@@ -76,6 +90,73 @@ abstract class AppRouter {
       GoRoute(
         path: '/categories',
         builder: (context, state) => const IssueCategoriesPage(),
+      ),
+
+      // Issue Module Routes
+      GoRoute(
+        path: '/issues/all',
+        builder: (context, state) => const AllIssuesPage(),
+      ),
+      GoRoute(
+        path: '/issues/latest',
+        builder: (context, state) => const LatestIssuesPage(),
+      ),
+      GoRoute(
+        path: '/issues/trending',
+        builder: (context, state) => const TrendingIssuesPage(),
+      ),
+      GoRoute(
+        path: '/issues/resolved',
+        builder: (context, state) => const ResolvedIssuesPage(),
+      ),
+      GoRoute(
+        path: '/issues/details/:id',
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '101';
+          return IssueDetailsPage(issueId: id);
+        },
+      ),
+      GoRoute(
+        path: '/issues/gallery',
+        builder: (context, state) => const ImageGalleryPage(),
+      ),
+      GoRoute(
+        path: '/issues/timeline/:id',
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '101';
+          return IssueTimelinePage(issueId: id);
+        },
+      ),
+      GoRoute(
+        path: '/issues/comments/:id',
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '101';
+          return IssueCommentsPage(issueId: id);
+        },
+      ),
+      GoRoute(
+        path: '/issues/location-picker',
+        builder: (context, state) => const LocationPickerPage(),
+      ),
+      GoRoute(
+        path: '/issues/image-preview',
+        builder: (context, state) => const ImagePreviewPage(),
+      ),
+      GoRoute(
+        path: '/issues/success',
+        builder: (context, state) => const ReportSuccessPage(),
+      ),
+      GoRoute(
+        path: '/my-issues/pending',
+        builder: (context, state) => const PendingIssuesPage(),
+      ),
+      GoRoute(
+        path: '/my-issues/assigned',
+        builder: (context, state) => const AssignedIssuesPage(),
+      ),
+      GoRoute(
+        path: '/my-issues/rejected',
+        builder: (context, state) => const RejectedIssuesPage(),
       ),
 
       // -----------------------------------------------------------------------

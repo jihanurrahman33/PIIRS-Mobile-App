@@ -10,6 +10,15 @@ import '../../features/auth/domain/usecases/logout_usecase.dart';
 import '../../features/auth/domain/usecases/register_usecase.dart';
 import '../../features/auth/domain/usecases/send_password_reset_usecase.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
+import '../../features/issues/data/datasources/issue_remote_datasource.dart';
+import '../../features/issues/data/datasources/issue_remote_datasource_impl.dart';
+import '../../features/issues/data/repositories/issue_repository_impl.dart';
+import '../../features/issues/domain/repositories/issue_repository.dart';
+import '../../features/issues/domain/usecases/create_issue_usecase.dart';
+import '../../features/issues/domain/usecases/get_issue_details_usecase.dart';
+import '../../features/issues/domain/usecases/get_issues_usecase.dart';
+import '../../features/issues/domain/usecases/upvote_issue_usecase.dart';
+import '../../features/issues/presentation/bloc/issue_bloc.dart';
 import '../network/api_client.dart';
 import '../network/auth_token_provider.dart';
 import '../network/http_api_client.dart';
@@ -88,6 +97,36 @@ Future<void> setupServiceLocator() async {
       logoutUseCase: sl<LogoutUseCase>(),
       sendPasswordResetUseCase: sl<SendPasswordResetUseCase>(),
       repository: sl<AuthRepository>(),
+    ),
+  );
+
+  // ---------------------------------------------------------------------------
+  // Issue Feature Data & Domain Layers
+  // ---------------------------------------------------------------------------
+  sl.registerLazySingleton<IssueRemoteDataSource>(
+    () => IssueRemoteDataSourceImpl(apiClient: sl<ApiClient>()),
+  );
+
+  sl.registerLazySingleton<IssueRepository>(
+    () => IssueRepositoryImpl(
+      remoteDataSource: sl<IssueRemoteDataSource>(),
+      networkInfo: sl<NetworkInfo>(),
+    ),
+  );
+
+  // Issue UseCases
+  sl.registerLazySingleton(() => GetIssuesUseCase(sl<IssueRepository>()));
+  sl.registerLazySingleton(() => GetIssueDetailsUseCase(sl<IssueRepository>()));
+  sl.registerLazySingleton(() => CreateIssueUseCase(sl<IssueRepository>()));
+  sl.registerLazySingleton(() => UpvoteIssueUseCase(sl<IssueRepository>()));
+
+  // Issue BLoC
+  sl.registerFactory(
+    () => IssueBloc(
+      getIssuesUseCase: sl<GetIssuesUseCase>(),
+      getIssueDetailsUseCase: sl<GetIssueDetailsUseCase>(),
+      createIssueUseCase: sl<CreateIssueUseCase>(),
+      upvoteIssueUseCase: sl<UpvoteIssueUseCase>(),
     ),
   );
 }
