@@ -28,8 +28,7 @@ class IssueRemoteDataSourceImpl implements IssueRemoteDataSource {
   @override
   Future<IssueModel> getIssueDetails(String issueId) async {
     try {
-      final response =
-          await apiClient.get(ApiConstants.issueDetails(issueId));
+      final response = await apiClient.get(ApiConstants.issueDetails(issueId));
       return IssueModel.fromJson(response as Map<String, dynamic>);
     } catch (e) {
       throw ServerException('Failed to fetch issue details: $e');
@@ -52,8 +51,7 @@ class IssueRemoteDataSourceImpl implements IssueRemoteDataSource {
   @override
   Future<IssueModel> upvoteIssue(String issueId) async {
     try {
-      final response =
-          await apiClient.patch(ApiConstants.upvoteIssue(issueId));
+      final response = await apiClient.patch(ApiConstants.upvoteIssue(issueId));
       return IssueModel.fromJson(response as Map<String, dynamic>);
     } catch (e) {
       throw ServerException('Failed to upvote issue: $e');

@@ -10,6 +10,9 @@ import '../../features/auth/presentation/pages/onboarding_page.dart';
 import '../../features/auth/presentation/pages/register_page.dart';
 import '../../features/auth/presentation/pages/splash_page.dart';
 import '../../features/auth/presentation/pages/welcome_page.dart';
+import '../../features/dashboard/presentation/pages/citizen_activity_analytics_page.dart';
+import '../../features/dashboard/presentation/pages/citizen_dashboard_overview_page.dart';
+import '../../features/dashboard/presentation/pages/citizen_statistics_page.dart';
 import '../../features/home/presentation/pages/citizen_main_shell.dart';
 import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/home/presentation/pages/issue_categories_page.dart';
@@ -90,6 +93,20 @@ abstract class AppRouter {
       GoRoute(
         path: '/categories',
         builder: (context, state) => const IssueCategoriesPage(),
+      ),
+
+      // Citizen Dashboard Routes
+      GoRoute(
+        path: '/citizen-dashboard',
+        builder: (context, state) => const CitizenDashboardOverviewPage(),
+      ),
+      GoRoute(
+        path: '/citizen-dashboard/analytics',
+        builder: (context, state) => const CitizenActivityAnalyticsPage(),
+      ),
+      GoRoute(
+        path: '/citizen-dashboard/statistics',
+        builder: (context, state) => const CitizenStatisticsPage(),
       ),
 
       // Issue Module Routes

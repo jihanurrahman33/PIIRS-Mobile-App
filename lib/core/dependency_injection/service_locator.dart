@@ -10,6 +10,12 @@ import '../../features/auth/domain/usecases/logout_usecase.dart';
 import '../../features/auth/domain/usecases/register_usecase.dart';
 import '../../features/auth/domain/usecases/send_password_reset_usecase.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
+import '../../features/dashboard/data/datasources/dashboard_remote_datasource.dart';
+import '../../features/dashboard/data/datasources/dashboard_remote_datasource_impl.dart';
+import '../../features/dashboard/data/repositories/dashboard_repository_impl.dart';
+import '../../features/dashboard/domain/repositories/dashboard_repository.dart';
+import '../../features/dashboard/domain/usecases/get_citizen_dashboard_stats_usecase.dart';
+import '../../features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import '../../features/issues/data/datasources/issue_remote_datasource.dart';
 import '../../features/issues/data/datasources/issue_remote_datasource_impl.dart';
 import '../../features/issues/data/repositories/issue_repository_impl.dart';
@@ -127,6 +133,31 @@ Future<void> setupServiceLocator() async {
       getIssueDetailsUseCase: sl<GetIssueDetailsUseCase>(),
       createIssueUseCase: sl<CreateIssueUseCase>(),
       upvoteIssueUseCase: sl<UpvoteIssueUseCase>(),
+    ),
+  );
+
+  // ---------------------------------------------------------------------------
+  // Dashboard Feature Data & Domain Layers
+  // ---------------------------------------------------------------------------
+  sl.registerLazySingleton<DashboardRemoteDataSource>(
+    () => DashboardRemoteDataSourceImpl(apiClient: sl<ApiClient>()),
+  );
+
+  sl.registerLazySingleton<DashboardRepository>(
+    () => DashboardRepositoryImpl(
+      remoteDataSource: sl<DashboardRemoteDataSource>(),
+      networkInfo: sl<NetworkInfo>(),
+    ),
+  );
+
+  // Dashboard UseCases
+  sl.registerLazySingleton(
+      () => GetCitizenDashboardStatsUseCase(sl<DashboardRepository>()));
+
+  // Dashboard BLoC
+  sl.registerFactory(
+    () => DashboardBloc(
+      getCitizenDashboardStatsUseCase: sl<GetCitizenDashboardStatsUseCase>(),
     ),
   );
 }
