@@ -9,7 +9,7 @@ class SimpleNetworkInfo implements NetworkInfo {
   @override
   Future<bool> get isConnected async {
     try {
-      final result = await Uri.parse('https://1.1.1.1').host;
+      final result = Uri.parse('https://1.1.1.1').host;
       return result.isNotEmpty;
     } catch (_) {
       return false;

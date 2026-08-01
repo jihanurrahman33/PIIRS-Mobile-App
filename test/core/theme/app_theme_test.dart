@@ -12,7 +12,8 @@ void main() {
   });
 
   group('AppTheme Tests', () {
-    test('lightTheme has Material 3 enabled and valid StatusColors extension', () {
+    test('lightTheme has Material 3 enabled and valid StatusColors extension',
+        () {
       final theme = AppTheme.lightTheme;
       expect(theme.useMaterial3, isTrue);
       expect(theme.brightness, Brightness.light);
@@ -22,7 +23,8 @@ void main() {
       expect(statusColors?.pending, isA<Color>());
     });
 
-    test('darkTheme has Material 3 enabled and valid StatusColors extension', () {
+    test('darkTheme has Material 3 enabled and valid StatusColors extension',
+        () {
       final theme = AppTheme.darkTheme;
       expect(theme.useMaterial3, isTrue);
       expect(theme.brightness, Brightness.dark);

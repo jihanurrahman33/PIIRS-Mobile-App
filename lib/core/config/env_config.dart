@@ -5,7 +5,8 @@ abstract class EnvConfig {
   /// Can be overridden at build time via `--dart-define=ZAPSHIFT_BASE_URL=https://...`
   static const String baseUrl = String.fromEnvironment(
     'ZAPSHIFT_BASE_URL',
-    defaultValue: 'https://public-infrastructure-issue-reporti-pearl.vercel.app',
+    defaultValue:
+        'https://public-infrastructure-issue-reporti-pearl.vercel.app',
   );
 
   /// Stripe Publishable Key.

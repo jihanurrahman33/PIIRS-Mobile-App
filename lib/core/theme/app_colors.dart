@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 /// Centralized color palette for ZapShift / PIIRS Mobile Application.
 abstract class AppColors {
   // Brand Primary Seed Color
-  static const Color primarySeed = Color(0xFF6366F1); // Indigo / Electric Purple
+  static const Color primarySeed =
+      Color(0xFF6366F1); // Indigo / Electric Purple
   static const Color primaryDarkSeed = Color(0xFF818CF8);
 
   // Status & Priority Colors

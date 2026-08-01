@@ -13,27 +13,33 @@ abstract class Failure extends Equatable {
 
 /// Domain failure representing 5xx server issues.
 class ServerFailure extends Failure {
-  const ServerFailure([super.message = 'Server error occurred.', super.statusCode]);
+  const ServerFailure(
+      [super.message = 'Server error occurred.', super.statusCode]);
 }
 
 /// Domain failure representing 401/403 authorization failures.
 class UnauthorizedFailure extends Failure {
-  const UnauthorizedFailure([super.message = 'Unauthorized access.', super.statusCode = 401]);
+  const UnauthorizedFailure(
+      [super.message = 'Unauthorized access.', super.statusCode = 401]);
 }
 
 /// Domain failure representing 400 bad request errors.
 class BadRequestFailure extends Failure {
-  const BadRequestFailure([super.message = 'Invalid request parameters.', super.statusCode = 400]);
+  const BadRequestFailure(
+      [super.message = 'Invalid request parameters.', super.statusCode = 400]);
 }
 
 /// Domain failure representing 404 resource not found errors.
 class NotFoundFailure extends Failure {
-  const NotFoundFailure([super.message = 'Requested resource not found.', super.statusCode = 404]);
+  const NotFoundFailure(
+      [super.message = 'Requested resource not found.',
+      super.statusCode = 404]);
 }
 
 /// Domain failure representing offline status or network connection timeouts.
 class NetworkFailure extends Failure {
-  const NetworkFailure([super.message = 'Please check your internet connection.']);
+  const NetworkFailure(
+      [super.message = 'Please check your internet connection.']);
 }
 
 /// Fallback domain failure for unhandled exceptions.

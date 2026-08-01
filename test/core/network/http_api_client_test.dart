@@ -25,7 +25,8 @@ void main() {
       fakeTokenProvider = FakeAuthTokenProvider();
     });
 
-    test('GET request successfully parses plain text response (Health Check)', () async {
+    test('GET request successfully parses plain text response (Health Check)',
+        () async {
       final mockClient = MockClient((request) async {
         expect(request.url.toString(), '${ApiConstants.baseUrl}/');
         expect(request.method, 'GET');
@@ -37,11 +38,13 @@ void main() {
         tokenProvider: fakeTokenProvider,
       );
 
-      final response = await apiClient.get(ApiConstants.health, requiresAuth: false);
+      final response =
+          await apiClient.get(ApiConstants.health, requiresAuth: false);
       expect(response, 'server is live');
     });
 
-    test('POST request injects Authorization header and parses JSON response', () async {
+    test('POST request injects Authorization header and parses JSON response',
+        () async {
       final mockClient = MockClient((request) async {
         expect(request.url.toString(), '${ApiConstants.baseUrl}/issues');
         expect(request.headers['Authorization'], 'Bearer fake_firebase_token');
