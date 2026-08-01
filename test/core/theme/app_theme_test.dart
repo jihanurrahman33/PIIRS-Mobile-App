@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:zapshift/core/theme/app_theme.dart';
 import 'package:zapshift/core/theme/app_theme_extensions.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  setUpAll(() {
+    GoogleFonts.config.allowRuntimeFetching = false;
+  });
 
   group('AppTheme Tests', () {
     test('lightTheme has Material 3 enabled and valid StatusColors extension', () {

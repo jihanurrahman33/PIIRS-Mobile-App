@@ -8,6 +8,24 @@ import 'app_theme_extensions.dart';
 class AppTheme {
   AppTheme._();
 
+  /// Helper method to safely load Google Fonts Inter typography with test fallback.
+  static TextTheme _buildTextTheme(Brightness brightness) {
+    final baseTextTheme = brightness == Brightness.light
+        ? ThemeData.light().textTheme
+        : ThemeData.dark().textTheme;
+
+    // Avoid network font fetching in headless test environments
+    if (!GoogleFonts.config.allowRuntimeFetching) {
+      return baseTextTheme;
+    }
+
+    try {
+      return GoogleFonts.interTextTheme(baseTextTheme);
+    } catch (_) {
+      return baseTextTheme;
+    }
+  }
+
   /// Light Theme Configuration.
   static ThemeData get lightTheme {
     final colorScheme = ColorScheme.fromSeed(
@@ -15,7 +33,7 @@ class AppTheme {
       brightness: Brightness.light,
     );
 
-    final textTheme = GoogleFonts.interTextTheme(ThemeData.light().textTheme);
+    final textTheme = _buildTextTheme(Brightness.light);
 
     return ThemeData(
       useMaterial3: true,
@@ -121,7 +139,7 @@ class AppTheme {
       brightness: Brightness.dark,
     );
 
-    final textTheme = GoogleFonts.interTextTheme(ThemeData.dark().textTheme);
+    final textTheme = _buildTextTheme(Brightness.dark);
 
     return ThemeData(
       useMaterial3: true,
