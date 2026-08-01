@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/validators.dart';
-import '../../../../core/widgets/app_snackbar.dart';
+import '../../../../core/widgets/widgets.dart';
 
 /// Password reset link request screen.
 class ForgotPasswordPage extends StatefulWidget {
@@ -89,53 +89,25 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Center(
-            child: Container(
-              width: 64,
-              height: 64,
-              decoration: BoxDecoration(
-                color: AppColors.primarySeed.withValues(alpha: 0.15),
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(
-                Icons.lock_reset_rounded,
-                size: 36,
-                color: AppColors.primarySeed,
-              ),
-            ),
-          ),
-          const SizedBox(height: 24),
-          Text(
-            'Reset Password',
-            textAlign: TextAlign.center,
-            style: theme.textTheme.headlineMedium?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'Enter your account email address and we will send you a password reset link.',
-            textAlign: TextAlign.center,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-              height: 1.5,
-            ),
+          const AppHeader(
+            title: 'Reset Password',
+            subtitle:
+                'Enter your account email address and we will send you a password reset link.',
+            icon: Icons.lock_reset_rounded,
           ),
           const SizedBox(height: 32),
-          TextFormField(
+          AppTextField(
             controller: _emailController,
+            label: 'Email Address',
+            prefixIcon: Icons.email_outlined,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.done,
-            decoration: const InputDecoration(
-              labelText: 'Email Address',
-              prefixIcon: Icon(Icons.email_outlined),
-            ),
             validator: Validators.validateEmail,
           ),
           const SizedBox(height: 24),
-          ElevatedButton(
+          AppButton(
+            text: 'Send Reset Link',
             onPressed: _handleSendResetLink,
-            child: const Text('Send Reset Link'),
           ),
         ],
       ),
@@ -147,28 +119,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Center(
-          child: Container(
-            width: 72,
-            height: 72,
-            decoration: BoxDecoration(
-              color: AppColors.resolved.withValues(alpha: 0.15),
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(
-              Icons.mark_email_read_rounded,
-              size: 40,
-              color: AppColors.resolved,
-            ),
-          ),
-        ),
-        const SizedBox(height: 24),
-        Text(
-          'Check Your Email',
-          textAlign: TextAlign.center,
-          style: theme.textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
+        const AppHeader(
+          title: 'Check Your Email',
+          icon: Icons.mark_email_read_rounded,
+          iconColor: AppColors.resolved,
         ),
         const SizedBox(height: 12),
         Text(
@@ -195,9 +149,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             child: const Text('Resend Reset Link'),
           ),
         const SizedBox(height: 16),
-        OutlinedButton(
+        AppOutlinedButton(
+          text: 'Back to Sign In',
           onPressed: () => context.pop(),
-          child: const Text('Back to Sign In'),
         ),
       ],
     );

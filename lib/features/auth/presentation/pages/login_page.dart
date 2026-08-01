@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/validators.dart';
+import '../../../../core/widgets/widgets.dart';
+import '../widgets/auth_header_widget.dart';
+import '../widgets/social_auth_buttons.dart';
 
 /// Login Page UI for ZapShift user authentication.
 class LoginPage extends StatefulWidget {
@@ -16,7 +18,6 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  bool _obscurePassword = true;
 
   @override
   void dispose() {
@@ -27,7 +28,6 @@ class _LoginPageState extends State<LoginPage> {
 
   void _handleLogin() {
     if (_formKey.currentState?.validate() ?? false) {
-      // Temporary navigation to /home until Auth Bloc is connected
       context.go('/home');
     }
   }
@@ -40,76 +40,29 @@ class _LoginPageState extends State<LoginPage> {
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
             child: Form(
               key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Center(
-                    child: Container(
-                      width: 64,
-                      height: 64,
-                      decoration: BoxDecoration(
-                        color: AppColors.primarySeed,
-                        borderRadius: BorderRadius.circular(16.0),
-                      ),
-                      child: const Icon(
-                        Icons.bolt_rounded,
-                        size: 40,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  Text(
-                    'Welcome Back',
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Sign in to manage and report public issues',
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.colorScheme.onSurfaceVariant,
-                    ),
+                  const AuthHeaderWidget(
+                    title: 'Welcome Back',
+                    subtitle: 'Sign in to manage and report public issues',
                   ),
                   const SizedBox(height: 36),
-                  TextFormField(
+                  AppTextField(
                     controller: _emailController,
+                    label: 'Email Address',
+                    prefixIcon: Icons.email_outlined,
                     keyboardType: TextInputType.emailAddress,
-                    textInputAction: TextInputAction.next,
-                    decoration: const InputDecoration(
-                      labelText: 'Email Address',
-                      prefixIcon: Icon(Icons.email_outlined),
-                    ),
                     validator: Validators.validateEmail,
                   ),
                   const SizedBox(height: 16),
-                  TextFormField(
+                  AppPasswordField(
                     controller: _passwordController,
-                    obscureText: _obscurePassword,
-                    textInputAction: TextInputAction.done,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      prefixIcon: const Icon(Icons.lock_outlined),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _obscurePassword
-                              ? Icons.visibility_outlined
-                              : Icons.visibility_off_outlined,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _obscurePassword = !_obscurePassword;
-                          });
-                        },
-                      ),
-                    ),
                     validator: Validators.validatePassword,
                   ),
                   const SizedBox(height: 8),
@@ -121,10 +74,12 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  ElevatedButton(
+                  AppButton(
+                    text: 'Sign In',
                     onPressed: _handleLogin,
-                    child: const Text('Sign In'),
                   ),
+                  const SizedBox(height: 24),
+                  const SocialAuthButtons(),
                   const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

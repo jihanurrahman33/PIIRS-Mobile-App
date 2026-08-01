@@ -4,16 +4,73 @@ This document serves as the master specification, architecture blueprint, coding
 
 ---
 
-## 1. Project Overview & Identity
+## 1. Mandatory Industry-Grade Engineering & Architecture Rules
 
-- **App Name:** ZapShift / PIIRS Mobile (v1.0)
-- **Goal:** Production-ready Flutter mobile application enabling citizens to report public issues, staff to manage assigned tasks, and administrators to oversee users, issues, analytics, and staff assignments.
-- **Backend API Base URL:** Dynamic configuration via `EnvConfig.baseUrl` (Default: `https://public-infrastructure-issue-reporti-pearl.vercel.app/`).
-- **Authentication:** Firebase Authentication with JWT Bearer Token (`Authorization: Bearer <Firebase_ID_Token>`).
+For **EVERY** feature module built in this project (e.g., Auth, Issues, Dashboard, Premium, Profile, Staff, Admin), the agent MUST automatically enforce:
+
+### A. Mandatory Architecture: Feature-First Clean Architecture
+$$\text{Presentation Layer (BLoC / Pages / Widgets)} \longrightarrow \text{Domain Layer (Entities / Repositories / UseCases)} \longleftarrow \text{Data Layer (Models / DataSources / RepositoriesImpl)}$$
+
+1. **Domain Layer (`features/<feature>/domain/`):**
+   - **Entities:** Pure Dart classes extending `Equatable`. No Flutter or third-party package imports.
+   - **Repository Contracts:** Abstract repository interfaces defining business operations.
+   - **Use Cases:** Single-purpose business action classes (`LoginUseCase`, `CreateIssueUseCase`, etc.).
+
+2. **Data Layer (`features/<feature>/data/`):**
+   - **Models:** Extend Domain Entities and provide `fromJson` and `toJson` serialization.
+   - **Data Sources:** Abstract and concrete Remote (`ApiClient`) & Local (`SecureStorageService`) data sources.
+   - **Repository Implementations:** Implement domain repository interfaces and map raw HTTP/storage exceptions to domain `Failure` objects (`ServerFailure`, `UnauthorizedFailure`, `NetworkFailure`).
+
+3. **Presentation Layer (`features/<feature>/presentation/`):**
+   - **BLoC / Cubit:** Manages UI states and event transitions (`Events`, `States`, `Bloc`).
+   - **Pages:** Modular page screens ($<80$ lines per file).
+   - **Widgets:** Feature-specific presentation widgets in `presentation/widgets/`.
 
 ---
 
-## 2. Technology Stack & Key Dependencies
+### B. Mandatory Design Patterns (Minimum 2 Enforced per Feature)
+
+1. **Repository Pattern:**
+   - Decouples business logic in UseCases from data retrieval implementations (REST APIs, Local Storage, Firebase).
+2. **BLoC (Business Logic Component) Pattern:**
+   - Enforces unidirectional data flow: $\text{UI Events} \rightarrow \text{BLoC} \rightarrow \text{UI States}$.
+3. **Factory Pattern:**
+   - Used in factory constructors (`Model.fromJson`, `ErrorView.fromFailure`) and dependency instantiation.
+4. **Singleton Pattern (via Dependency Injection):**
+   - Managed singletons registered in `GetIt` ([service_locator.dart](file:///Users/nishak/Downloads/Flutter%20Project/ZapShift/lib/core/dependency_injection/service_locator.dart)) for services, data sources, and repositories.
+
+---
+
+### C. Mandatory SOLID Principles Enforcement
+
+- **Single Responsibility Principle (SRP):**
+  - Exactly **1 class or widget per file**.
+  - File length $\le 80$ lines.
+  - Function length $< 20$ lines per method.
+- **Open/Closed Principle (OCP):**
+  - Extended behavior through abstractions (`ApiClient`, `AuthTokenProvider`, `NetworkInfo`, `SecureStorageService`).
+- **Liskov Substitution Principle (LSP):**
+  - Subclasses ([HttpApiClient](file:///Users/nishak/Downloads/Flutter%20Project/ZapShift/lib/core/network/http_api_client.dart), [SecureStorageAuthTokenProvider](file:///Users/nishak/Downloads/Flutter%20Project/ZapShift/lib/core/network/secure_storage_auth_token_provider.dart)) substitute abstract parent contracts transparently.
+- **Interface Segregation Principle (ISP):**
+  - Small, domain-focused contracts avoiding fat interfaces.
+- **Dependency Inversion Principle (DIP):**
+  - High-level presentation and domain layers depend strictly on abstractions, never on concrete HTTP or Firebase SDK implementations.
+
+---
+
+## 2. Mandatory Automated Feature Build Checklist
+
+When building any feature, automatically execute the following steps without requiring user prompts:
+
+1. **Scaffold Clean Architecture Folders:** `domain/entities`, `domain/repositories`, `domain/usecases`, `data/models`, `data/datasources`, `data/repositories`, `presentation/bloc`, `presentation/pages`, `presentation/widgets`.
+2. **Implement Single-Class Files:** Enforce 1 class/widget per file ($<80$ lines per file).
+3. **Reuse Core Components:** Consume shared widgets from `lib/core/widgets/` (`AppButton`, `AppOutlinedButton`, `AppTextField`, `AppPasswordField`, `AppCard`, `AppHeader`, `StatusBadge`, `ErrorView`, `ShimmerLoader`).
+4. **Register DI & Routes:** Add DataSources, Repositories, UseCases, and BLoC to `GetIt` ([service_locator.dart](file:///Users/nishak/Downloads/Flutter%20Project/ZapShift/lib/core/dependency_injection/service_locator.dart)) and routes to [app_router.dart](file:///Users/nishak/Downloads/Flutter%20Project/ZapShift/lib/core/routes/app_router.dart).
+5. **Automated Quality Gate:** Run `dart format .`, `flutter analyze` (**0 issues allowed**), and `flutter test` (**100% pass rate required**).
+
+---
+
+## 3. Technology Stack & Key Dependencies
 
 | Category | Technology / Package |
 | :--- | :--- |
@@ -31,65 +88,10 @@ This document serves as the master specification, architecture blueprint, coding
 
 ---
 
-## 3. Architecture & Layering Rules
-
-The project strictly follows **Feature-First Clean Architecture**.
-
-```text
-lib/
-├── core/
-│   ├── config/ (env_config.dart)
-│   ├── constants/ (api_constants.dart)
-│   ├── dependency_injection/ (service_locator.dart)
-│   ├── errors/ (failures.dart)
-│   ├── exceptions/ (exceptions.dart)
-│   ├── extensions/
-│   ├── network/ (api_client.dart, http_api_client.dart, auth_token_provider.dart, secure_storage_auth_token_provider.dart, network_info.dart)
-│   ├── routes/ (app_router.dart)
-│   ├── services/ (secure_storage_service.dart)
-│   ├── theme/ (app_colors.dart, app_theme_extensions.dart, app_theme.dart)
-│   ├── usecases/
-│   ├── utils/ (validators.dart, responsive.dart)
-│   └── widgets/ (app_animations.dart, skeleton_loader.dart, error_view.dart, app_snackbar.dart)
-├── features/
-│   ├── auth/ (splash_page.dart, login_page.dart, register_page.dart)
-│   ├── home/ (home_page.dart)
-│   ├── issues/
-│   ├── dashboard/
-│   ├── premium/
-│   ├── profile/
-│   ├── staff/
-│   └── admin/
-├── l10n/
-├── firebase_options.dart
-└── main.dart
-```
-
-### Clean Architecture Dependency Rule
-$$\text{Presentation} \longrightarrow \text{Domain} \longleftarrow \text{Data}$$
-
-1. **Domain Layer (`features/<feature>/domain/`)**:
-   - Contains pure Dart business logic: **Entities**, **Repository Interfaces**, and **UseCases**.
-   - **MUST NOT** import Flutter UI libraries, Dio, http, or Firebase SDKs.
-   - Entities must be immutable (`Equatable`).
-   - Each business action requires a single-purpose `UseCase` class (e.g., `CreateIssueUseCase`, `GetPublicIssuesUseCase`).
-
-2. **Data Layer (`features/<feature>/data/`)**:
-   - Contains **Data Sources** (Remote API / Local Storage), **Models** (JSON serialization/deserialization, mapping to Domain Entities), and **Repository Implementations**.
-   - Converts raw network/storage Exceptions into domain `Failure` objects (`ServerFailure`, `NetworkFailure`, `UnauthorizedFailure`, `BadRequestFailure`, `NotFoundFailure`).
-
-3. **Presentation Layer (`features/<feature>/presentation/`)**:
-   - Contains **Bloc/Cubit**, **Pages**, and **Widgets**.
-   - UI communicates strictly with **UseCases** through BLoC state management.
-   - **NEVER** call API or Firebase directly from UI components or widgets.
-   - **NEVER** import Data Models in Presentation (only Domain Entities).
-
----
-
 ## 4. Security & Environment Rules
 
 - **No Hardcoded Secrets or URLs:** Use `EnvConfig` backing `String.fromEnvironment` for Base URLs (`ZAPSHIFT_BASE_URL`), Stripe keys (`ZAPSHIFT_STRIPE_KEY`), and environment modes (`ZAPSHIFT_ENV`).
-- **Encrypted Local Storage:** Store sensitive tokens (JWT, Refresh Token) in `SecureStorageService` (`flutter_secure_storage` with Android `EncryptedSharedPreferences` and iOS `Keychain`). Never store tokens in unencrypted `SharedPreferences`.
+- **Encrypted Local Storage:** Store sensitive tokens (JWT, Refresh Token) in `SecureStorageService` (`flutter_secure_storage` with Android `EncryptedSharedPreferences` and iOS `Keychain`).
 - **Form Validation & Sanitization:** Use `Validators` (`validateEmail`, `validatePassword`, `validateName`, `validatePhone`, `sanitizeInput`) across all form input fields.
 
 ---
@@ -99,9 +101,9 @@ $$\text{Presentation} \longrightarrow \text{Domain} \longleftarrow \text{Data}$$
 - **Material 3 Theme:** Centralized `AppTheme` generated via `ColorScheme.fromSeed(seedColor: AppColors.primarySeed)`.
 - **Custom Theme Extensions:** Use `Theme.of(context).extension<StatusColors>()` for status badge colors (`pending`, `inProgress`, `resolved`, `rejected`, `boosted`).
 - **Responsive Layout:** Use `context.isMobile`, `context.isTablet`, `context.isDesktop`, `context.responsiveValue(...)`, and `ResponsiveLayout` builder widget.
-- **Skeleton Loading:** Use `ShimmerLoader`, `SkeletonBox`, `SkeletonCard`, `SkeletonListTile` for async loading states instead of plain spinners.
-- **Micro-Animations:** Use `FadeInSlide` for card/page entrance transitions and `PulseAnimation` for active alerts.
-- **Error Feedback UI:** Use `ErrorView.fromFailure(failure, {onRetry})` for error screens and `AppSnackBar` (`showError`, `showSuccess`, `showWarning`) for floating toasts.
+- **Skeleton Loading:** Use `ShimmerLoader`, `SkeletonBox`, `SkeletonCard`, `SkeletonListTile` for async loading states.
+- **Micro-Animations:** Use `FadeInSlide` for entrance transitions and `PulseAnimation` for active alerts.
+- **Error Feedback UI:** Use `ErrorView.fromFailure(failure, {onRetry})` for error screens and `AppSnackBar` (`showError`, `showSuccess`, `showWarning`) for toasts.
 
 ---
 
@@ -150,7 +152,7 @@ $$\text{Presentation} \longrightarrow \text{Domain} \longleftarrow \text{Data}$$
 
 ---
 
-## 8. Coding Standards & Testing
+## 8. Coding Standards & Automated Verification
 
 - **SOLID & DRY:** Keep functions small (< 20 lines) with a single responsibility.
 - **Naming Conventions:**
@@ -160,4 +162,4 @@ $$\text{Presentation} \longrightarrow \text{Domain} \longleftarrow \text{Data}$$
 - **Formatting:** Enforce 80-character maximum line length.
 - **Null Safety:** Write soundly null-safe Dart. Avoid `!` assertion.
 - **Logging:** Use `dart:developer` (`developer.log()`) instead of `print()`.
-- **Automated Testing:** Run `flutter test` for verification. All new features and core infrastructure must maintain 100% test passing rate.
+- **Automated Testing:** All features require unit & widget tests, maintaining 100% test pass rate.
