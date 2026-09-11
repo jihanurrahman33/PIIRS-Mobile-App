@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/app_card.dart';
+import '../../../auth/domain/entities/user_entity.dart';
+import '../../../auth/presentation/bloc/auth_bloc.dart';
+import '../../../auth/presentation/bloc/auth_event.dart';
+import 'profile_premium_tile.dart';
 
 /// Settings options card for upgrading to premium, preferences, and sign out.
 class ProfileSettingsListCard extends StatelessWidget {
-  const ProfileSettingsListCard({super.key});
+  final UserEntity? user;
+  const ProfileSettingsListCard({super.key, this.user});
+
+  void _onSignOut(BuildContext context) {
+    try {
+      context.read<AuthBloc>().add(const LogoutRequestedEvent());
+    } catch (_) {}
+    context.go('/login');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,19 +43,7 @@ class ProfileSettingsListCard extends StatelessWidget {
             onTap: () => context.push('/citizen-dashboard/statistics'),
           ),
           const Divider(color: AppColors.borderLight),
-          ListTile(
-            leading: const Icon(Icons.star_rounded, color: Colors.amber),
-            title: const Text(
-              'Upgrade to Premium',
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-            ),
-            subtitle: const Text(
-              'Priority inspection & direct staff chat',
-              style: TextStyle(fontSize: 11),
-            ),
-            trailing: const Icon(Icons.chevron_right_rounded),
-            onTap: () => context.push('/premium'),
-          ),
+          ProfilePremiumTile(isPremium: user?.isPremium ?? false),
           const Divider(color: AppColors.borderLight),
           ListTile(
             leading: const Icon(
@@ -54,7 +55,7 @@ class ProfileSettingsListCard extends StatelessWidget {
               style: TextStyle(fontSize: 14),
             ),
             trailing: const Icon(Icons.chevron_right_rounded),
-            onTap: () {},
+            onTap: () => context.push('/notifications'),
           ),
           const Divider(color: AppColors.borderLight),
           ListTile(
@@ -66,7 +67,7 @@ class ProfileSettingsListCard extends StatelessWidget {
               'Sign Out',
               style: TextStyle(fontSize: 14, color: AppColors.rejected),
             ),
-            onTap: () => context.go('/login'),
+            onTap: () => _onSignOut(context),
           ),
         ],
       ),
