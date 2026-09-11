@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
-import '../models/sample_home_feed_posts.dart';
-import 'home_recent_report_card.dart';
+import '../../../issues/presentation/bloc/issue_bloc.dart';
+import '../../../issues/presentation/bloc/issue_state.dart';
+import 'home_real_issue_post_card.dart';
+import 'home_recent_fallback_list.dart';
 
-/// Recent community reports section for the citizen home dashboard.
+/// Recent community reports section for citizen home displaying real posts.
 class HomeRecentReportsSection extends StatelessWidget {
   const HomeRecentReportsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    IssueState? issueState;
+    try {
+      issueState = context.watch<IssueBloc>().state;
+    } catch (_) {}
+
+    final hasRealIssues =
+        issueState is IssuesLoadedState && issueState.issues.isNotEmpty;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -34,24 +45,17 @@ class HomeRecentReportsSection extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 8),
-        ...SampleHomeFeedPosts.items.map(
-          (item) => Padding(
-            padding: const EdgeInsets.only(bottom: 12),
-            child: HomeRecentReportCard(
-              title: item.title,
-              description: item.description,
-              location: item.location,
-              status: item.status,
-              upvotes: item.upvotes,
-              commentCount: item.commentCount,
-              timeAgo: item.timeAgo,
-              reporterName: item.reporterName,
-              imagePath: item.imagePath,
-              category: item.category,
-              onTap: () => context.push('/issues/details/${item.id}'),
-            ),
-          ),
-        ),
+        if (hasRealIssues)
+          ...issueState.issues
+              .take(6)
+              .map(
+                (issue) => Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: HomeRealIssuePostCard(issue: issue),
+                ),
+              )
+        else
+          const HomeRecentFallbackList(),
       ],
     );
   }

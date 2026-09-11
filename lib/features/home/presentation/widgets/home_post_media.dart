@@ -15,26 +15,28 @@ class HomePostMedia extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isNetwork =
+        imagePath.startsWith('http://') || imagePath.startsWith('https://');
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: Stack(
         children: [
-          Image.asset(
-            imagePath,
-            height: 160,
-            width: double.infinity,
-            fit: BoxFit.cover,
-            errorBuilder: (_, _, _) => Container(
-              height: 140,
-              color: AppColors.surfaceContainerLow,
-              child: const Center(
-                child: Icon(
-                  Icons.image_not_supported_outlined,
-                  color: AppColors.textMuted,
+          isNetwork
+              ? Image.network(
+                  imagePath,
+                  height: 160,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, _, _) => _buildFallback(),
+                )
+              : Image.asset(
+                  imagePath,
+                  height: 160,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, _, _) => _buildFallback(),
                 ),
-              ),
-            ),
-          ),
           Positioned(
             top: 8,
             left: 8,
@@ -55,6 +57,19 @@ class HomePostMedia extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildFallback() {
+    return Container(
+      height: 140,
+      color: AppColors.surfaceContainerLow,
+      child: const Center(
+        child: Icon(
+          Icons.image_not_supported_outlined,
+          color: AppColors.textMuted,
+        ),
       ),
     );
   }

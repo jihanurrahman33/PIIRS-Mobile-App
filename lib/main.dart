@@ -6,6 +6,8 @@ import 'core/routes/app_router.dart';
 import 'core/theme/app_theme.dart';
 import 'features/auth/presentation/bloc/auth_bloc.dart';
 import 'features/auth/presentation/bloc/auth_event.dart';
+import 'features/issues/presentation/bloc/issue_bloc.dart';
+import 'features/issues/presentation/bloc/issue_event.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,8 +24,15 @@ class PiirsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AuthBloc>(
-      create: (context) => sl<AuthBloc>()..add(const CheckAuthStatusEvent()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthBloc>(
+          create: (_) => sl<AuthBloc>()..add(const CheckAuthStatusEvent()),
+        ),
+        BlocProvider<IssueBloc>(
+          create: (_) => sl<IssueBloc>()..add(const FetchIssuesEvent()),
+        ),
+      ],
       child: MaterialApp.router(
         title: 'PIIRS',
         debugShowCheckedModeBanner: false,
