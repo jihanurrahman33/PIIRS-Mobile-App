@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../issues/presentation/widgets/quick_report_action_sheet.dart';
 
 /// Elevated center action button for 'Report New Issue' on bottom navigation.
 class CitizenBottomNavCenterButton extends StatelessWidget {
@@ -13,10 +14,15 @@ class CitizenBottomNavCenterButton extends StatelessWidget {
     required this.onTap,
   });
 
+  void _handleTap(BuildContext context) {
+    onTap();
+    QuickReportActionSheet.show(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: () => _handleTap(context),
       borderRadius: BorderRadius.circular(16),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 2),
