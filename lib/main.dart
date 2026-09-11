@@ -13,19 +13,19 @@ void main() async {
   // Initialize global service locator dependencies
   await setupServiceLocator();
 
-  runApp(const ZapShiftApp());
+  runApp(const PiirsApp());
 }
 
-/// Root widget of ZapShift / PIIRS Mobile Application.
-class ZapShiftApp extends StatelessWidget {
-  const ZapShiftApp({super.key});
+/// Root widget of PIIRS Mobile Application.
+class PiirsApp extends StatelessWidget {
+  const PiirsApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AuthBloc>(
       create: (context) => sl<AuthBloc>()..add(const CheckAuthStatusEvent()),
       child: MaterialApp.router(
-        title: 'ZapShift',
+        title: 'PIIRS',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
@@ -35,3 +35,6 @@ class ZapShiftApp extends StatelessWidget {
     );
   }
 }
+
+/// Backwards-compatibility alias for legacy references.
+typedef ZapShiftApp = PiirsApp;

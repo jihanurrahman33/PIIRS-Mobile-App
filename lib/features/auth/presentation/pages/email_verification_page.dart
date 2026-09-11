@@ -10,10 +10,7 @@ import '../../../../core/widgets/app_snackbar.dart';
 class EmailVerificationPage extends StatefulWidget {
   final String email;
 
-  const EmailVerificationPage({
-    super.key,
-    this.email = 'user@example.com',
-  });
+  const EmailVerificationPage({super.key, this.email = 'user@example.com'});
 
   @override
   State<EmailVerificationPage> createState() => _EmailVerificationPageState();
@@ -60,10 +57,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
   }
 
   void _handleCheckVerification() {
-    AppSnackBar.showSuccess(
-      context,
-      'Email verified! Redirecting to home...',
-    );
+    AppSnackBar.showSuccess(context, 'Email verified! Redirecting to home...');
     context.go('/home');
   }
 
@@ -113,7 +107,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
               ),
               const SizedBox(height: 8),
               Text(
-                'Please click the link in your email to activate your ZapShift account.',
+                'Please click the link in your email to activate your PIIRS account.',
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.outline,

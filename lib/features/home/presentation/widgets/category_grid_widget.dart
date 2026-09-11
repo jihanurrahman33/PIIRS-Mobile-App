@@ -1,30 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import 'category_item.dart';
 
-/// Item data class for issue category icons & badges.
-class CategoryItem {
-  final String title;
-  final IconData icon;
-  final int count;
-  final Color color;
-
-  const CategoryItem({
-    required this.title,
-    required this.icon,
-    required this.count,
-    required this.color,
-  });
-}
-
-/// 6-item category grid component displaying issue categories with count badges.
+/// 6-item category grid component reflecting Stitch Civic Modern system.
 class CategoryGridWidget extends StatelessWidget {
   final ValueChanged<String>? onCategoryTap;
 
-  const CategoryGridWidget({
-    super.key,
-    this.onCategoryTap,
-  });
+  const CategoryGridWidget({super.key, this.onCategoryTap});
 
   static const List<CategoryItem> _categories = [
     CategoryItem(
@@ -37,19 +20,19 @@ class CategoryGridWidget extends StatelessWidget {
       title: 'Street Lighting',
       icon: Icons.lightbulb_rounded,
       count: 18,
-      color: Colors.amber,
+      color: AppColors.pending,
     ),
     CategoryItem(
       title: 'Water & Sewage',
       icon: Icons.water_drop_rounded,
       count: 27,
-      color: Colors.blue,
+      color: AppColors.inProgress,
     ),
     CategoryItem(
       title: 'Sidewalks',
       icon: Icons.directions_walk_rounded,
       count: 14,
-      color: Colors.teal,
+      color: AppColors.resolved,
     ),
     CategoryItem(
       title: 'Parks & Trees',
@@ -67,65 +50,46 @@ class CategoryGridWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final screenWidth = MediaQuery.of(context).size.width;
-        final parentWidth = constraints.maxWidth.isFinite
-            ? constraints.maxWidth
-            : (screenWidth - 32.0);
-        final itemWidth = (parentWidth - 24.0) / 3;
-
-        return Wrap(
-          spacing: 12,
-          runSpacing: 12,
-          children: _categories.map((item) {
-            return SizedBox(
-              width: itemWidth > 0 ? itemWidth : 100.0,
-              height: (itemWidth > 0 ? itemWidth : 100.0) * 0.95,
-              child: _buildCategoryCard(context, item),
-            );
-          }).toList(),
-        );
-      },
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        childAspectRatio: 1.05,
+      ),
+      itemCount: _categories.length,
+      itemBuilder: (context, i) => _buildCard(context, _categories[i]),
     );
   }
 
-  Widget _buildCategoryCard(BuildContext context, CategoryItem item) {
-    final theme = Theme.of(context);
+  Widget _buildCard(BuildContext context, CategoryItem item) {
     return InkWell(
       onTap: () => onCategoryTap?.call(item.title),
-      borderRadius: BorderRadius.circular(16.0),
+      borderRadius: BorderRadius.circular(16),
       child: Container(
-        padding: const EdgeInsets.all(6.0),
         decoration: BoxDecoration(
           color: item.color.withValues(alpha: 0.08),
-          borderRadius: BorderRadius.circular(16.0),
-          border: Border.all(
-            color: item.color.withValues(alpha: 0.2),
-            width: 1.0,
-          ),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: item.color.withValues(alpha: 0.2)),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(item.icon, size: 24, color: item.color),
-            const SizedBox(height: 4),
+            const SizedBox(height: 6),
             Text(
               item.title,
-              textAlign: TextAlign.center,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.labelMedium?.copyWith(
-                fontWeight: FontWeight.w600,
-                fontSize: 11,
-              ),
+              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 11),
             ),
-            const SizedBox(height: 2),
             Text(
               '${item.count} issues',
-              style: theme.textTheme.labelSmall?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-                fontSize: 9,
+              style: const TextStyle(
+                color: AppColors.textSecondary,
+                fontSize: 10,
               ),
             ),
           ],

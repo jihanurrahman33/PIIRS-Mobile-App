@@ -20,8 +20,9 @@ class AccountBlockedPage extends StatelessWidget {
     final theme = Theme.of(context);
     final accentColor = isBlocked ? AppColors.rejected : AppColors.pending;
     final title = isBlocked ? 'Account Blocked' : 'Account Under Review';
-    final icon =
-        isBlocked ? Icons.block_rounded : Icons.hourglass_empty_rounded;
+    final icon = isBlocked
+        ? Icons.block_rounded
+        : Icons.hourglass_empty_rounded;
 
     return Scaffold(
       body: SafeArea(
@@ -39,11 +40,7 @@ class AccountBlockedPage extends StatelessWidget {
                     color: accentColor.withValues(alpha: 0.15),
                     shape: BoxShape.circle,
                   ),
-                  child: Icon(
-                    icon,
-                    size: 48,
-                    color: accentColor,
-                  ),
+                  child: Icon(icon, size: 48, color: accentColor),
                 ),
               ),
               const SizedBox(height: 24),

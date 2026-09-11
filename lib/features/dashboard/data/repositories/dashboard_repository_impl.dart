@@ -17,7 +17,8 @@ class DashboardRepositoryImpl implements DashboardRepository {
 
   @override
   Future<(Failure?, CitizenDashboardStatsEntity?)> getCitizenStats(
-      String email) async {
+    String email,
+  ) async {
     if (!await networkInfo.isConnected) {
       return (const NetworkFailure('No internet connection'), null);
     }

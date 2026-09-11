@@ -12,7 +12,7 @@ class SharedPreferencesOnboardingStorage implements OnboardingStorage {
   final SharedPreferences? _prefs;
 
   SharedPreferencesOnboardingStorage({SharedPreferences? prefs})
-      : _prefs = prefs;
+    : _prefs = prefs;
 
   @override
   Future<bool> isOnboardingCompleted() async {

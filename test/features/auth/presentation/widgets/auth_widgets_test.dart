@@ -33,16 +33,15 @@ void main() {
       expect(find.text('Sign in to continue'), findsOneWidget);
     });
 
-    testWidgets('SocialAuthButtons renders Google and Apple buttons',
-        (tester) async {
+    testWidgets('SocialAuthButtons renders Google and Apple buttons', (
+      tester,
+    ) async {
       bool googlePressed = false;
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,
           home: Scaffold(
-            body: SocialAuthButtons(
-              onGoogleTap: () => googlePressed = true,
-            ),
+            body: SocialAuthButtons(onGoogleTap: () => googlePressed = true),
           ),
         ),
       );
@@ -54,8 +53,9 @@ void main() {
       expect(googlePressed, isTrue);
     });
 
-    testWidgets('TermsAndConditionsCheckbox toggles checkbox state',
-        (tester) async {
+    testWidgets('TermsAndConditionsCheckbox toggles checkbox state', (
+      tester,
+    ) async {
       bool checked = false;
       await tester.pumpWidget(
         MaterialApp(
@@ -80,8 +80,9 @@ void main() {
       expect(checked, isTrue);
     });
 
-    testWidgets('PasswordStrengthIndicator renders password score label',
-        (tester) async {
+    testWidgets('PasswordStrengthIndicator renders password score label', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,

@@ -105,10 +105,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             validator: Validators.validateEmail,
           ),
           const SizedBox(height: 24),
-          AppButton(
-            text: 'Send Reset Link',
-            onPressed: _handleSendResetLink,
-          ),
+          AppButton(text: 'Send Reset Link', onPressed: _handleSendResetLink),
         ],
       ),
     );

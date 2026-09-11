@@ -4,9 +4,7 @@ abstract class Validators {
     r'^[a-zA-Z0-9.\_%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
   );
 
-  static final RegExp _phoneRegExp = RegExp(
-    r'^\+?[0-9]{7,15}$',
-  );
+  static final RegExp _phoneRegExp = RegExp(r'^\+?[0-9]{7,15}$');
 
   /// Validates email address syntax.
   static String? validateEmail(String? value) {

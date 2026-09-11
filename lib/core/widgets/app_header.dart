@@ -32,11 +32,7 @@ class AppHeader extends StatelessWidget {
               color: iconColor.withValues(alpha: 0.15),
               shape: BoxShape.circle,
             ),
-            child: Icon(
-              icon,
-              size: 40,
-              color: iconColor,
-            ),
+            child: Icon(icon, size: 40, color: iconColor),
           ),
           const SizedBox(height: 20),
         ],

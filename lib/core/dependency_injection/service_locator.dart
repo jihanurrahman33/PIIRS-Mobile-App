@@ -58,14 +58,10 @@ Future<void> setupServiceLocator() async {
   // ---------------------------------------------------------------------------
   // Core Network & Infrastructure
   // ---------------------------------------------------------------------------
-  sl.registerLazySingleton<NetworkInfo>(
-    () => SimpleNetworkInfo(),
-  );
+  sl.registerLazySingleton<NetworkInfo>(() => SimpleNetworkInfo());
 
   sl.registerLazySingleton<ApiClient>(
-    () => HttpApiClient(
-      tokenProvider: sl<AuthTokenProvider>(),
-    ),
+    () => HttpApiClient(tokenProvider: sl<AuthTokenProvider>()),
   );
 
   // ---------------------------------------------------------------------------
@@ -93,7 +89,8 @@ Future<void> setupServiceLocator() async {
   sl.registerLazySingleton(() => GetUserRoleUseCase(sl<AuthRepository>()));
   sl.registerLazySingleton(() => LogoutUseCase(sl<AuthRepository>()));
   sl.registerLazySingleton(
-      () => SendPasswordResetUseCase(sl<AuthRepository>()));
+    () => SendPasswordResetUseCase(sl<AuthRepository>()),
+  );
 
   // Auth BLoC
   sl.registerFactory(
@@ -152,7 +149,8 @@ Future<void> setupServiceLocator() async {
 
   // Dashboard UseCases
   sl.registerLazySingleton(
-      () => GetCitizenDashboardStatsUseCase(sl<DashboardRepository>()));
+    () => GetCitizenDashboardStatsUseCase(sl<DashboardRepository>()),
+  );
 
   // Dashboard BLoC
   sl.registerFactory(

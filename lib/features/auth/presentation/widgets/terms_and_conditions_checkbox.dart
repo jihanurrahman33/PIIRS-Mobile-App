@@ -33,10 +33,7 @@ class TermsAndConditionsCheckbox extends StatelessWidget {
         Expanded(
           child: Wrap(
             children: [
-              Text(
-                'I agree to the ',
-                style: theme.textTheme.bodySmall,
-              ),
+              Text('I agree to the ', style: theme.textTheme.bodySmall),
               GestureDetector(
                 onTap: () {},
                 child: Text(
@@ -47,10 +44,7 @@ class TermsAndConditionsCheckbox extends StatelessWidget {
                   ),
                 ),
               ),
-              Text(
-                ' and ',
-                style: theme.textTheme.bodySmall,
-              ),
+              Text(' and ', style: theme.textTheme.bodySmall),
               GestureDetector(
                 onTap: () {},
                 child: Text(

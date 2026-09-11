@@ -13,15 +13,12 @@ void main() {
   });
 
   group('SplashPage Tests', () {
-    testWidgets('renders ZapShift logo and title correctly', (tester) async {
+    testWidgets('renders PIIRS logo and title correctly', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          theme: AppTheme.lightTheme,
-          home: const SplashPage(),
-        ),
+        MaterialApp(theme: AppTheme.lightTheme, home: const SplashPage()),
       );
 
-      expect(find.text('ZapShift'), findsOneWidget);
+      expect(find.text('PIIRS'), findsOneWidget);
       expect(
         find.text('Public Infrastructure Issue Reporting'),
         findsOneWidget,

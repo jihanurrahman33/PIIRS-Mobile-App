@@ -26,10 +26,12 @@ class CitizenDashboardOverviewPage extends StatelessWidget {
               const CitizenStatsSummaryCard(),
               const SizedBox(height: 20),
               ListTile(
-                tileColor:
-                    Theme.of(context).colorScheme.surfaceContainerHighest,
+                tileColor: Theme.of(
+                  context,
+                ).colorScheme.surfaceContainerHighest,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16)),
+                  borderRadius: BorderRadius.circular(16),
+                ),
                 leading: const Icon(Icons.bar_chart_rounded),
                 title: const Text('Activity Analytics'),
                 subtitle: const Text('View monthly issue submission trends'),
@@ -38,10 +40,12 @@ class CitizenDashboardOverviewPage extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               ListTile(
-                tileColor:
-                    Theme.of(context).colorScheme.surfaceContainerHighest,
+                tileColor: Theme.of(
+                  context,
+                ).colorScheme.surfaceContainerHighest,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16)),
+                  borderRadius: BorderRadius.circular(16),
+                ),
                 leading: const Icon(Icons.stars_rounded, color: Colors.amber),
                 title: const Text('My Statistics & Badges'),
                 subtitle: const Text('Check community impact score'),

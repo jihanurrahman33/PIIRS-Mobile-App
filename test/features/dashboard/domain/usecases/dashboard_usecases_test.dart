@@ -8,7 +8,8 @@ import 'package:zapshift/features/dashboard/domain/usecases/get_citizen_dashboar
 class FakeDashboardRepository implements DashboardRepository {
   @override
   Future<(Failure?, CitizenDashboardStatsEntity?)> getCitizenStats(
-      String email) async {
+    String email,
+  ) async {
     return (
       null,
       const CitizenDashboardStatsEntity(
@@ -17,7 +18,7 @@ class FakeDashboardRepository implements DashboardRepository {
         totalInProgress: 2,
         totalUpvotesGiven: 15,
         impactPoints: 300,
-      )
+      ),
     );
   }
 }

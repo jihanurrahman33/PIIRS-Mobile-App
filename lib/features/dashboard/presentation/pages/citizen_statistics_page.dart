@@ -28,8 +28,11 @@ class CitizenStatisticsPage extends StatelessWidget {
               AppCard(
                 child: Column(
                   children: [
-                    const Icon(Icons.workspace_premium_rounded,
-                        size: 48, color: Colors.amber),
+                    const Icon(
+                      Icons.workspace_premium_rounded,
+                      size: 48,
+                      color: Colors.amber,
+                    ),
                     const SizedBox(height: 8),
                     Text(
                       'Civic Hero Level 3',
@@ -60,18 +63,22 @@ class CitizenStatisticsPage extends StatelessWidget {
                   children: [
                     ListTile(
                       leading: const CircleAvatar(
-                          child: Icon(Icons.camera_alt_rounded)),
+                        child: Icon(Icons.camera_alt_rounded),
+                      ),
                       title: const Text('First Reporter'),
-                      subtitle:
-                          const Text('Logged your first infrastructure issue'),
+                      subtitle: const Text(
+                        'Logged your first infrastructure issue',
+                      ),
                     ),
                     const Divider(),
                     ListTile(
                       leading: const CircleAvatar(
-                          child: Icon(Icons.thumb_up_rounded)),
+                        child: Icon(Icons.thumb_up_rounded),
+                      ),
                       title: const Text('Community Guardian'),
-                      subtitle:
-                          const Text('Upvoted over 25 neighborhood reports'),
+                      subtitle: const Text(
+                        'Upvoted over 25 neighborhood reports',
+                      ),
                     ),
                   ],
                 ),

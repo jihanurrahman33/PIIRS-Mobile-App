@@ -33,8 +33,11 @@ class CitizenStatsSummaryCard extends StatelessWidget {
                 ),
               ),
               Chip(
-                avatar: const Icon(Icons.bolt_rounded,
-                    color: Colors.amber, size: 18),
+                avatar: const Icon(
+                  Icons.bolt_rounded,
+                  color: Colors.amber,
+                  size: 18,
+                ),
                 label: Text('$impactPoints pts'),
                 backgroundColor: Colors.amber.withValues(alpha: 0.15),
               ),

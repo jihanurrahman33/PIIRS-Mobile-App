@@ -9,9 +9,7 @@ class AssignedIssuesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Assigned Issues'),
-      ),
+      appBar: AppBar(title: const Text('Assigned Issues')),
       body: SafeArea(
         child: ListView.separated(
           padding: const EdgeInsets.all(16.0),

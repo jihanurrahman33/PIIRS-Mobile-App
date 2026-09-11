@@ -6,10 +6,7 @@ import '../../../../core/theme/app_colors.dart';
 class PremiumBannerWidget extends StatelessWidget {
   final VoidCallback? onUpgradeTap;
 
-  const PremiumBannerWidget({
-    super.key,
-    this.onUpgradeTap,
-  });
+  const PremiumBannerWidget({super.key, this.onUpgradeTap});
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +40,14 @@ class PremiumBannerWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.star_rounded,
-                        color: Colors.amber, size: 20),
+                    const Icon(
+                      Icons.star_rounded,
+                      color: Colors.amber,
+                      size: 20,
+                    ),
                     const SizedBox(width: 6),
                     Text(
-                      'ZAPSHIFT PREMIUM',
+                      'PIIRS PREMIUM',
                       style: theme.textTheme.labelSmall?.copyWith(
                         color: Colors.amber,
                         fontWeight: FontWeight.bold,

@@ -56,8 +56,10 @@ class _RegisterPageState extends State<RegisterPage> {
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24.0,
+              vertical: 16.0,
+            ),
             child: Form(
               key: _formKey,
               child: Column(
@@ -67,7 +69,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   const AuthHeaderWidget(
                     title: 'Create Account',
                     subtitle:
-                        'Join ZapShift to report and track infrastructure issues',
+                        'Join PIIRS to report and track infrastructure issues',
                     icon: Icons.person_add_rounded,
                   ),
                   const SizedBox(height: 32),
@@ -107,10 +109,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     },
                   ),
                   const SizedBox(height: 24),
-                  AppButton(
-                    text: 'Create Account',
-                    onPressed: _handleRegister,
-                  ),
+                  AppButton(text: 'Create Account', onPressed: _handleRegister),
                   const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

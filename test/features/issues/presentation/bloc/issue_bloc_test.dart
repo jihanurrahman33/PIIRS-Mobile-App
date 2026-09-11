@@ -30,7 +30,7 @@ class MockIssueRepository implements IssueRepository {
         upvotes: 0,
         authorEmail: 'test@user.com',
         createdAt: DateTime.now(),
-      )
+      ),
     );
   }
 
@@ -82,25 +82,25 @@ void main() {
       expect(issueBloc.state, isA<IssueInitialState>());
     });
 
-    test('emits [IssueLoadingState, IssuesLoadedState] on FetchIssuesEvent',
-        () async {
-      final expected = [
-        isA<IssueLoadingState>(),
-        isA<IssuesLoadedState>(),
-      ];
-      expectLater(issueBloc.stream, emitsInOrder(expected));
-      issueBloc.add(const FetchIssuesEvent());
-    });
+    test(
+      'emits [IssueLoadingState, IssuesLoadedState] on FetchIssuesEvent',
+      () async {
+        final expected = [isA<IssueLoadingState>(), isA<IssuesLoadedState>()];
+        expectLater(issueBloc.stream, emitsInOrder(expected));
+        issueBloc.add(const FetchIssuesEvent());
+      },
+    );
 
     test(
-        'emits [IssueLoadingState, IssueDetailsLoadedState] on FetchIssueDetailsEvent',
-        () async {
-      final expected = [
-        isA<IssueLoadingState>(),
-        isA<IssueDetailsLoadedState>(),
-      ];
-      expectLater(issueBloc.stream, emitsInOrder(expected));
-      issueBloc.add(const FetchIssueDetailsEvent('101'));
-    });
+      'emits [IssueLoadingState, IssueDetailsLoadedState] on FetchIssueDetailsEvent',
+      () async {
+        final expected = [
+          isA<IssueLoadingState>(),
+          isA<IssueDetailsLoadedState>(),
+        ];
+        expectLater(issueBloc.stream, emitsInOrder(expected));
+        issueBloc.add(const FetchIssueDetailsEvent('101'));
+      },
+    );
   });
 }

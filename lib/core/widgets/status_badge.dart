@@ -6,10 +6,7 @@ import '../theme/app_theme_extensions.dart';
 class StatusBadge extends StatelessWidget {
   final String status;
 
-  const StatusBadge({
-    super.key,
-    required this.status,
-  });
+  const StatusBadge({super.key, required this.status});
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +38,7 @@ class StatusBadge extends StatelessWidget {
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(12.0),
-        border: Border.all(
-          color: color.withValues(alpha: 0.3),
-          width: 1.0,
-        ),
+        border: Border.all(color: color.withValues(alpha: 0.3), width: 1.0),
       ),
       child: Text(
         status.toUpperCase(),

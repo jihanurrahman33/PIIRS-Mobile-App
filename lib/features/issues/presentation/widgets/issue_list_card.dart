@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/widgets/app_card.dart';
 import '../../../../core/widgets/status_badge.dart';
 
-/// Reusable card widget for rendering issue items in lists.
+/// Reusable card widget for rendering issue items in lists conforming to Stitch.
 class IssueListCard extends StatelessWidget {
   final String title;
   final String category;
@@ -25,7 +25,6 @@ class IssueListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
     return AppCard(
       onTap: onTap,
       child: Column(
@@ -49,7 +48,7 @@ class IssueListCard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
           Text(
             title,
             style: theme.textTheme.titleMedium?.copyWith(

@@ -15,11 +15,9 @@ class HttpApiClient implements ApiClient {
   final http.Client _client;
   final AuthTokenProvider? _tokenProvider;
 
-  HttpApiClient({
-    http.Client? client,
-    AuthTokenProvider? tokenProvider,
-  })  : _client = client ?? http.Client(),
-        _tokenProvider = tokenProvider;
+  HttpApiClient({http.Client? client, AuthTokenProvider? tokenProvider})
+    : _client = client ?? http.Client(),
+      _tokenProvider = tokenProvider;
 
   @override
   Future<dynamic> get(
@@ -163,10 +161,7 @@ class HttpApiClient implements ApiClient {
       }
     });
 
-    return uri.replace(queryParameters: {
-      ...uri.queryParameters,
-      ...queryMap,
-    });
+    return uri.replace(queryParameters: {...uri.queryParameters, ...queryMap});
   }
 
   /// Constructs standard JSON headers with optional Authorization bearer token.
@@ -216,8 +211,8 @@ class HttpApiClient implements ApiClient {
     final errorMessage = parsedData is Map && parsedData.containsKey('message')
         ? parsedData['message'].toString()
         : responseBody.isNotEmpty
-            ? responseBody
-            : 'HTTP Error $statusCode';
+        ? responseBody
+        : 'HTTP Error $statusCode';
 
     switch (statusCode) {
       case 400:

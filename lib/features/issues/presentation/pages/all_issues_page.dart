@@ -10,9 +10,7 @@ class AllIssuesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('All Public Issues'),
-      ),
+      appBar: AppBar(title: const Text('All Public Issues')),
       body: SafeArea(
         child: ListView.separated(
           padding: const EdgeInsets.all(16.0),

@@ -1,70 +1,94 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../../core/widgets/widgets.dart';
+import '../widgets/my_issues_header_widget.dart';
+import '../widgets/my_issues_status_card.dart';
 
-/// My Issues Tab Page listing citizen's reported issues and statuses.
-class MyIssuesPage extends StatelessWidget {
+/// My Issues Tab Page reflecting Stitch status hub design.
+class MyIssuesPage extends StatefulWidget {
   const MyIssuesPage({super.key});
+
+  @override
+  State<MyIssuesPage> createState() => _MyIssuesPageState();
+}
+
+class _MyIssuesPageState extends State<MyIssuesPage> {
+  String _selectedTab = 'All';
+
+  static const _tabs = [
+    'All',
+    'In Progress',
+    'Pending',
+    'Resolved',
+    'Rejected',
+  ];
+
+  static const _myIssues = [
+    (
+      title: 'Water Main Leak',
+      date: 'Reported Yesterday • 4th Ave & Pine',
+      status: 'In Progress',
+      dept: 'Water Works Dept',
+      prog: 0.5,
+    ),
+    (
+      title: 'Flickering Street Lamp',
+      date: 'Reported on Oct 10 • Sector 2',
+      status: 'Resolved',
+      dept: 'City Lighting',
+      prog: 1.0,
+    ),
+    (
+      title: 'Illegal Dumping on Corner',
+      date: 'Reported 3 days ago • Oak St',
+      status: 'Pending',
+      dept: 'Sanitation Dept',
+      prog: 0.25,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('My Reported Issues'),
-      ),
+      appBar: AppBar(title: const Text('My Reported Issues')),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: ListView.separated(
-            itemCount: 3,
-            separatorBuilder: (context, index) => const SizedBox(height: 12),
-            itemBuilder: (context, index) {
-              final myTitles = [
-                'Pothole on 3rd Avenue near bakery',
-                'Flickering street lamp outside House #42',
-                'Overflowing garbage bin in Central Square',
-              ];
-              final myStatuses = ['In Progress', 'Pending', 'Resolved'];
-
-              return AppCard(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        StatusBadge(status: myStatuses[index]),
-                        Text(
-                          'ID: #ZAP-10${index + 1}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelSmall
-                              ?.copyWith(
-                                color: Theme.of(context).colorScheme.outline,
-                              ),
+        child: ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            const MyIssuesHeaderWidget(),
+            const SizedBox(height: 14),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: _tabs
+                    .map(
+                      (tab) => Padding(
+                        padding: const EdgeInsets.only(right: 8),
+                        child: ChoiceChip(
+                          label: Text(tab),
+                          selected: _selectedTab == tab,
+                          onSelected: (_) => setState(() => _selectedTab = tab),
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      myTitles[index],
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      'Submitted on Aug 1, 2026',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color:
-                                Theme.of(context).colorScheme.onSurfaceVariant,
-                          ),
-                    ),
-                  ],
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
+            const SizedBox(height: 14),
+            ..._myIssues.map(
+              (item) => Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: MyIssuesStatusCard(
+                  title: item.title,
+                  date: item.date,
+                  status: item.status,
+                  department: item.dept,
+                  progress: item.prog,
+                  onTap: () => context.push('/issues/details/101'),
                 ),
-              );
-            },
-          ),
+              ),
+            ),
+          ],
         ),
       ),
     );

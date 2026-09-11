@@ -7,10 +7,7 @@ import '../../../../core/theme/app_colors.dart';
 class IssueTimelinePage extends StatelessWidget {
   final String issueId;
 
-  const IssueTimelinePage({
-    super.key,
-    required this.issueId,
-  });
+  const IssueTimelinePage({super.key, required this.issueId});
 
   @override
   Widget build(BuildContext context) {

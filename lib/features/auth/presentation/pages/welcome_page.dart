@@ -45,7 +45,7 @@ class WelcomePage extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      'Welcome to ZapShift',
+                      'Welcome to PIIRS',
                       textAlign: TextAlign.center,
                       style: theme.textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.bold,

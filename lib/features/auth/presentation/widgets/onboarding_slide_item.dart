@@ -32,11 +32,7 @@ class OnboardingSlideItem extends StatelessWidget {
                 color: slide.accentColor.withValues(alpha: 0.15),
                 shape: BoxShape.circle,
               ),
-              child: Icon(
-                slide.icon,
-                size: 72,
-                color: slide.accentColor,
-              ),
+              child: Icon(slide.icon, size: 72, color: slide.accentColor),
             ),
             const SizedBox(height: 40),
             Text(

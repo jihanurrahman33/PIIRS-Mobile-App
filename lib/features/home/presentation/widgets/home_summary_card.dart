@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/app_card.dart';
 
-/// Dashboard summary card displaying issue statistics metrics.
+/// Dashboard summary card displaying issue statistics metrics based on Stitch design.
 class HomeSummaryCard extends StatelessWidget {
   final int totalReported;
   final int inProgress;
@@ -18,68 +18,68 @@ class HomeSummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return AppCard(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _buildMetricItem(
+          _buildItem(
             context,
-            label: 'Total Reports',
-            value: totalReported.toString(),
-            color: theme.colorScheme.primary,
+            'Total Reports',
+            '$totalReported',
+            Icons.assignment_outlined,
+            AppColors.primarySeed,
           ),
-          Container(
-            height: 40,
-            width: 1,
-            color: theme.colorScheme.outlineVariant,
-          ),
-          _buildMetricItem(
+          Container(height: 36, width: 1, color: AppColors.borderLight),
+          _buildItem(
             context,
-            label: 'In Progress',
-            value: inProgress.toString(),
-            color: AppColors.inProgress,
+            'In Progress',
+            '$inProgress',
+            Icons.pending_actions_rounded,
+            AppColors.inProgress,
           ),
-          Container(
-            height: 40,
-            width: 1,
-            color: theme.colorScheme.outlineVariant,
-          ),
-          _buildMetricItem(
+          Container(height: 36, width: 1, color: AppColors.borderLight),
+          _buildItem(
             context,
-            label: 'Resolved',
-            value: resolved.toString(),
-            color: AppColors.resolved,
+            'Resolved',
+            '$resolved',
+            Icons.task_alt_rounded,
+            AppColors.resolved,
           ),
         ],
       ),
     );
   }
 
-  Widget _buildMetricItem(
-    BuildContext context, {
-    required String label,
-    required String value,
-    required Color color,
-  }) {
+  Widget _buildItem(
+    BuildContext context,
+    String label,
+    String val,
+    IconData icon,
+    Color color,
+  ) {
     final theme = Theme.of(context);
-
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          value,
-          style: theme.textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.bold,
-            color: color,
-          ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 16, color: color),
+            const SizedBox(width: 4),
+            Text(
+              val,
+              style: theme.textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: color,
+              ),
+            ),
+          ],
         ),
         const SizedBox(height: 4),
         Text(
           label,
           style: theme.textTheme.bodySmall?.copyWith(
-            color: theme.colorScheme.onSurfaceVariant,
+            color: AppColors.textSecondary,
           ),
         ),
       ],

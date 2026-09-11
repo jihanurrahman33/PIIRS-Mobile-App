@@ -1,6 +1,6 @@
-# AGENTS.md - PIIRS Mobile (ZapShift) Development Guide
+# AGENTS.md - PIIRS Mobile Development Guide
 
-This document serves as the master specification, architecture blueprint, coding standard, and security guide for all AI agents working on the **ZapShift / PIIRS Mobile** (*Public Infrastructure Issue Reporting System*) codebase.
+This document serves as the master specification, architecture blueprint, coding standard, and security guide for all AI agents working on the **PIIRS Mobile** (*Public Infrastructure Issue Reporting System*) codebase.
 
 ---
 
@@ -90,7 +90,7 @@ When building any feature, automatically execute the following steps without req
 
 ## 4. Security & Environment Rules
 
-- **No Hardcoded Secrets or URLs:** Use `EnvConfig` backing `String.fromEnvironment` for Base URLs (`ZAPSHIFT_BASE_URL`), Stripe keys (`ZAPSHIFT_STRIPE_KEY`), and environment modes (`ZAPSHIFT_ENV`).
+- **No Hardcoded Secrets or URLs:** Use `EnvConfig` backing `String.fromEnvironment` for Base URLs (`PIIRS_BASE_URL` / `ZAPSHIFT_BASE_URL`), Stripe keys (`PIIRS_STRIPE_KEY` / `ZAPSHIFT_STRIPE_KEY`), and environment modes (`PIIRS_ENV` / `ZAPSHIFT_ENV`).
 - **Encrypted Local Storage:** Store sensitive tokens (JWT, Refresh Token) in `SecureStorageService` (`flutter_secure_storage` with Android `EncryptedSharedPreferences` and iOS `Keychain`).
 - **Form Validation & Sanitization:** Use `Validators` (`validateEmail`, `validatePassword`, `validateName`, `validatePhone`, `sanitizeInput`) across all form input fields.
 

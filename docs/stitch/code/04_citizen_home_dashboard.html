@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><title>ZapShift</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "inverse-primary": "#c0c1ff", "priority-high": "#F59E0B", "status-rejected": "#EF4444", "primary-fixed": "#e1e0ff", "surface-container": "#eaedff", "priority-urgent": "#EF4444", "surface-container-low": "#f2f3ff", "background-dark": "#0F172A", "surface-tint": "#494bd6", "brand-primary-dark": "#818CF8", "surface-light": "#FFFFFF", "inverse-surface": "#283044", "priority-low": "#10B981", "border-light": "#E2E8F0", "surface-container-highest": "#dae2fd", "surface-dark": "#1E293B", "surface-container-lowest": "#ffffff", "secondary-fixed-dim": "#89ceff", "on-tertiary-container": "#fffbff", "on-primary-fixed-variant": "#2f2ebe", "on-primary": "#ffffff", "error": "#ba1a1a", "on-error-container": "#93000a", "tertiary-container": "#b55d00", "on-secondary": "#ffffff", "on-secondary-container": "#004666", "on-tertiary-fixed": "#301400", "surface-container-high": "#e2e7ff", "primary-container": "#6063ee", "background": "#faf8ff", "surface-bright": "#faf8ff", "on-error": "#ffffff", "on-tertiary": "#ffffff", "status-pending": "#F59E0B", "outline-variant": "#c7c4d7", "on-primary-fixed": "#07006c", "surface-dim": "#d2d9f4", "on-secondary-fixed": "#001e2f", "on-surface-variant": "#464554", "status-inprogress": "#3B82F6", "surface": "#faf8ff", "text-muted": "#94A3B8", "background-light": "#F8FAFC", "status-boosted": "#8B5CF6", "error-container": "#ffdad6", "on-primary-container": "#fffbff", "secondary-fixed": "#c9e6ff", "on-secondary-fixed-variant": "#004c6e", "secondary": "#006591", "tertiary-fixed-dim": "#ffb783", "on-tertiary-fixed-variant": "#703700", "priority-normal": "#3B82F6", "on-surface": "#131b2e", "on-background": "#131b2e", "text-secondary": "#64748B", "inverse-on-surface": "#eef0ff", "primary-fixed-dim": "#c0c1ff", "tertiary-fixed": "#ffdcc5", "secondary-container": "#39b8fd", "tertiary": "#904900", "outline": "#767586", "status-resolved": "#10B981", "primary": "#4648d4", "surface-variant": "#dae2fd", "text-primary": "#0F172A" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xs": "0.25rem", "margin": "1rem", "space-lg": "1rem", "gutter": "1rem", "space-md": "0.75rem", "space-xl": "1.5rem", "space-sm": "0.5rem" }, fontFamily: { "title": ["Inter"], "headline": ["Inter"], "display": ["Inter"], "body-lg": ["Inter"], "body": ["Inter"], "caption": ["Inter"], "label": ["Inter"] }, fontSize: { "title": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "headline": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.3px", "fontWeight": "600" }], "display": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.5px", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "body": ["14px", { "lineHeight": "21px", "fontWeight": "400" }], "caption": ["11px", { "lineHeight": "14px", "fontWeight": "400" }], "label": ["12px", { "lineHeight": "16px", "letterSpacing": "0.2px", "fontWeight": "500" }] } } } };</script><style>@layer base{html,body{margin:0;padding:0;min-height:100%;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background font-body text-body text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface-light/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="ZapShift Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1V886aRiy3kSRA3sOAu285eX0lia4muRElpZXUTBBJIR36XJJuQNjmeAzi4WlKiD_JLVxFx83UQzFro-U9Cn_qndUbFZOikOOJYRN_P7HtNim5KzyAHPXfFCd821LiQAcGiXYlXdHGlS_H1j-8A27LyuQddk6c97p8L0S93-LiuGDpjCgzZKZgKnbdvmbnDZh-dGdJUmihcLX6Umb4hmEjNM08_UBoXJ75bJKAFWgMmmAOD8RIcMjcQo7OM"/><div class="flex flex-col"><span class="font-title text-title text-text-primary leading-tight tracking-tight">ZapShift</span><span class="font-caption text-caption text-text-muted leading-none tracking-normal">Home</span></div></div><div class="flex items-center gap-space-sm"><button class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors"><span class="material-symbols-outlined text-[22px]">notifications</span></button><a class="w-11 h-11 flex items-center justify-center rounded-full" data-path="profile" href="#"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1ODVOCUTvFhaW9lRgaQmpw-K92MMK4Yr1yuKI3ejQ-tpq28Qvqhhe1wqhTGvlSNB_OjFZYu92xAiNA1D6NQUQhxYU-cNzoWUD61kGkbKa7DbqGvigOVJpaqqwRqPPb4IAIeeEQPTBLw4EXJlmlez5WaiH2yrLdqAfGLENOc4fE0TqZ9pLJdgQUum5AbK4smCM8StaKlEHD7Ne92Rp59N3lw43z4uYGCsMI5fzhim0WRLs3n96vnbffg"/></a></div></div></header><main class="flex-1 w-full pt-16 pb-28 px-margin bg-background relative flex flex-col"><div class="flex flex-col w-full space-y-space-lg">
+<!-- Citizen Context & Location Ribbon -->
+<div class="flex items-center justify-between pt-space-xs">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="font-label text-label font-medium text-text-primary">Downtown Ward 4</span>
+<span class="material-symbols-outlined text-[16px] text-text-secondary">keyboard_arrow_down</span>
+</button>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-primary">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-status-resolved opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-status-resolved"></span>
+</span>
+<span class="font-caption text-caption font-semibold tracking-wide uppercase">Grid Live</span>
+</div>
+</div>
+<!-- Warm Greeting Header -->
+<div class="flex flex-col space-y-0.5">
+<h1 class="font-headline text-headline text-text-primary flex items-center gap-2">
+<span>Good morning, Alex</span>
+<span class="inline-block animate-bounce text-[20px]">👋</span>
+</h1>
+<p class="font-body text-body text-text-secondary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-status-resolved" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>2 issues resolved in your area this week</span>
+</p>
+</div>
+<!-- Hero Interactive Action Banner -->
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary to-surface-tint p-space-lg text-on-primary shadow-lg">
+<!-- Subtle Background Vector Waves / Zap Glow -->
+<div class="absolute -right-8 -bottom-8 w-36 h-36 rounded-full bg-surface-light/10 blur-2xl pointer-events-none"></div>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 opacity-20 pointer-events-none">
+<span class="material-symbols-outlined text-[120px] text-surface-light" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div class="relative z-10 flex items-center justify-between gap-3">
+<div class="flex flex-col max-w-[62%] space-y-2">
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-light/20 backdrop-blur-md self-start text-surface-light">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">flash_on</span>
+<span class="font-caption text-caption font-medium">Fast-Track Response</span>
+</div>
+<div>
+<h2 class="font-title text-title text-surface-light font-bold leading-tight">See a Public Issue?</h2>
+<p class="font-body text-body text-surface-light/85 mt-0.5 text-xs line-clamp-2">Snap a photo and notify municipal teams instantly.</p>
+</div>
+<div class="pt-1">
+<a class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-light text-primary font-label text-label font-bold shadow-md hover:bg-surface-container-lowest active:scale-95 transition-all" data-path="report-issue" href="#">
+<span class="material-symbols-outlined text-[18px]">add_a_photo</span>
+<span>+ Report Now</span>
+</a>
+</div>
+</div>
+<!-- Playful Vector Graphic -->
+<div class="relative flex items-center justify-center w-24 h-24 rounded-2xl bg-surface-light/15 backdrop-blur-md shadow-inner">
+<div class="relative flex items-center justify-center w-16 h-16 rounded-full bg-surface-light/25 animate-pulse">
+<span class="material-symbols-outlined text-[36px] text-surface-light">photo_camera</span>
+</div>
+<div class="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-priority-high text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 2x2 Bento Quick Stats -->
+<div class="grid grid-cols-2 gap-space-md">
+<!-- Active Reports -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between space-y-2">
+<div class="flex items-center justify-between">
+<div class="w-8 h-8 rounded-lg bg-status-pending/15 text-priority-high flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">pending_actions</span>
+</div>
+<span class="font-caption text-caption font-bold px-2 py-0.5 rounded-full bg-status-pending/10 text-priority-high">Active</span>
+</div>
+<div>
+<span class="font-headline text-headline text-text-primary font-bold">3</span>
+<p class="font-caption text-caption text-text-secondary mt-0.5">Dispatched to crew</p>
+</div>
+</div>
+<!-- Resolved -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between space-y-2">
+<div class="flex items-center justify-between">
+<div class="w-8 h-8 rounded-lg bg-status-resolved/15 text-status-resolved flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">task_alt</span>
+</div>
+<span class="font-caption text-caption font-bold px-2 py-0.5 rounded-full bg-status-resolved/10 text-status-resolved">+4 this mo</span>
+</div>
+<div>
+<span class="font-headline text-headline text-text-primary font-bold">14</span>
+<p class="font-caption text-caption text-text-secondary mt-0.5">Issues resolved</p>
+</div>
+</div>
+<!-- Community Upvotes -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between space-y-2">
+<div class="flex items-center justify-between">
+<div class="w-8 h-8 rounded-lg bg-status-inprogress/15 text-status-inprogress flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">thumb_up</span>
+</div>
+<span class="font-caption text-caption font-bold px-2 py-0.5 rounded-full bg-status-inprogress/10 text-status-inprogress">Rank #12</span>
+</div>
+<div>
+<span class="font-headline text-headline text-text-primary font-bold">89</span>
+<p class="font-caption text-caption text-text-secondary mt-0.5">Community upvotes</p>
+</div>
+</div>
+<!-- Impact Rank -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between space-y-2">
+<div class="flex items-center justify-between">
+<div class="w-8 h-8 rounded-lg bg-primary/15 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">military_tech</span>
+</div>
+<span class="font-caption text-caption font-bold px-2 py-0.5 rounded-full bg-primary-fixed text-primary">Civic Star</span>
+</div>
+<div>
+<span class="font-headline text-headline text-text-primary font-bold">Top 5%</span>
+<p class="font-caption text-caption text-text-secondary mt-0.5">District contributor</p>
+</div>
+</div>
+</div>
+<!-- Quick Category Filter Chips -->
+<div class="flex flex-col space-y-2">
+<div class="flex items-center justify-between">
+<span class="font-title text-title text-text-primary font-semibold">Explore Categories</span>
+<button class="font-caption text-caption text-primary font-medium hover:underline">View All</button>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-margin px-margin">
+<button class="category-chip flex-shrink-0 px-4 py-2 rounded-full bg-primary text-on-primary font-label text-label font-medium shadow-sm transition-transform active:scale-95 flex items-center gap-1.5" data-filter="all">
+<span>All</span>
+</button>
+<button class="category-chip flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-container-low text-text-primary font-label text-label font-medium hover:bg-surface-container transition-transform active:scale-95 flex items-center gap-1.5" data-filter="potholes">
+<span>🕳️</span>
+<span>Potholes</span>
+</button>
+<button class="category-chip flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-container-low text-text-primary font-label text-label font-medium hover:bg-surface-container transition-transform active:scale-95 flex items-center gap-1.5" data-filter="streetlights">
+<span>💡</span>
+<span>Streetlights</span>
+</button>
+<button class="category-chip flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-container-low text-text-primary font-label text-label font-medium hover:bg-surface-container transition-transform active:scale-95 flex items-center gap-1.5" data-filter="water">
+<span>💧</span>
+<span>Water Leak</span>
+</button>
+<button class="category-chip flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-container-low text-text-primary font-label text-label font-medium hover:bg-surface-container transition-transform active:scale-95 flex items-center gap-1.5" data-filter="trash">
+<span>🗑️</span>
+<span>Trash/Waste</span>
+</button>
+</div>
+</div>
+<!-- Recent Community Issues Section -->
+<div class="flex flex-col space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="font-title text-title text-text-primary font-semibold">Recent Community Issues</span>
+<span class="flex items-center justify-center w-5 h-5 rounded-full bg-surface-container text-primary font-caption text-caption font-bold">8</span>
+</div>
+<a class="font-caption text-caption text-primary font-medium hover:underline flex items-center" data-path="explore" href="#">
+<span>Map View</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+<!-- Issue Feed Card 1: Elm Street Pothole -->
+<div class="bg-surface-container-lowest rounded-xl p-3.5 shadow-sm hover:shadow-md transition-shadow flex flex-col space-y-3">
+<div class="flex gap-3">
+<!-- Thumbnail -->
+<div class="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A close-up urban photograph of a deep asphalt pothole on a suburban asphalt street with bright morning daylight, safety road markings visible, sharp civic inspection documentary style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZIiyIDtDm87xRHjOVUXP4T21jvknPFxpvFBk1xvh9Kq79CltX3NJ5CXncIuCHtBYKEiFeauHEO8JajxajN6T1QHNKKNX-7Z6yemJ1vl9mXaDQXEoN9lXOJK3_R3FfTnDcp0g6fAwxCRaal0hGsvIQF7qy-nfGuMH-JqnDcE04tIM0u4_O7GenA6gr8SEoYHuCZ0-pf-wy3jyGTDjaw8Fb_3-bWJTMirfYiu3DZsu86lVD9RBGxq1soQ"/>
+<span class="absolute bottom-1 right-1 bg-background-dark/70 backdrop-blur-xs text-on-primary rounded px-1 text-[10px] font-caption font-bold">HD</span>
+</div>
+<!-- Issue Body -->
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div class="flex items-start justify-between gap-1">
+<h3 class="font-title text-title text-text-primary truncate leading-snug font-semibold">Deep pothole on Elm Street</h3>
+</div>
+<p class="font-caption text-caption text-text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">pin_drop</span>
+<span class="truncate">Corner of Elm &amp; 4th Ave</span>
+</p>
+<div class="flex items-center gap-2 pt-1">
+<span class="px-2 py-0.5 rounded-full bg-status-inprogress/10 text-status-inprogress font-caption text-caption font-bold tracking-wider uppercase">IN PROGRESS</span>
+<span class="font-caption text-caption text-text-muted flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]">schedule</span>
+<span>2h ago</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Action & Engagement Footer -->
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-2">
+<div class="flex -space-x-1.5 overflow-hidden">
+<div class="inline-block h-5 w-5 rounded-full ring-2 ring-surface-container-lowest bg-primary-fixed flex items-center justify-center text-[9px] font-bold text-on-primary-fixed">JD</div>
+<div class="inline-block h-5 w-5 rounded-full ring-2 ring-surface-container-lowest bg-secondary-fixed flex items-center justify-center text-[9px] font-bold text-on-secondary-fixed">MR</div>
+<div class="inline-block h-5 w-5 rounded-full ring-2 ring-surface-container-lowest bg-tertiary-fixed flex items-center justify-center text-[9px] font-bold text-on-tertiary-fixed">SL</div>
+</div>
+<span class="font-caption text-caption text-text-secondary">Assigned to Road Dept</span>
+</div>
+<button class="upvote-btn flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low hover:bg-primary/10 text-text-primary font-label text-label font-semibold transition-all active:scale-90" data-count="24">
+<span class="material-symbols-outlined text-[16px] text-primary transition-transform">arrow_upward</span>
+<span class="count-display font-medium text-primary">24</span>
+</button>
+</div>
+</div>
+<!-- Issue Feed Card 2: Flickering Lamp Post -->
+<div class="bg-surface-container-lowest rounded-xl p-3.5 shadow-sm hover:shadow-md transition-shadow flex flex-col space-y-3">
+<div class="flex gap-3">
+<!-- Thumbnail -->
+<div class="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A modern municipal metal streetlight pole standing tall in a quiet neighborhood park path during early twilight with lush green trees, civic utility inspection aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDVDRpc03jzX-iXRoK0U5PGSohrrpvcEpWbeAlwjQMdgEu54kAT62q8sQgof214YKE-IywPyAojMihTn8STzdI_BSijr-lcq182fVjNlMjBgIZcnkDfhTr1g6Xn4oo9bCEf0JgJb6MGj4cawJV-hmMZx6XWwvY-ZwTzGGcJnngsHHMZ68uxwWnsrwqWe3GMnNocVDLkP5EbxSDeX09Wf7Hof9YS5Sze0pFD_FIoZbMz_nERLJOf8WnuA"/>
+<span class="absolute bottom-1 right-1 bg-background-dark/70 backdrop-blur-xs text-on-primary rounded px-1 text-[10px] font-caption font-bold">2 Photos</span>
+</div>
+<!-- Issue Body -->
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div class="flex items-start justify-between gap-1">
+<h3 class="font-title text-title text-text-primary truncate leading-snug font-semibold">Broken pole #48 light bulb</h3>
+</div>
+<p class="font-caption text-caption text-text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">pin_drop</span>
+<span class="truncate">Oak Ridge Park Walkway</span>
+</p>
+<div class="flex items-center gap-2 pt-1">
+<span class="px-2 py-0.5 rounded-full bg-status-pending/10 text-status-pending font-caption text-caption font-bold tracking-wider uppercase">UNDER REVIEW</span>
+<span class="font-caption text-caption text-text-muted flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]">schedule</span>
+<span>4h ago</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Action & Engagement Footer -->
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-2">
+<div class="flex -space-x-1.5 overflow-hidden">
+<div class="inline-block h-5 w-5 rounded-full ring-2 ring-surface-container-lowest bg-surface-variant flex items-center justify-center text-[9px] font-bold text-on-surface-variant">AK</div>
+<div class="inline-block h-5 w-5 rounded-full ring-2 ring-surface-container-lowest bg-primary-fixed flex items-center justify-center text-[9px] font-bold text-on-primary-fixed">BL</div>
+</div>
+<span class="font-caption text-caption text-text-secondary">Needs 2 more votes</span>
+</div>
+<button class="upvote-btn flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low hover:bg-primary/10 text-text-primary font-label text-label font-semibold transition-all active:scale-90" data-count="18">
+<span class="material-symbols-outlined text-[16px] text-text-secondary transition-transform">arrow_upward</span>
+<span class="count-display font-medium text-text-secondary">18</span>
+</button>
+</div>
+</div>
+<!-- Community Uplift Milestone Card -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-low p-3.5 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-status-resolved/15 text-status-resolved flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">celebration</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<span class="font-label text-label font-bold text-text-primary">Ward 4 Milestone Reached!</span>
+<span class="font-caption text-caption text-text-secondary">94% resolution rate within 48h this month. Keep up the civic pride!</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Micro-interactions for Upvote Buttons & Category Selection
+  document.querySelectorAll('.upvote-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const countSpan = this.querySelector('.count-display');
+      const icon = this.querySelector('.material-symbols-outlined');
+      let count = parseInt(this.dataset.count, 10);
+      const isUpvoted = this.classList.contains('upvoted');
+
+      if (!isUpvoted) {
+        count += 1;
+        this.dataset.count = count;
+        countSpan.textContent = count;
+        this.classList.add('upvoted', 'bg-primary-fixed');
+        this.classList.remove('bg-surface-container-low');
+        countSpan.classList.add('text-primary');
+        countSpan.classList.remove('text-text-secondary');
+        icon.classList.add('text-primary', '-translate-y-0.5');
+        icon.classList.remove('text-text-secondary');
+      } else {
+        count -= 1;
+        this.dataset.count = count;
+        countSpan.textContent = count;
+        this.classList.remove('upvoted', 'bg-primary-fixed');
+        this.classList.add('bg-surface-container-low');
+        countSpan.classList.remove('text-primary');
+        countSpan.classList.add('text-text-secondary');
+        icon.classList.remove('text-primary', '-translate-y-0.5');
+        icon.classList.add('text-text-secondary');
+      }
+    });
+  });
+
+  // Category Filtering Toggle Behavior
+  document.querySelectorAll('.category-chip').forEach(chip => {
+    chip.addEventListener('click', function() {
+      document.querySelectorAll('.category-chip').forEach(c => {
+        c.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+        c.classList.add('bg-surface-container-low', 'text-text-primary');
+      });
+      this.classList.remove('bg-surface-container-low', 'text-text-primary');
+      this.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+    });
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-light/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(15,23,42,0.06)]" data-active-classes="text-primary font-bold"><div class="h-16 px-space-xs flex items-center justify-around relative"><a aria-current="page" class="flex flex-col items-center justify-center w-14 h-14 transition-colors text-primary font-bold" data-path="home" href="#"><span class="material-symbols-outlined text-[24px]">home</span><span class="font-caption text-caption mt-0.5">Home</span></a><a class="flex flex-col items-center justify-center w-14 h-14 text-text-secondary transition-colors" data-path="explore" href="#"><span class="material-symbols-outlined text-[24px]">explore</span><span class="font-caption text-caption mt-0.5">Explore</span></a><div class="relative -top-5 flex flex-col items-center"><a class="w-14 h-14 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-[0_4px_16px_rgba(70,72,212,0.4)] active:scale-95 transition-transform" data-path="report-issue" href="#"><span class="material-symbols-outlined text-[28px]">add</span></a><span class="font-caption text-caption text-text-secondary mt-1 font-medium">Report</span></div><a class="flex flex-col items-center justify-center w-14 h-14 text-text-secondary transition-colors" data-path="my-issues" href="#"><span class="material-symbols-outlined text-[24px]">assignment</span><span class="font-caption text-caption mt-0.5">My Issues</span></a><a class="flex flex-col items-center justify-center w-14 h-14 text-text-secondary transition-colors" data-path="profile" href="#"><span class="material-symbols-outlined text-[24px]">person</span><span class="font-caption text-caption mt-0.5">Profile</span></a></div></nav></body></html>

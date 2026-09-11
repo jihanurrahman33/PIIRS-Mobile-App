@@ -25,56 +25,65 @@ void main() {
       fakeTokenProvider = FakeAuthTokenProvider();
     });
 
-    test('GET request successfully parses plain text response (Health Check)',
-        () async {
-      final mockClient = MockClient((request) async {
-        expect(request.url.toString(), '${ApiConstants.baseUrl}/');
-        expect(request.method, 'GET');
-        return http.Response('"server is live"', 200);
-      });
+    test(
+      'GET request successfully parses plain text response (Health Check)',
+      () async {
+        final mockClient = MockClient((request) async {
+          expect(request.url.toString(), '${ApiConstants.baseUrl}/');
+          expect(request.method, 'GET');
+          return http.Response('"server is live"', 200);
+        });
 
-      final apiClient = HttpApiClient(
-        client: mockClient,
-        tokenProvider: fakeTokenProvider,
-      );
-
-      final response =
-          await apiClient.get(ApiConstants.health, requiresAuth: false);
-      expect(response, 'server is live');
-    });
-
-    test('POST request injects Authorization header and parses JSON response',
-        () async {
-      final mockClient = MockClient((request) async {
-        expect(request.url.toString(), '${ApiConstants.baseUrl}/issues');
-        expect(request.headers['Authorization'], 'Bearer fake_firebase_token');
-        expect(request.headers['Content-Type'], 'application/json');
-        expect(request.method, 'POST');
-
-        final body = jsonDecode(request.body);
-        expect(body['title'], 'Broken Streetlight');
-
-        return http.Response(
-          jsonEncode({'id': '123', 'status': 'pending'}),
-          201,
+        final apiClient = HttpApiClient(
+          client: mockClient,
+          tokenProvider: fakeTokenProvider,
         );
-      });
 
-      final apiClient = HttpApiClient(
-        client: mockClient,
-        tokenProvider: fakeTokenProvider,
-      );
+        final response = await apiClient.get(
+          ApiConstants.health,
+          requiresAuth: false,
+        );
+        expect(response, 'server is live');
+      },
+    );
 
-      final response = await apiClient.post(
-        ApiConstants.issues,
-        body: {'title': 'Broken Streetlight'},
-        requiresAuth: true,
-      );
+    test(
+      'POST request injects Authorization header and parses JSON response',
+      () async {
+        final mockClient = MockClient((request) async {
+          expect(request.url.toString(), '${ApiConstants.baseUrl}/issues');
+          expect(
+            request.headers['Authorization'],
+            'Bearer fake_firebase_token',
+          );
+          expect(request.headers['Content-Type'], 'application/json');
+          expect(request.method, 'POST');
 
-      expect(response, isA<Map<String, dynamic>>());
-      expect(response['id'], '123');
-      expect(response['status'], 'pending');
-    });
+          final body = jsonDecode(request.body);
+          expect(body['title'], 'Broken Streetlight');
+
+          return http.Response(
+            jsonEncode({'id': '123', 'status': 'pending'}),
+            201,
+          );
+        });
+
+        final apiClient = HttpApiClient(
+          client: mockClient,
+          tokenProvider: fakeTokenProvider,
+        );
+
+        final response = await apiClient.post(
+          ApiConstants.issues,
+          body: {'title': 'Broken Streetlight'},
+          requiresAuth: true,
+        );
+
+        expect(response, isA<Map<String, dynamic>>());
+        expect(response['id'], '123');
+        expect(response['status'], 'pending');
+      },
+    );
 
     test('401 response throws UnauthorizedException', () async {
       final mockClient = MockClient((request) async {

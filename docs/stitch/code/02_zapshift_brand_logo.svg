@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="shieldGrad" x1="10" y1="10" x2="90" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#0EA5E9"/>
+    </linearGradient>
+    <linearGradient id="boltGrad" x1="30" y1="20" x2="70" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E0E7FF"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <path d="M50 8L82 22V48C82 70 50 90 50 90C50 90 18 70 18 48V22L50 8Z" fill="url(#shieldGrad)" />
+  <path d="M50 14L76 26V48C76 66 50 82 50 82C50 82 24 66 24 48V26L50 14Z" fill="#0F172A" opacity="0.25" />
+  <path d="M54 26L36 50H50L46 74L64 50H50L54 26Z" fill="url(#boltGrad)" filter="url(#glow)" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round" />
+</svg>

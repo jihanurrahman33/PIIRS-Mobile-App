@@ -7,10 +7,7 @@ import '../widgets/citizen_bottom_nav_bar.dart';
 class CitizenMainShell extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
 
-  const CitizenMainShell({
-    super.key,
-    required this.navigationShell,
-  });
+  const CitizenMainShell({super.key, required this.navigationShell});
 
   void _onTap(int index) {
     navigationShell.goBranch(

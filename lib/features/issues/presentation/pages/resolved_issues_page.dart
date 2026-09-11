@@ -10,9 +10,7 @@ class ResolvedIssuesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Resolved Issues Feed'),
-      ),
+      appBar: AppBar(title: const Text('Resolved Issues Feed')),
       body: SafeArea(
         child: ListView.separated(
           padding: const EdgeInsets.all(16.0),

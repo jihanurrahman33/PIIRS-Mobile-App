@@ -13,9 +13,7 @@ class RejectedIssuesPage extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Rejected Reports'),
-      ),
+      appBar: AppBar(title: const Text('Rejected Reports')),
       body: SafeArea(
         child: ListView.separated(
           padding: const EdgeInsets.all(16.0),

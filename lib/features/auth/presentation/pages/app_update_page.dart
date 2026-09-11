@@ -12,7 +12,8 @@ class AppUpdatePage extends StatelessWidget {
   const AppUpdatePage({
     super.key,
     this.latestVersion = 'v1.1.0',
-    this.releaseNotes = '• Improved live timeline tracking for issue updates\n'
+    this.releaseNotes =
+        '• Improved live timeline tracking for issue updates\n'
         '• Enhanced offline data sync performance\n'
         '• UI improvements & stability fixes',
     this.isForceUpdate = false,
@@ -57,8 +58,8 @@ class AppUpdatePage extends StatelessWidget {
               Center(
                 child: Chip(
                   label: Text('Version $latestVersion'),
-                  backgroundColor:
-                      theme.colorScheme.primaryContainer.withValues(alpha: 0.5),
+                  backgroundColor: theme.colorScheme.primaryContainer
+                      .withValues(alpha: 0.5),
                 ),
               ),
               const SizedBox(height: 24),

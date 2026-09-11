@@ -25,7 +25,8 @@ class IssueModel extends IssueEntity {
       category: json['category'] as String? ?? 'General',
       status: json['status'] as String? ?? 'Pending',
       upvotes: json['upvotes'] as int? ?? 0,
-      authorEmail: json['author_email'] as String? ??
+      authorEmail:
+          json['author_email'] as String? ??
           json['user_email'] as String? ??
           '',
       assignedStaffEmail: json['assigned_staff_email'] as String?,

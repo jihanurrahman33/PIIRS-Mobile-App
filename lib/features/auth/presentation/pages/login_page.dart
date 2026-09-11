@@ -6,7 +6,7 @@ import '../../../../core/widgets/widgets.dart';
 import '../widgets/auth_header_widget.dart';
 import '../widgets/social_auth_buttons.dart';
 
-/// Login Page UI for ZapShift user authentication.
+/// Login Page UI for PIIRS user authentication.
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -40,8 +40,10 @@ class _LoginPageState extends State<LoginPage> {
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24.0,
+              vertical: 16.0,
+            ),
             child: Form(
               key: _formKey,
               child: Column(
@@ -74,10 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  AppButton(
-                    text: 'Sign In',
-                    onPressed: _handleLogin,
-                  ),
+                  AppButton(text: 'Sign In', onPressed: _handleLogin),
                   const SizedBox(height: 24),
                   const SocialAuthButtons(),
                   const SizedBox(height: 24),

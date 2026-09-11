@@ -30,10 +30,7 @@ void main() {
   group('OnboardingPage Tests', () {
     testWidgets('renders first onboarding slide correctly', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          theme: AppTheme.lightTheme,
-          home: const OnboardingPage(),
-        ),
+        MaterialApp(theme: AppTheme.lightTheme, home: const OnboardingPage()),
       );
 
       expect(find.text('Report Issues Seamlessly'), findsOneWidget);
@@ -43,10 +40,7 @@ void main() {
 
     testWidgets('advances to next slide on Next button tap', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          theme: AppTheme.lightTheme,
-          home: const OnboardingPage(),
-        ),
+        MaterialApp(theme: AppTheme.lightTheme, home: const OnboardingPage()),
       );
 
       await tester.tap(find.text('Next'));
@@ -72,13 +66,11 @@ void main() {
   });
 
   group('MaintenancePage Tests', () {
-    testWidgets('renders MaintenancePage with status explanation',
-        (tester) async {
+    testWidgets('renders MaintenancePage with status explanation', (
+      tester,
+    ) async {
       await tester.pumpWidget(
-        MaterialApp(
-          theme: AppTheme.lightTheme,
-          home: const MaintenancePage(),
-        ),
+        MaterialApp(theme: AppTheme.lightTheme, home: const MaintenancePage()),
       );
 
       expect(find.text('System Under Maintenance'), findsOneWidget);

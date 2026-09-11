@@ -17,8 +17,9 @@ void main() {
   });
 
   group('Citizen Main Navigation & Shell Tests', () {
-    testWidgets('CitizenBottomNavBar renders all 5 navigation items',
-        (tester) async {
+    testWidgets('CitizenBottomNavBar renders all 5 navigation items', (
+      tester,
+    ) async {
       int selectedIndex = 0;
       await tester.pumpWidget(
         MaterialApp(
@@ -39,8 +40,9 @@ void main() {
       expect(find.text('Profile'), findsOneWidget);
     });
 
-    testWidgets('ExploreIssuesPage renders search bar and public issues feed',
-        (tester) async {
+    testWidgets('ExploreIssuesPage renders search bar and public issues feed', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,
@@ -52,13 +54,11 @@ void main() {
       expect(find.byType(TextField), findsOneWidget);
     });
 
-    testWidgets('ReportIssuePage renders form fields and submit button',
-        (tester) async {
+    testWidgets('ReportIssuePage renders form fields and submit button', (
+      tester,
+    ) async {
       await tester.pumpWidget(
-        MaterialApp(
-          theme: AppTheme.lightTheme,
-          home: const ReportIssuePage(),
-        ),
+        MaterialApp(theme: AppTheme.lightTheme, home: const ReportIssuePage()),
       );
 
       expect(find.text('Report New Issue'), findsOneWidget);
@@ -67,17 +67,15 @@ void main() {
 
     testWidgets('MyIssuesPage renders reported issues list', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          theme: AppTheme.lightTheme,
-          home: const MyIssuesPage(),
-        ),
+        MaterialApp(theme: AppTheme.lightTheme, home: const MyIssuesPage()),
       );
 
       expect(find.text('My Reported Issues'), findsOneWidget);
     });
 
-    testWidgets('CitizenProfilePage renders user info and settings options',
-        (tester) async {
+    testWidgets('CitizenProfilePage renders user info and settings options', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,

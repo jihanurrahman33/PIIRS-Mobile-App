@@ -32,17 +32,17 @@ class IssueEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-        id,
-        title,
-        description,
-        category,
-        status,
-        upvotes,
-        authorEmail,
-        assignedStaffEmail,
-        latitude,
-        longitude,
-        imageUrl,
-        createdAt,
-      ];
+    id,
+    title,
+    description,
+    category,
+    status,
+    upvotes,
+    authorEmail,
+    assignedStaffEmail,
+    latitude,
+    longitude,
+    imageUrl,
+    createdAt,
+  ];
 }

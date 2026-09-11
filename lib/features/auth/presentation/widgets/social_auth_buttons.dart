@@ -5,11 +5,7 @@ class SocialAuthButtons extends StatelessWidget {
   final VoidCallback? onGoogleTap;
   final VoidCallback? onAppleTap;
 
-  const SocialAuthButtons({
-    super.key,
-    this.onGoogleTap,
-    this.onAppleTap,
-  });
+  const SocialAuthButtons({super.key, this.onGoogleTap, this.onAppleTap});
 
   @override
   Widget build(BuildContext context) {

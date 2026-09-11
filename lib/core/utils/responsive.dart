@@ -26,11 +26,7 @@ extension ResponsiveContext on BuildContext {
   bool get isDesktop => screenWidth >= ResponsiveBreakpoints.tablet;
 
   /// Returns value based on current device screen size breakpoint.
-  T responsiveValue<T>({
-    required T mobile,
-    T? tablet,
-    T? desktop,
-  }) {
+  T responsiveValue<T>({required T mobile, T? tablet, T? desktop}) {
     if (isDesktop && desktop != null) return desktop;
     if (isTablet && tablet != null) return tablet;
     return mobile;

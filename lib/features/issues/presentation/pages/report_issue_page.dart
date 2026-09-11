@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/widgets/widgets.dart';
+import '../widgets/report_location_card_widget.dart';
+import '../widgets/report_media_upload_widget.dart';
+import '../widgets/report_priority_selector_widget.dart';
 
-/// Report Issue Tab Page for submitting infrastructure issues with photo/location.
+/// Report Issue Tab Page conforming to Stitch Civic Modern UI architecture.
 class ReportIssuePage extends StatefulWidget {
   const ReportIssuePage({super.key});
 
@@ -11,103 +15,70 @@ class ReportIssuePage extends StatefulWidget {
 }
 
 class _ReportIssuePageState extends State<ReportIssuePage> {
-  final _formKey = GlobalKey<FormState>();
   final _titleController = TextEditingController();
-  final _descriptionController = TextEditingController();
-  String _selectedCategory = 'Roads & Potholes';
-
-  static const List<String> _categories = [
-    'Roads & Potholes',
-    'Street Lighting',
-    'Water & Sewage',
-    'Sidewalks & Pathways',
-    'Parks & Sanitation',
-    'Other Infrastructure',
-  ];
+  final _descController = TextEditingController();
+  String _priority = 'Urgent';
+  bool _isAnonymous = false;
 
   @override
   void dispose() {
     _titleController.dispose();
-    _descriptionController.dispose();
+    _descController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Report New Issue'),
-      ),
+      appBar: AppBar(title: const Text('Report New Issue')),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(20.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                AppCard(
-                  child: Column(
-                    children: [
-                      Icon(
-                        Icons.add_a_photo_rounded,
-                        size: 44,
-                        color: theme.colorScheme.primary,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Upload Photos of Issue',
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        'Tap to capture or pick from gallery',
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: theme.colorScheme.onSurfaceVariant,
-                        ),
-                      ),
-                    ],
-                  ),
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const ReportMediaUploadWidget(),
+              const SizedBox(height: 14),
+              AppTextField(
+                controller: _titleController,
+                label: 'Issue Title',
+                prefixIcon: Icons.title_rounded,
+              ),
+              const SizedBox(height: 14),
+              ReportPrioritySelectorWidget(
+                selectedPriority: _priority,
+                onPriorityChanged: (p) => setState(() => _priority = p),
+              ),
+              const SizedBox(height: 14),
+              ReportLocationCardWidget(
+                onAdjustMap: () => context.push('/issues/location-picker'),
+              ),
+              const SizedBox(height: 14),
+              AppTextField(
+                controller: _descController,
+                label: 'Detailed Description',
+                prefixIcon: Icons.description_rounded,
+              ),
+              const SizedBox(height: 14),
+              SwitchListTile(
+                value: _isAnonymous,
+                onChanged: (val) => setState(() => _isAnonymous = val),
+                title: const Text(
+                  'Report Anonymously',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                 ),
-                const SizedBox(height: 20),
-                AppTextField(
-                  controller: _titleController,
-                  label: 'Issue Title',
-                  prefixIcon: Icons.title_rounded,
+                subtitle: const Text(
+                  'Hides your name and badge from public view',
+                  style: TextStyle(fontSize: 11),
                 ),
-                const SizedBox(height: 16),
-                DropdownButtonFormField<String>(
-                  initialValue: _selectedCategory,
-                  decoration: const InputDecoration(
-                    labelText: 'Category',
-                    prefixIcon: Icon(Icons.category_rounded),
-                  ),
-                  items: _categories
-                      .map((cat) =>
-                          DropdownMenuItem(value: cat, child: Text(cat)))
-                      .toList(),
-                  onChanged: (val) {
-                    if (val != null) {
-                      setState(() => _selectedCategory = val);
-                    }
-                  },
-                ),
-                const SizedBox(height: 16),
-                AppTextField(
-                  controller: _descriptionController,
-                  label: 'Detailed Description',
-                  prefixIcon: Icons.description_rounded,
-                ),
-                const SizedBox(height: 24),
-                AppButton(
-                  text: 'Submit Issue Report',
-                  onPressed: () {},
-                ),
-              ],
-            ),
+                contentPadding: EdgeInsets.zero,
+              ),
+              const SizedBox(height: 16),
+              AppButton(
+                text: 'Submit Issue Report',
+                onPressed: () => context.push('/issues/success'),
+              ),
+            ],
           ),
         ),
       ),

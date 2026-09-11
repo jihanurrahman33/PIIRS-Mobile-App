@@ -26,8 +26,9 @@ class NotificationTile extends StatelessWidget {
 
     return AppCard(
       onTap: onTap,
-      backgroundColor:
-          isRead ? null : AppColors.primarySeed.withValues(alpha: 0.05),
+      backgroundColor: isRead
+          ? null
+          : AppColors.primarySeed.withValues(alpha: 0.05),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -59,8 +60,9 @@ class NotificationTile extends StatelessWidget {
                       child: Text(
                         title,
                         style: theme.textTheme.titleSmall?.copyWith(
-                          fontWeight:
-                              isRead ? FontWeight.normal : FontWeight.bold,
+                          fontWeight: isRead
+                              ? FontWeight.normal
+                              : FontWeight.bold,
                         ),
                       ),
                     ),

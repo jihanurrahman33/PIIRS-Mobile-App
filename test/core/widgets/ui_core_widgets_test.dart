@@ -49,14 +49,13 @@ void main() {
   });
 
   group('FadeInSlide Animation Tests', () {
-    testWidgets('renders child widget with entrance transition',
-        (tester) async {
+    testWidgets('renders child widget with entrance transition', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: FadeInSlide(
-              child: const Text('Animated Child'),
-            ),
+            body: FadeInSlide(child: const Text('Animated Child')),
           ),
         ),
       );
@@ -71,12 +70,7 @@ void main() {
         MaterialApp(
           theme: AppTheme.lightTheme,
           home: const Scaffold(
-            body: Column(
-              children: [
-                SkeletonCard(),
-                SkeletonListTile(),
-              ],
-            ),
+            body: Column(children: [SkeletonCard(), SkeletonListTile()]),
           ),
         ),
       );

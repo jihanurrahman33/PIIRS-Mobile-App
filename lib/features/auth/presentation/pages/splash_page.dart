@@ -7,7 +7,7 @@ import '../../../../core/dependency_injection/service_locator.dart';
 import '../../../../core/services/onboarding_storage.dart';
 import '../../../../core/theme/app_colors.dart';
 
-/// Animated Splash Screen displaying ZapShift branding and initial route routing.
+/// Animated Splash Screen displaying PIIRS branding and initial route routing.
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
@@ -31,17 +31,12 @@ class _SplashPageState extends State<SplashPage>
       duration: const Duration(milliseconds: 1200),
     );
 
-    _fadeAnimation = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeIn,
-    );
+    _fadeAnimation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
 
-    _scaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeOutBack,
-      ),
-    );
+    _scaleAnimation = Tween<double>(
+      begin: 0.8,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutBack));
 
     _controller.forward();
 
@@ -99,7 +94,7 @@ class _SplashPageState extends State<SplashPage>
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  'ZapShift',
+                  'PIIRS',
                   style: theme.textTheme.headlineLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1.2,

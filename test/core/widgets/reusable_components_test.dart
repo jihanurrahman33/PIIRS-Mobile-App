@@ -13,16 +13,14 @@ void main() {
   });
 
   group('Reusable Components Widget Tests', () {
-    testWidgets('AppTextField renders label and text correctly',
-        (tester) async {
+    testWidgets('AppTextField renders label and text correctly', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,
           home: const Scaffold(
-            body: AppTextField(
-              label: 'Test Label',
-              prefixIcon: Icons.email,
-            ),
+            body: AppTextField(label: 'Test Label', prefixIcon: Icons.email),
           ),
         ),
       );
@@ -31,16 +29,13 @@ void main() {
       expect(find.byIcon(Icons.email), findsOneWidget);
     });
 
-    testWidgets('AppPasswordField toggles obscureText on icon tap',
-        (tester) async {
+    testWidgets('AppPasswordField toggles obscureText on icon tap', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,
-          home: const Scaffold(
-            body: AppPasswordField(
-              label: 'Password',
-            ),
-          ),
+          home: const Scaffold(body: AppPasswordField(label: 'Password')),
         ),
       );
 
@@ -57,10 +52,7 @@ void main() {
         MaterialApp(
           theme: AppTheme.lightTheme,
           home: Scaffold(
-            body: AppButton(
-              text: 'Click Me',
-              onPressed: () => pressed = true,
-            ),
+            body: AppButton(text: 'Click Me', onPressed: () => pressed = true),
           ),
         ),
       );
@@ -70,16 +62,14 @@ void main() {
       expect(pressed, isTrue);
     });
 
-    testWidgets('AppButton renders loading spinner when isLoading is true',
-        (tester) async {
+    testWidgets('AppButton renders loading spinner when isLoading is true', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,
           home: const Scaffold(
-            body: AppButton(
-              text: 'Submit',
-              isLoading: true,
-            ),
+            body: AppButton(text: 'Submit', isLoading: true),
           ),
         ),
       );
@@ -91,9 +81,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,
-          home: const Scaffold(
-            body: StatusBadge(status: 'Pending'),
-          ),
+          home: const Scaffold(body: StatusBadge(status: 'Pending')),
         ),
       );
 
@@ -104,11 +92,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,
-          home: const Scaffold(
-            body: AppCard(
-              child: Text('Card Content'),
-            ),
-          ),
+          home: const Scaffold(body: AppCard(child: Text('Card Content'))),
         ),
       );
 

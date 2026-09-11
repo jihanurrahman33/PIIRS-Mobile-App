@@ -65,8 +65,10 @@ class _SearchIssuesPageState extends State<SearchIssuesPage> {
           children: [
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 8.0,
+              ),
               child: Row(
                 children: _filters.map((filter) {
                   final isSelected = _selectedFilter == filter;

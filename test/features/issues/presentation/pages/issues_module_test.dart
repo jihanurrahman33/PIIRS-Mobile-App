@@ -27,8 +27,9 @@ void main() {
   });
 
   group('Module 5 Issue Module Widget Tests', () {
-    testWidgets('IssueListCard renders title, category, status, and upvotes',
-        (tester) async {
+    testWidgets('IssueListCard renders title, category, status, and upvotes', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,
@@ -52,10 +53,7 @@ void main() {
 
     testWidgets('AllIssuesPage renders public issues feed', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          theme: AppTheme.lightTheme,
-          home: const AllIssuesPage(),
-        ),
+        MaterialApp(theme: AppTheme.lightTheme, home: const AllIssuesPage()),
       );
 
       expect(find.text('All Public Issues'), findsOneWidget);
@@ -63,17 +61,15 @@ void main() {
 
     testWidgets('LatestIssuesPage renders latest issues feed', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          theme: AppTheme.lightTheme,
-          home: const LatestIssuesPage(),
-        ),
+        MaterialApp(theme: AppTheme.lightTheme, home: const LatestIssuesPage()),
       );
 
       expect(find.text('Latest Issues Feed'), findsOneWidget);
     });
 
-    testWidgets('TrendingIssuesPage renders trending issues feed',
-        (tester) async {
+    testWidgets('TrendingIssuesPage renders trending issues feed', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,
@@ -84,8 +80,9 @@ void main() {
       expect(find.text('Trending Issues'), findsOneWidget);
     });
 
-    testWidgets('ResolvedIssuesPage renders resolved issues feed',
-        (tester) async {
+    testWidgets('ResolvedIssuesPage renders resolved issues feed', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,
@@ -96,8 +93,9 @@ void main() {
       expect(find.text('Resolved Issues Feed'), findsOneWidget);
     });
 
-    testWidgets('IssueDetailsPage renders issue info and action buttons',
-        (tester) async {
+    testWidgets('IssueDetailsPage renders issue info and action buttons', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,
@@ -111,17 +109,15 @@ void main() {
 
     testWidgets('ImageGalleryPage renders gallery placeholder', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          theme: AppTheme.lightTheme,
-          home: const ImageGalleryPage(),
-        ),
+        MaterialApp(theme: AppTheme.lightTheme, home: const ImageGalleryPage()),
       );
 
       expect(find.text('Issue Photo Gallery'), findsOneWidget);
     });
 
-    testWidgets('IssueTimelinePage renders progress timeline steps',
-        (tester) async {
+    testWidgets('IssueTimelinePage renders progress timeline steps', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,
@@ -133,21 +129,24 @@ void main() {
       expect(find.text('Report Submitted'), findsOneWidget);
     });
 
-    testWidgets('IssueCommentsPage renders discussion thread and comment input',
-        (tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          theme: AppTheme.lightTheme,
-          home: const IssueCommentsPage(issueId: '101'),
-        ),
-      );
+    testWidgets(
+      'IssueCommentsPage renders discussion thread and comment input',
+      (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            theme: AppTheme.lightTheme,
+            home: const IssueCommentsPage(issueId: '101'),
+          ),
+        );
 
-      expect(find.text('Comments - #101'), findsOneWidget);
-      expect(find.byType(TextField), findsOneWidget);
-    });
+        expect(find.text('Comments - #101'), findsOneWidget);
+        expect(find.byType(TextField), findsOneWidget);
+      },
+    );
 
-    testWidgets('LocationPickerPage renders map picker placeholder',
-        (tester) async {
+    testWidgets('LocationPickerPage renders map picker placeholder', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,
@@ -161,17 +160,15 @@ void main() {
 
     testWidgets('ImagePreviewPage renders photo preview', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          theme: AppTheme.lightTheme,
-          home: const ImagePreviewPage(),
-        ),
+        MaterialApp(theme: AppTheme.lightTheme, home: const ImagePreviewPage()),
       );
 
       expect(find.text('Photo Preview'), findsOneWidget);
     });
 
-    testWidgets('ReportSuccessPage renders confirmation notice and buttons',
-        (tester) async {
+    testWidgets('ReportSuccessPage renders confirmation notice and buttons', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,
@@ -206,8 +203,9 @@ void main() {
       expect(find.text('Assigned Issues'), findsOneWidget);
     });
 
-    testWidgets('RejectedIssuesPage renders rejected reports with reasons',
-        (tester) async {
+    testWidgets('RejectedIssuesPage renders rejected reports with reasons', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,

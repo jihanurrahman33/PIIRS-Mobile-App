@@ -21,7 +21,7 @@ class FakeAuthRepository implements AuthRepository {
           name: 'Jane Citizen',
           email: 'valid@user.com',
           role: 'citizen',
-        )
+        ),
       );
     }
     return (const UnauthorizedFailure('Invalid email or password.'), null);
@@ -36,12 +36,7 @@ class FakeAuthRepository implements AuthRepository {
   }) async {
     return (
       null,
-      UserEntity(
-        id: 'new_123',
-        name: name,
-        email: email,
-        role: role,
-      )
+      UserEntity(id: 'new_123', name: name, email: email, role: role),
     );
   }
 
@@ -94,16 +89,18 @@ void main() {
       expect(user?.isCitizen, isTrue);
     });
 
-    test('LoginUseCase returns UnauthorizedFailure on invalid credentials',
-        () async {
-      final (failure, user) = await loginUseCase(
-        email: 'invalid@user.com',
-        password: 'wrongpassword',
-      );
+    test(
+      'LoginUseCase returns UnauthorizedFailure on invalid credentials',
+      () async {
+        final (failure, user) = await loginUseCase(
+          email: 'invalid@user.com',
+          password: 'wrongpassword',
+        );
 
-      expect(user, isNull);
-      expect(failure, isA<UnauthorizedFailure>());
-    });
+        expect(user, isNull);
+        expect(failure, isA<UnauthorizedFailure>());
+      },
+    );
 
     test('RegisterUseCase creates new user entity successfully', () async {
       final (failure, user) = await registerUseCase(

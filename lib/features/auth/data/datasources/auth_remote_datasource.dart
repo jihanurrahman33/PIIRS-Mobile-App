@@ -5,10 +5,7 @@ import '../models/user_model.dart';
 
 /// Remote data source contract for authentication API endpoints.
 abstract class AuthRemoteDataSource {
-  Future<UserModel> login({
-    required String email,
-    required String password,
-  });
+  Future<UserModel> login({required String email, required String password});
 
   Future<UserModel> register({
     required String name,
@@ -35,10 +32,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }) async {
     final response = await apiClient.post(
       ApiConstants.users,
-      body: {
-        'email': email,
-        'password': password,
-      },
+      body: {'email': email, 'password': password},
     );
 
     if (response is Map<String, dynamic>) {
@@ -56,12 +50,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }) async {
     final response = await apiClient.post(
       ApiConstants.users,
-      body: {
-        'name': name,
-        'email': email,
-        'password': password,
-        'role': role,
-      },
+      body: {'name': name, 'email': email, 'password': password, 'role': role},
     );
 
     if (response is Map<String, dynamic>) {
@@ -82,9 +71,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<void> sendPasswordReset(String email) async {
     // Backend API or Firebase reset request
-    await apiClient.post(
-      '/users/reset-password',
-      body: {'email': email},
-    );
+    await apiClient.post('/users/reset-password', body: {'email': email});
   }
 }

@@ -13,10 +13,12 @@ class DashboardRemoteDataSourceImpl implements DashboardRemoteDataSource {
   @override
   Future<CitizenDashboardStatsModel> getCitizenStats(String email) async {
     try {
-      final response =
-          await apiClient.get(ApiConstants.citizenDashboardStats(email));
+      final response = await apiClient.get(
+        ApiConstants.citizenDashboardStats(email),
+      );
       return CitizenDashboardStatsModel.fromJson(
-          response as Map<String, dynamic>);
+        response as Map<String, dynamic>,
+      );
     } catch (e) {
       throw ServerException('Failed to fetch citizen dashboard stats: $e');
     }

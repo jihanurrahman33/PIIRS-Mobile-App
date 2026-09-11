@@ -6,10 +6,7 @@ import '../../../../core/theme/app_colors.dart';
 class PasswordStrengthIndicator extends StatelessWidget {
   final String password;
 
-  const PasswordStrengthIndicator({
-    super.key,
-    required this.password,
-  });
+  const PasswordStrengthIndicator({super.key, required this.password});
 
   int _calculateStrength() {
     if (password.isEmpty) return 0;

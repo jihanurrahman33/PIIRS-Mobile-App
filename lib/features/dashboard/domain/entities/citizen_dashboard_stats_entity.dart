@@ -18,10 +18,10 @@ class CitizenDashboardStatsEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-        totalSubmitted,
-        totalResolved,
-        totalInProgress,
-        totalUpvotesGiven,
-        impactPoints,
-      ];
+    totalSubmitted,
+    totalResolved,
+    totalInProgress,
+    totalUpvotesGiven,
+    impactPoints,
+  ];
 }

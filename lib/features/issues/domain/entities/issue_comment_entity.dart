@@ -20,11 +20,11 @@ class IssueCommentEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-        id,
-        issueId,
-        authorEmail,
-        authorName,
-        commentText,
-        createdAt,
-      ];
+    id,
+    issueId,
+    authorEmail,
+    authorName,
+    commentText,
+    createdAt,
+  ];
 }

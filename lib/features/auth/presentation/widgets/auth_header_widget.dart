@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';
 
-/// Auth-specific header widget featuring ZapShift branding badge & typography.
+/// Auth-specific header widget featuring PIIRS branding badge & typography.
 class AuthHeaderWidget extends StatelessWidget {
   final String title;
   final String subtitle;
@@ -37,11 +37,7 @@ class AuthHeaderWidget extends StatelessWidget {
                 ),
               ],
             ),
-            child: Icon(
-              icon,
-              size: 38,
-              color: Colors.white,
-            ),
+            child: Icon(icon, size: 38, color: Colors.white),
           ),
         ),
         const SizedBox(height: 20),

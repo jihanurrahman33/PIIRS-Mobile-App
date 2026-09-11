@@ -50,8 +50,9 @@ class AuthFailureState extends AuthState {
 class AccountBlockedState extends AuthState {
   final String reason;
 
-  const AccountBlockedState(
-      [this.reason = 'Account suspended by administrator.']);
+  const AccountBlockedState([
+    this.reason = 'Account suspended by administrator.',
+  ]);
 
   @override
   List<Object?> get props => [reason];

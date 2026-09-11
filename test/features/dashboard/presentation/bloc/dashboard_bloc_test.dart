@@ -11,7 +11,8 @@ import 'package:zapshift/features/dashboard/presentation/bloc/dashboard_state.da
 class MockDashboardRepository implements DashboardRepository {
   @override
   Future<(Failure?, CitizenDashboardStatsEntity?)> getCitizenStats(
-      String email) async {
+    String email,
+  ) async {
     return (
       null,
       const CitizenDashboardStatsEntity(
@@ -20,7 +21,7 @@ class MockDashboardRepository implements DashboardRepository {
         totalInProgress: 1,
         totalUpvotesGiven: 10,
         impactPoints: 150,
-      )
+      ),
     );
   }
 }
@@ -32,8 +33,9 @@ void main() {
 
   setUp(() {
     mockRepository = MockDashboardRepository();
-    getCitizenDashboardStatsUseCase =
-        GetCitizenDashboardStatsUseCase(mockRepository);
+    getCitizenDashboardStatsUseCase = GetCitizenDashboardStatsUseCase(
+      mockRepository,
+    );
     dashboardBloc = DashboardBloc(
       getCitizenDashboardStatsUseCase: getCitizenDashboardStatsUseCase,
     );
@@ -49,14 +51,17 @@ void main() {
     });
 
     test(
-        'emits [DashboardLoadingState, CitizenDashboardStatsLoadedState] on FetchCitizenDashboardStatsEvent',
-        () async {
-      final expected = [
-        isA<DashboardLoadingState>(),
-        isA<CitizenDashboardStatsLoadedState>(),
-      ];
-      expectLater(dashboardBloc.stream, emitsInOrder(expected));
-      dashboardBloc.add(const FetchCitizenDashboardStatsEvent('user@test.com'));
-    });
+      'emits [DashboardLoadingState, CitizenDashboardStatsLoadedState] on FetchCitizenDashboardStatsEvent',
+      () async {
+        final expected = [
+          isA<DashboardLoadingState>(),
+          isA<CitizenDashboardStatsLoadedState>(),
+        ];
+        expectLater(dashboardBloc.stream, emitsInOrder(expected));
+        dashboardBloc.add(
+          const FetchCitizenDashboardStatsEvent('user@test.com'),
+        );
+      },
+    );
   });
 }

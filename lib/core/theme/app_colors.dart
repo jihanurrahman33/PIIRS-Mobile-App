@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-/// Centralized color palette for ZapShift / PIIRS Mobile Application.
+/// Centralized color palette for PIIRS Mobile Application.
 abstract class AppColors {
   // Brand Primary Seed Color
-  static const Color primarySeed =
-      Color(0xFF6366F1); // Indigo / Electric Purple
+  static const Color primarySeed = Color(
+    0xFF6366F1,
+  ); // Indigo / Electric Purple
   static const Color primaryDarkSeed = Color(0xFF818CF8);
 
   // Status & Priority Colors
@@ -24,6 +25,12 @@ abstract class AppColors {
   static const Color lightBackground = Color(0xFFF8FAFC);
   static const Color lightSurface = Color(0xFFFFFFFF);
   static const Color lightCard = Color(0xFFFFFFFF);
+  static const Color surfaceContainerLow = Color(0xFFF2F3FF);
+  static const Color surfaceContainer = Color(0xFFEAEDFF);
+  static const Color borderLight = Color(0xFFE2E8F0);
+  static const Color textPrimary = Color(0xFF0F172A);
+  static const Color textSecondary = Color(0xFF64748B);
+  static const Color textMuted = Color(0xFF94A3B8);
 
   // Neutral Background & Surface Colors (Dark)
   static const Color darkBackground = Color(0xFF0F172A);

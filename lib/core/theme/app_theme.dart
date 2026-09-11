@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 import 'app_theme_extensions.dart';
 
-/// Centralized Material 3 Theme configuration for ZapShift / PIIRS Mobile.
+/// Centralized Material 3 Theme configuration for PIIRS Mobile.
 class AppTheme {
   AppTheme._();
 
@@ -41,9 +41,7 @@ class AppTheme {
       colorScheme: colorScheme,
       scaffoldBackgroundColor: AppColors.lightBackground,
       textTheme: textTheme,
-      extensions: const <ThemeExtension<dynamic>>[
-        StatusColors.light,
-      ],
+      extensions: const <ThemeExtension<dynamic>>[StatusColors.light],
       appBarTheme: AppBarTheme(
         centerTitle: true,
         backgroundColor: AppColors.lightBackground,
@@ -110,23 +108,15 @@ class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
-          borderSide: BorderSide(
-            color: colorScheme.primary,
-            width: 2.0,
-          ),
+          borderSide: BorderSide(color: colorScheme.primary, width: 2.0),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
-          borderSide: BorderSide(
-            color: colorScheme.error,
-          ),
+          borderSide: BorderSide(color: colorScheme.error),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
-          borderSide: BorderSide(
-            color: colorScheme.error,
-            width: 2.0,
-          ),
+          borderSide: BorderSide(color: colorScheme.error, width: 2.0),
         ),
       ),
     );
@@ -147,9 +137,7 @@ class AppTheme {
       colorScheme: colorScheme,
       scaffoldBackgroundColor: AppColors.darkBackground,
       textTheme: textTheme,
-      extensions: const <ThemeExtension<dynamic>>[
-        StatusColors.dark,
-      ],
+      extensions: const <ThemeExtension<dynamic>>[StatusColors.dark],
       appBarTheme: AppBarTheme(
         centerTitle: true,
         backgroundColor: AppColors.darkBackground,
@@ -216,23 +204,15 @@ class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
-          borderSide: BorderSide(
-            color: colorScheme.primary,
-            width: 2.0,
-          ),
+          borderSide: BorderSide(color: colorScheme.primary, width: 2.0),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
-          borderSide: BorderSide(
-            color: colorScheme.error,
-          ),
+          borderSide: BorderSide(color: colorScheme.error),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
-          borderSide: BorderSide(
-            color: colorScheme.error,
-            width: 2.0,
-          ),
+          borderSide: BorderSide(color: colorScheme.error, width: 2.0),
         ),
       ),
     );

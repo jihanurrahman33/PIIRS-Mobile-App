@@ -7,10 +7,7 @@ import '../../../../core/widgets/widgets.dart';
 class IssueCommentsPage extends StatefulWidget {
   final String issueId;
 
-  const IssueCommentsPage({
-    super.key,
-    required this.issueId,
-  });
+  const IssueCommentsPage({super.key, required this.issueId});
 
   @override
   State<IssueCommentsPage> createState() => _IssueCommentsPageState();
@@ -51,10 +48,8 @@ class _IssueCommentsPageState extends State<IssueCommentsPage> {
                       children: [
                         Text(
                           index == 0 ? 'Citizen User' : 'Staff Worker',
-                          style:
-                              Theme.of(context).textTheme.titleSmall?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          style: Theme.of(context).textTheme.titleSmall
+                              ?.copyWith(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 4),
                         Text(

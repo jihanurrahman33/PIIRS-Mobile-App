@@ -18,35 +18,35 @@ void main() {
 
   group('Module 6 Citizen Dashboard Widget Tests', () {
     testWidgets(
-        'CitizenStatsSummaryCard renders impact score and metric totals',
-        (tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          theme: AppTheme.lightTheme,
-          home: const Scaffold(
-            body: CitizenStatsSummaryCard(
-              totalSubmitted: 20,
-              totalResolved: 15,
-              impactPoints: 600,
+      'CitizenStatsSummaryCard renders impact score and metric totals',
+      (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            theme: AppTheme.lightTheme,
+            home: const Scaffold(
+              body: CitizenStatsSummaryCard(
+                totalSubmitted: 20,
+                totalResolved: 15,
+                impactPoints: 600,
+              ),
             ),
           ),
-        ),
-      );
+        );
 
-      expect(find.text('Citizen Impact Score'), findsOneWidget);
-      expect(find.text('600 pts'), findsOneWidget);
-      expect(find.text('20'), findsOneWidget);
-      expect(find.text('15'), findsOneWidget);
-    });
+        expect(find.text('Citizen Impact Score'), findsOneWidget);
+        expect(find.text('600 pts'), findsOneWidget);
+        expect(find.text('20'), findsOneWidget);
+        expect(find.text('15'), findsOneWidget);
+      },
+    );
 
-    testWidgets('ActivityAnalyticsChartCard renders monthly bar charts',
-        (tester) async {
+    testWidgets('ActivityAnalyticsChartCard renders monthly bar charts', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,
-          home: const Scaffold(
-            body: ActivityAnalyticsChartCard(),
-          ),
+          home: const Scaffold(body: ActivityAnalyticsChartCard()),
         ),
       );
 
@@ -55,8 +55,9 @@ void main() {
       expect(find.text('Aug'), findsOneWidget);
     });
 
-    testWidgets('CitizenDashboardOverviewPage renders title and shortcuts',
-        (tester) async {
+    testWidgets('CitizenDashboardOverviewPage renders title and shortcuts', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,
@@ -69,8 +70,9 @@ void main() {
       expect(find.text('My Statistics & Badges'), findsOneWidget);
     });
 
-    testWidgets('CitizenActivityAnalyticsPage renders analytics view',
-        (tester) async {
+    testWidgets('CitizenActivityAnalyticsPage renders analytics view', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,
@@ -81,8 +83,9 @@ void main() {
       expect(find.text('Activity Analytics'), findsOneWidget);
     });
 
-    testWidgets('CitizenStatisticsPage renders level, points, and badges',
-        (tester) async {
+    testWidgets('CitizenStatisticsPage renders level, points, and badges', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,

@@ -24,7 +24,7 @@ class MockAuthRepository implements AuthRepository {
           name: 'Zap User',
           email: 'user@zapshift.com',
           role: 'citizen',
-        )
+        ),
       );
     }
     return (const UnauthorizedFailure('Invalid credentials'), null);
@@ -95,48 +95,55 @@ void main() {
     });
 
     test(
-        'emits [AuthLoadingState, UnauthenticatedState] on CheckAuthStatusEvent when no cached user',
-        () async {
-      final expectedStates = [
-        const AuthLoadingState(),
-        const UnauthenticatedState(),
-      ];
+      'emits [AuthLoadingState, UnauthenticatedState] on CheckAuthStatusEvent when no cached user',
+      () async {
+        final expectedStates = [
+          const AuthLoadingState(),
+          const UnauthenticatedState(),
+        ];
 
-      expectLater(authBloc.stream, emitsInOrder(expectedStates));
+        expectLater(authBloc.stream, emitsInOrder(expectedStates));
 
-      authBloc.add(const CheckAuthStatusEvent());
-    });
-
-    test(
-        'emits [AuthLoadingState, AuthenticatedState] on LoginRequestedEvent with valid credentials',
-        () async {
-      final expectedStates = [
-        const AuthLoadingState(),
-        isA<AuthenticatedState>(),
-      ];
-
-      expectLater(authBloc.stream, emitsInOrder(expectedStates));
-
-      authBloc.add(const LoginRequestedEvent(
-        email: 'user@zapshift.com',
-        password: 'password123',
-      ));
-    });
+        authBloc.add(const CheckAuthStatusEvent());
+      },
+    );
 
     test(
-        'emits [AuthLoadingState, AuthFailureState] on LoginRequestedEvent with invalid credentials',
-        () async {
-      final expectedStates = [
-        const AuthLoadingState(),
-        isA<AuthFailureState>(),
-      ];
+      'emits [AuthLoadingState, AuthenticatedState] on LoginRequestedEvent with valid credentials',
+      () async {
+        final expectedStates = [
+          const AuthLoadingState(),
+          isA<AuthenticatedState>(),
+        ];
 
-      expectLater(authBloc.stream, emitsInOrder(expectedStates));
+        expectLater(authBloc.stream, emitsInOrder(expectedStates));
 
-      authBloc.add(const LoginRequestedEvent(
-        email: 'wrong@zapshift.com',
-        password: 'wrongpassword',
-      ));
-    });
+        authBloc.add(
+          const LoginRequestedEvent(
+            email: 'user@zapshift.com',
+            password: 'password123',
+          ),
+        );
+      },
+    );
+
+    test(
+      'emits [AuthLoadingState, AuthFailureState] on LoginRequestedEvent with invalid credentials',
+      () async {
+        final expectedStates = [
+          const AuthLoadingState(),
+          isA<AuthFailureState>(),
+        ];
+
+        expectLater(authBloc.stream, emitsInOrder(expectedStates));
+
+        authBloc.add(
+          const LoginRequestedEvent(
+            email: 'wrong@zapshift.com',
+            password: 'wrongpassword',
+          ),
+        );
+      },
+    );
   });
 }

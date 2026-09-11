@@ -8,9 +8,8 @@ import 'dashboard_state.dart';
 class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   final GetCitizenDashboardStatsUseCase getCitizenDashboardStatsUseCase;
 
-  DashboardBloc({
-    required this.getCitizenDashboardStatsUseCase,
-  }) : super(const DashboardInitialState()) {
+  DashboardBloc({required this.getCitizenDashboardStatsUseCase})
+    : super(const DashboardInitialState()) {
     on<FetchCitizenDashboardStatsEvent>(_onFetchCitizenDashboardStats);
   }
 

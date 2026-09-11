@@ -18,29 +18,25 @@ void main() {
   });
 
   group('Authentication Screens Widget Tests', () {
-    testWidgets('renders WelcomePage with branding and action buttons',
-        (tester) async {
+    testWidgets('renders WelcomePage with branding and action buttons', (
+      tester,
+    ) async {
       await tester.pumpWidget(
-        MaterialApp(
-          theme: AppTheme.lightTheme,
-          home: const WelcomePage(),
-        ),
+        MaterialApp(theme: AppTheme.lightTheme, home: const WelcomePage()),
       );
       await tester.pumpAndSettle();
 
-      expect(find.text('Welcome to ZapShift'), findsOneWidget);
+      expect(find.text('Welcome to PIIRS'), findsOneWidget);
       expect(find.text('Sign In'), findsOneWidget);
       expect(find.text('Create Account'), findsOneWidget);
       expect(find.text('Continue as Guest'), findsOneWidget);
     });
 
-    testWidgets('renders LoginPage with form fields and submit button',
-        (tester) async {
+    testWidgets('renders LoginPage with form fields and submit button', (
+      tester,
+    ) async {
       await tester.pumpWidget(
-        MaterialApp(
-          theme: AppTheme.lightTheme,
-          home: const LoginPage(),
-        ),
+        MaterialApp(theme: AppTheme.lightTheme, home: const LoginPage()),
       );
       await tester.pumpAndSettle();
 
@@ -50,13 +46,11 @@ void main() {
       expect(find.text('Forgot Password?'), findsOneWidget);
     });
 
-    testWidgets('renders RegisterPage with name, email, and password fields',
-        (tester) async {
+    testWidgets('renders RegisterPage with name, email, and password fields', (
+      tester,
+    ) async {
       await tester.pumpWidget(
-        MaterialApp(
-          theme: AppTheme.lightTheme,
-          home: const RegisterPage(),
-        ),
+        MaterialApp(theme: AppTheme.lightTheme, home: const RegisterPage()),
       );
       await tester.pumpAndSettle();
 
@@ -78,8 +72,9 @@ void main() {
       expect(find.text('Send Reset Link'), findsOneWidget);
     });
 
-    testWidgets('renders EmailVerificationPage with inbox notice',
-        (tester) async {
+    testWidgets('renders EmailVerificationPage with inbox notice', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,
@@ -92,8 +87,9 @@ void main() {
       expect(find.text("I've Verified My Email"), findsOneWidget);
     });
 
-    testWidgets('renders AccountBlockedPage with notice and contact button',
-        (tester) async {
+    testWidgets('renders AccountBlockedPage with notice and contact button', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: AppTheme.lightTheme,

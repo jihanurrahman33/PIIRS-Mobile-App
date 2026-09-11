@@ -8,10 +8,7 @@ import '../../../../core/widgets/widgets.dart';
 class IssueDetailsPage extends StatefulWidget {
   final String issueId;
 
-  const IssueDetailsPage({
-    super.key,
-    required this.issueId,
-  });
+  const IssueDetailsPage({super.key, required this.issueId});
 
   @override
   State<IssueDetailsPage> createState() => _IssueDetailsPageState();
@@ -33,10 +30,7 @@ class _IssueDetailsPageState extends State<IssueDetailsPage> {
         ),
         title: Text('Issue #${widget.issueId}'),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.share_rounded),
-            onPressed: () {},
-          ),
+          IconButton(icon: const Icon(Icons.share_rounded), onPressed: () {}),
         ],
       ),
       body: SafeArea(
@@ -64,7 +58,7 @@ class _IssueDetailsPageState extends State<IssueDetailsPage> {
               ),
               const SizedBox(height: 8),
               Text(
-                'Reported by citizen@zapshift.com • Sector 4',
+                'Reported by citizen@piirs.gov • Sector 4',
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
@@ -77,19 +71,25 @@ class _IssueDetailsPageState extends State<IssueDetailsPage> {
                   height: 180,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: theme.colorScheme.primaryContainer
-                        .withValues(alpha: 0.3),
+                    color: theme.colorScheme.primaryContainer.withValues(
+                      alpha: 0.3,
+                    ),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.image_rounded,
-                            size: 48, color: theme.colorScheme.primary),
+                        Icon(
+                          Icons.image_rounded,
+                          size: 48,
+                          color: theme.colorScheme.primary,
+                        ),
                         const SizedBox(height: 8),
-                        Text('Tap to View Photo Gallery',
-                            style: theme.textTheme.labelLarge),
+                        Text(
+                          'Tap to View Photo Gallery',
+                          style: theme.textTheme.labelLarge,
+                        ),
                       ],
                     ),
                   ),
@@ -100,16 +100,20 @@ class _IssueDetailsPageState extends State<IssueDetailsPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Assigned Municipal Staff',
-                        style: theme.textTheme.titleSmall
-                            ?.copyWith(fontWeight: FontWeight.bold)),
+                    Text(
+                      'Assigned Municipal Staff',
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     const SizedBox(height: 8),
                     const ListTile(
                       contentPadding: EdgeInsets.zero,
-                      leading:
-                          CircleAvatar(child: Icon(Icons.engineering_rounded)),
+                      leading: CircleAvatar(
+                        child: Icon(Icons.engineering_rounded),
+                      ),
                       title: Text('Staff Worker (Roads Dept)'),
-                      subtitle: Text('staff.roads@zapshift.com'),
+                      subtitle: Text('staff.roads@piirs.gov'),
                     ),
                   ],
                 ),

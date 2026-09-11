@@ -20,11 +20,7 @@ class CitizenActivityAnalyticsPage extends StatelessWidget {
       body: const SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              ActivityAnalyticsChartCard(),
-            ],
-          ),
+          child: Column(children: [ActivityAnalyticsChartCard()]),
         ),
       ),
     );

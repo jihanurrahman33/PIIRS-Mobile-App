@@ -6,9 +6,8 @@ import 'auth_token_provider.dart';
 class SecureStorageAuthTokenProvider implements AuthTokenProvider {
   final SecureStorageService _storageService;
 
-  SecureStorageAuthTokenProvider({
-    required SecureStorageService storageService,
-  }) : _storageService = storageService;
+  SecureStorageAuthTokenProvider({required SecureStorageService storageService})
+    : _storageService = storageService;
 
   @override
   Future<String?> getAuthToken() async {

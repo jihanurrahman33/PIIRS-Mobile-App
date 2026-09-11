@@ -18,10 +18,11 @@ void main() {
     }
   });
 
-  testWidgets('ZapShiftApp launches SplashPage as initial route',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(const ZapShiftApp());
+  testWidgets('PiirsApp launches SplashPage as initial route', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(const PiirsApp());
 
-    expect(find.text('ZapShift'), findsOneWidget);
+    expect(find.text('PIIRS'), findsOneWidget);
   });
 }
