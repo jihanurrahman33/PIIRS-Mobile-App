@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../home/presentation/widgets/home_post_skeleton_list.dart';
+import '../bloc/issue_bloc.dart';
+import '../bloc/issue_state.dart';
 import 'my_issues_status_card.dart';
 
 /// List section rendering citizen's reported issues cards.
@@ -33,6 +37,15 @@ class MyIssuesListSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    IssueState? issueState;
+    try {
+      issueState = context.watch<IssueBloc>().state;
+    } catch (_) {}
+
+    if (issueState is IssueLoadingState) {
+      return const HomePostSkeletonList(count: 3);
+    }
+
     return Column(
       children: _myIssues
           .map(

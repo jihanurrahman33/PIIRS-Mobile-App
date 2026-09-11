@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../issues/presentation/bloc/issue_bloc.dart';
 import '../../../issues/presentation/bloc/issue_state.dart';
+import 'home_post_skeleton_list.dart';
 import 'home_real_issue_post_card.dart';
 import 'home_recent_fallback_list.dart';
 
@@ -19,6 +20,7 @@ class HomeRecentReportsSection extends StatelessWidget {
       issueState = context.watch<IssueBloc>().state;
     } catch (_) {}
 
+    final isLoading = issueState is IssueLoadingState;
     final hasRealIssues =
         issueState is IssuesLoadedState && issueState.issues.isNotEmpty;
 
@@ -45,7 +47,9 @@ class HomeRecentReportsSection extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 8),
-        if (hasRealIssues)
+        if (isLoading)
+          const HomePostSkeletonList()
+        else if (hasRealIssues)
           ...issueState.issues
               .take(6)
               .map(

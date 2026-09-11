@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../home/presentation/widgets/home_post_skeleton_list.dart';
+import '../bloc/issue_bloc.dart';
+import '../bloc/issue_state.dart';
 import 'explore_issue_card.dart';
 
 /// List section displaying public civic issue reports on the explore feed.
 class ExploreIssuesListSection extends StatelessWidget {
   const ExploreIssuesListSection({super.key});
 
-  static const _issues = [
+  static const _fallbackIssues = [
     (
       title: 'Broken storm drain causing sidewalk flooding',
       location: 'Corner of 5th Ave & Pine St',
@@ -42,8 +46,17 @@ class ExploreIssuesListSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    IssueState? issueState;
+    try {
+      issueState = context.watch<IssueBloc>().state;
+    } catch (_) {}
+
+    if (issueState is IssueLoadingState) {
+      return const HomePostSkeletonList(count: 3);
+    }
+
     return Column(
-      children: _issues
+      children: _fallbackIssues
           .map(
             (i) => Padding(
               padding: const EdgeInsets.only(bottom: 12),
