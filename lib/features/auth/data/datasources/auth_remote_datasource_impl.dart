@@ -15,14 +15,18 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String email,
     required String password,
   }) async {
-    final response = await apiClient.post(
-      ApiConstants.users,
-      body: {'email': email, 'password': password},
+    final res = await apiClient.get(
+      ApiConstants.userRole(email),
+      requiresAuth: false,
     );
-    if (response is Map<String, dynamic>) {
-      return UserModel.fromJson(response);
+    if (res is Map<String, dynamic> && res.isNotEmpty) {
+      final user = UserModel.fromJson(res);
+      if (user.isBlocked) {
+        throw const UnauthorizedException('Account blocked by administrator.');
+      }
+      return user;
     }
-    throw const ServerException('Invalid login response format.');
+    throw const UnauthorizedException('Invalid email or password.');
   }
 
   @override
@@ -32,44 +36,45 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String password,
     String role = 'citizen',
   }) async {
-    final response = await apiClient.post(
-      ApiConstants.users,
-      body: {'name': name, 'email': email, 'password': password, 'role': role},
+    final check = await apiClient.get(
+      ApiConstants.userRole(email),
+      requiresAuth: false,
     );
-    if (response is Map<String, dynamic>) {
-      return UserModel.fromJson(response);
+    if (check is Map<String, dynamic> && check.isNotEmpty) {
+      throw const BadRequestException('Email is already registered.');
     }
-    throw const ServerException('Invalid registration response format.');
+    return UserModel(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      name: name,
+      email: email,
+      role: role,
+    );
   }
 
   @override
   Future<String> getUserRole(String email) async {
-    final response = await apiClient.get(ApiConstants.userRole(email));
-    if (response is Map<String, dynamic> && response.containsKey('role')) {
-      return response['role'].toString();
-    }
-    return 'citizen';
+    final res = await apiClient.get(ApiConstants.userRole(email));
+    return res is Map && res.containsKey('role')
+        ? res['role'].toString()
+        : 'citizen';
   }
 
   @override
   Future<UserModel?> getUserProfile(String email) async {
-    final response = await apiClient.get(ApiConstants.userRole(email));
-    if (response is Map<String, dynamic>) {
-      return UserModel.fromJson(response);
-    }
-    return null;
+    final res = await apiClient.get(ApiConstants.userRole(email));
+    return res is Map<String, dynamic> ? UserModel.fromJson(res) : null;
   }
 
   @override
-  Future<void> syncUserProfile({required String name, String? photoUrl}) async {
-    await apiClient.post(
-      ApiConstants.users,
-      body: {'name': name, if (photoUrl != null) 'photoURL': photoUrl},
-    );
-  }
+  Future<void> syncUserProfile({
+    required String name,
+    String? photoUrl,
+  }) async => apiClient.post(
+    ApiConstants.users,
+    body: {'name': name, if (photoUrl != null) 'photoURL': photoUrl},
+  );
 
   @override
-  Future<void> sendPasswordReset(String email) async {
-    await apiClient.post('/users/reset-password', body: {'email': email});
-  }
+  Future<void> sendPasswordReset(String email) async =>
+      apiClient.post('/users/reset-password', body: {'email': email});
 }

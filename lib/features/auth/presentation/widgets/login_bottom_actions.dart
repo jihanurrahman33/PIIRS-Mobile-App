@@ -7,8 +7,13 @@ import 'social_auth_buttons.dart';
 /// Bottom actions section for login including submit button, social logins, and sign up.
 class LoginBottomActions extends StatelessWidget {
   final VoidCallback onLogin;
+  final bool isLoading;
 
-  const LoginBottomActions({super.key, required this.onLogin});
+  const LoginBottomActions({
+    super.key,
+    required this.onLogin,
+    this.isLoading = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +22,11 @@ class LoginBottomActions extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        AppButton(text: 'Sign In', onPressed: onLogin),
+        AppButton(
+          text: 'Sign In',
+          isLoading: isLoading,
+          onPressed: isLoading ? null : onLogin,
+        ),
         const SizedBox(height: 8),
         TextButton(
           onPressed: () => context.go('/home'),
