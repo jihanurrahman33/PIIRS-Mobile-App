@@ -14,6 +14,23 @@ class ProfileSettingsListCard extends StatelessWidget {
       child: Column(
         children: [
           ListTile(
+            leading: const Icon(
+              Icons.insights_rounded,
+              color: AppColors.primarySeed,
+            ),
+            title: const Text(
+              'My Civic Impact & Badges',
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
+            subtitle: const Text(
+              'Impact score, tier rankings & badges',
+              style: TextStyle(fontSize: 11),
+            ),
+            trailing: const Icon(Icons.chevron_right_rounded),
+            onTap: () => context.push('/citizen-dashboard/statistics'),
+          ),
+          const Divider(color: AppColors.borderLight),
+          ListTile(
             leading: const Icon(Icons.star_rounded, color: Colors.amber),
             title: const Text(
               'Upgrade to Premium',

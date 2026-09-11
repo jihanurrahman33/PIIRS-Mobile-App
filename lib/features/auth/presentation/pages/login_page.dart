@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/utils/validators.dart';
-import '../../../../core/widgets/widgets.dart';
 import '../widgets/auth_header_widget.dart';
-import '../widgets/social_auth_buttons.dart';
+import '../widgets/login_bottom_actions.dart';
+import '../widgets/login_form_fields.dart';
 
 /// Login Page UI for PIIRS user authentication.
 class LoginPage extends StatefulWidget {
@@ -34,8 +33,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -47,27 +44,17 @@ class _LoginPageState extends State<LoginPage> {
             child: Form(
               key: _formKey,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const AuthHeaderWidget(
                     title: 'Welcome Back',
                     subtitle: 'Sign in to manage and report public issues',
                   ),
-                  const SizedBox(height: 36),
-                  AppTextField(
-                    controller: _emailController,
-                    label: 'Email Address',
-                    prefixIcon: Icons.email_outlined,
-                    keyboardType: TextInputType.emailAddress,
-                    validator: Validators.validateEmail,
+                  const SizedBox(height: 32),
+                  LoginFormFields(
+                    emailController: _emailController,
+                    passwordController: _passwordController,
                   ),
-                  const SizedBox(height: 16),
-                  AppPasswordField(
-                    controller: _passwordController,
-                    validator: Validators.validatePassword,
-                  ),
-                  const SizedBox(height: 8),
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
@@ -75,30 +62,8 @@ class _LoginPageState extends State<LoginPage> {
                       child: const Text('Forgot Password?'),
                     ),
                   ),
-                  const SizedBox(height: 24),
-                  AppButton(text: 'Sign In', onPressed: _handleLogin),
-                  const SizedBox(height: 24),
-                  const SocialAuthButtons(),
-                  const SizedBox(height: 24),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Don't have an account? ",
-                        style: theme.textTheme.bodyMedium,
-                      ),
-                      GestureDetector(
-                        onTap: () => context.push('/register'),
-                        child: Text(
-                          'Sign Up',
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            color: theme.colorScheme.primary,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  const SizedBox(height: 16),
+                  LoginBottomActions(onLogin: _handleLogin),
                 ],
               ),
             ),
