@@ -40,7 +40,7 @@ void main() {
       expect(find.text('Profile'), findsOneWidget);
     });
 
-    testWidgets('ExploreIssuesPage renders search bar and public issues feed', (
+    testWidgets('ExploreIssuesPage renders search bar and bouncing physics', (
       tester,
     ) async {
       await tester.pumpWidget(
@@ -52,9 +52,11 @@ void main() {
 
       expect(find.text('Explore Public Issues'), findsOneWidget);
       expect(find.byType(TextField), findsOneWidget);
+      final list = tester.widget<ListView>(find.byType(ListView));
+      expect(list.physics, isA<BouncingScrollPhysics>());
     });
 
-    testWidgets('ReportIssuePage renders form fields and submit button', (
+    testWidgets('ReportIssuePage renders form fields and bouncing physics', (
       tester,
     ) async {
       await tester.pumpWidget(
@@ -63,17 +65,25 @@ void main() {
 
       expect(find.text('Report New Issue'), findsOneWidget);
       expect(find.text('Submit Issue Report'), findsOneWidget);
+      final scroll = tester.widget<SingleChildScrollView>(
+        find.byType(SingleChildScrollView),
+      );
+      expect(scroll.physics, isA<BouncingScrollPhysics>());
     });
 
-    testWidgets('MyIssuesPage renders reported issues list', (tester) async {
+    testWidgets('MyIssuesPage renders reported issues and bouncing physics', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(theme: AppTheme.lightTheme, home: const MyIssuesPage()),
       );
 
       expect(find.text('My Reported Issues'), findsOneWidget);
+      final list = tester.widget<ListView>(find.byType(ListView));
+      expect(list.physics, isA<BouncingScrollPhysics>());
     });
 
-    testWidgets('CitizenProfilePage renders user info and settings options', (
+    testWidgets('CitizenProfilePage renders user info and bouncing physics', (
       tester,
     ) async {
       await tester.pumpWidget(
@@ -86,6 +96,8 @@ void main() {
       expect(find.text('My Profile'), findsOneWidget);
       expect(find.text('Citizen User'), findsOneWidget);
       expect(find.text('Upgrade to Premium'), findsOneWidget);
+      final list = tester.widget<ListView>(find.byType(ListView));
+      expect(list.physics, isA<BouncingScrollPhysics>());
     });
   });
 }

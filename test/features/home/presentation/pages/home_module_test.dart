@@ -113,6 +113,11 @@ void main() {
       expect(find.text('PIIRS'), findsOneWidget);
       expect(find.text('Infrastructure Categories'), findsOneWidget);
       expect(find.text('Recent Community Reports'), findsOneWidget);
+
+      final scroll = tester.widget<SingleChildScrollView>(
+        find.byType(SingleChildScrollView),
+      );
+      expect(scroll.physics, isA<BouncingScrollPhysics>());
     });
 
     testWidgets('SearchIssuesPage renders search field and filter chips', (

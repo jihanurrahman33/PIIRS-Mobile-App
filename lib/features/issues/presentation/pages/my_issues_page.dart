@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../widgets/my_issues_filter_tabs.dart';
 import '../widgets/my_issues_header_widget.dart';
 import '../widgets/my_issues_status_card.dart';
 
@@ -14,14 +15,6 @@ class MyIssuesPage extends StatefulWidget {
 
 class _MyIssuesPageState extends State<MyIssuesPage> {
   String _selectedTab = 'All';
-
-  static const _tabs = [
-    'All',
-    'In Progress',
-    'Pending',
-    'Resolved',
-    'Rejected',
-  ];
 
   static const _myIssues = [
     (
@@ -53,26 +46,16 @@ class _MyIssuesPageState extends State<MyIssuesPage> {
       appBar: AppBar(title: const Text('My Reported Issues')),
       body: SafeArea(
         child: ListView(
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
+          ),
           padding: const EdgeInsets.all(16),
           children: [
             const MyIssuesHeaderWidget(),
             const SizedBox(height: 14),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: _tabs
-                    .map(
-                      (tab) => Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: ChoiceChip(
-                          label: Text(tab),
-                          selected: _selectedTab == tab,
-                          onSelected: (_) => setState(() => _selectedTab = tab),
-                        ),
-                      ),
-                    )
-                    .toList(),
-              ),
+            MyIssuesFilterTabs(
+              selectedTab: _selectedTab,
+              onTabSelected: (tab) => setState(() => _selectedTab = tab),
             ),
             const SizedBox(height: 14),
             ..._myIssues.map(

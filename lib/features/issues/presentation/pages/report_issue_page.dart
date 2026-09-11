@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/widgets/widgets.dart';
-import '../widgets/report_location_card_widget.dart';
+import '../../../../core/widgets/app_button.dart';
+import '../widgets/report_anonymous_toggle.dart';
+import '../widgets/report_issue_form_fields.dart';
 import '../widgets/report_media_upload_widget.dart';
-import '../widgets/report_priority_selector_widget.dart';
 
 /// Report Issue Tab Page conforming to Stitch Civic Modern UI architecture.
 class ReportIssuePage extends StatefulWidget {
@@ -33,45 +33,25 @@ class _ReportIssuePageState extends State<ReportIssuePage> {
       appBar: AppBar(title: const Text('Report New Issue')),
       body: SafeArea(
         child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
+          ),
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const ReportMediaUploadWidget(),
               const SizedBox(height: 14),
-              AppTextField(
-                controller: _titleController,
-                label: 'Issue Title',
-                prefixIcon: Icons.title_rounded,
-              ),
-              const SizedBox(height: 14),
-              ReportPrioritySelectorWidget(
+              ReportIssueFormFields(
+                titleController: _titleController,
+                descController: _descController,
                 selectedPriority: _priority,
                 onPriorityChanged: (p) => setState(() => _priority = p),
               ),
               const SizedBox(height: 14),
-              ReportLocationCardWidget(
-                onAdjustMap: () => context.push('/issues/location-picker'),
-              ),
-              const SizedBox(height: 14),
-              AppTextField(
-                controller: _descController,
-                label: 'Detailed Description',
-                prefixIcon: Icons.description_rounded,
-              ),
-              const SizedBox(height: 14),
-              SwitchListTile(
+              ReportAnonymousToggle(
                 value: _isAnonymous,
                 onChanged: (val) => setState(() => _isAnonymous = val),
-                title: const Text(
-                  'Report Anonymously',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                ),
-                subtitle: const Text(
-                  'Hides your name and badge from public view',
-                  style: TextStyle(fontSize: 11),
-                ),
-                contentPadding: EdgeInsets.zero,
               ),
               const SizedBox(height: 16),
               AppButton(

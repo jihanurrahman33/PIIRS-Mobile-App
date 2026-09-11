@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
 import '../../../auth/presentation/bloc/auth_bloc.dart';
 import '../../../auth/presentation/bloc/auth_state.dart';
+import '../widgets/home_app_bar_title.dart';
 import '../widgets/home_category_section.dart';
 import '../widgets/home_header_widget.dart';
 import '../widgets/home_hero_banner_widget.dart';
@@ -25,25 +25,7 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(6),
-              decoration: BoxDecoration(
-                color: AppColors.primarySeed,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Icon(
-                Icons.bolt_rounded,
-                size: 20,
-                color: Colors.white,
-              ),
-            ),
-            const SizedBox(width: 8),
-            const Text('PIIRS', style: TextStyle(fontWeight: FontWeight.bold)),
-          ],
-        ),
+        title: const HomeAppBarTitle(),
         actions: [
           IconButton(
             icon: const Icon(Icons.search_rounded),
@@ -57,6 +39,9 @@ class HomePage extends StatelessWidget {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
+          ),
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

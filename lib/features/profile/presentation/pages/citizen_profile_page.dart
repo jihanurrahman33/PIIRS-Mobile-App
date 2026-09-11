@@ -27,6 +27,9 @@ class CitizenProfilePage extends StatelessWidget {
       appBar: AppBar(title: const Text('My Profile')),
       body: SafeArea(
         child: ListView(
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
+          ),
           padding: const EdgeInsets.all(16),
           children: [
             ProfileHeaderCard(user: activeUser),

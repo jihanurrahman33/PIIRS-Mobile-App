@@ -21,6 +21,9 @@ class _ExploreIssuesPageState extends State<ExploreIssuesPage> {
       appBar: AppBar(title: const Text('Explore Public Issues')),
       body: SafeArea(
         child: ListView(
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
+          ),
           padding: const EdgeInsets.all(16),
           children: [
             ExploreFilterHeader(
