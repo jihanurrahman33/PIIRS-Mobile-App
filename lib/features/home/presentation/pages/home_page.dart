@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../auth/presentation/bloc/auth_bloc.dart';
 import '../../../auth/presentation/bloc/auth_state.dart';
 import '../../../issues/presentation/bloc/issue_bloc.dart';
 import '../../../issues/presentation/bloc/issue_event.dart';
+import '../widgets/home_app_bar_actions.dart';
 import '../widgets/home_app_bar_title.dart';
 import '../widgets/home_category_section.dart';
 import '../widgets/home_header_widget.dart';
@@ -33,17 +33,9 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: false,
         title: const HomeAppBarTitle(),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search_rounded),
-            onPressed: () => context.push('/search'),
-          ),
-          IconButton(
-            icon: const Icon(Icons.notifications_outlined),
-            onPressed: () => context.push('/notifications'),
-          ),
-        ],
+        actions: const [HomeAppBarActions()],
       ),
       body: SafeArea(
         child: RefreshIndicator(

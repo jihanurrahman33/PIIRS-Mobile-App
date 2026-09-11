@@ -44,9 +44,13 @@ class AppTheme {
       extensions: const <ThemeExtension<dynamic>>[StatusColors.light],
       appBarTheme: AppBarTheme(
         centerTitle: true,
-        backgroundColor: AppColors.lightBackground,
+        backgroundColor: AppColors.lightSurface,
+        surfaceTintColor: Colors.transparent,
         elevation: 0,
-        scrolledUnderElevation: 1,
+        scrolledUnderElevation: 0,
+        shape: const Border(
+          bottom: BorderSide(color: AppColors.borderLight, width: 0.8),
+        ),
         titleTextStyle: textTheme.titleLarge?.copyWith(
           fontWeight: FontWeight.bold,
           color: colorScheme.onSurface,
@@ -140,9 +144,16 @@ class AppTheme {
       extensions: const <ThemeExtension<dynamic>>[StatusColors.dark],
       appBarTheme: AppBarTheme(
         centerTitle: true,
-        backgroundColor: AppColors.darkBackground,
+        backgroundColor: AppColors.darkCard,
+        surfaceTintColor: Colors.transparent,
         elevation: 0,
-        scrolledUnderElevation: 1,
+        scrolledUnderElevation: 0,
+        shape: Border(
+          bottom: BorderSide(
+            color: colorScheme.outlineVariant.withValues(alpha: 0.25),
+            width: 0.8,
+          ),
+        ),
         titleTextStyle: textTheme.titleLarge?.copyWith(
           fontWeight: FontWeight.bold,
           color: colorScheme.onSurface,
