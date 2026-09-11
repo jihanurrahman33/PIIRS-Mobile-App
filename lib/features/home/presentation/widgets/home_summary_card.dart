@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/extensions/localization_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../issues/presentation/bloc/issue_bloc.dart';
 import '../../../issues/presentation/bloc/issue_state.dart';
@@ -22,30 +23,30 @@ class HomeSummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int total = totalReported ?? 24;
-    int progress = inProgress ?? 8;
-    int done = resolved ?? 14;
+    int total = totalReported ?? 24,
+        progress = inProgress ?? 8,
+        done = resolved ?? 14;
 
     if (totalReported == null && inProgress == null && resolved == null) {
       try {
         final state = context.watch<IssueBloc>().state;
         if (state is IssuesLoadedState && state.issues.isNotEmpty) {
-          total = state.issues.length;
-          progress = state.issues
-              .where((i) => i.status.toLowerCase().contains('progress'))
-              .length;
-          done = state.issues
-              .where((i) => i.status.toLowerCase().contains('resolved'))
-              .length;
+          final issues = state.issues;
+          total = issues.length;
+          int has(String k) =>
+              issues.where((i) => i.status.toLowerCase().contains(k)).length;
+          progress = has('progress');
+          done = has('resolved');
         }
       } catch (_) {}
     }
 
+    final l10n = context.l10n;
     return Row(
       children: [
         Expanded(
           child: HomeSummaryItem(
-            label: 'Total Reports',
+            label: l10n?.totalReports ?? 'Total Reports',
             val: '$total',
             icon: Icons.assignment_outlined,
             color: AppColors.primarySeed,
@@ -55,7 +56,7 @@ class HomeSummaryCard extends StatelessWidget {
         const SizedBox(width: 10),
         Expanded(
           child: HomeSummaryItem(
-            label: 'In Progress',
+            label: l10n?.inProgress ?? 'In Progress',
             val: '$progress',
             icon: Icons.pending_actions_rounded,
             color: AppColors.inProgress,
@@ -65,7 +66,7 @@ class HomeSummaryCard extends StatelessWidget {
         const SizedBox(width: 10),
         Expanded(
           child: HomeSummaryItem(
-            label: 'Resolved',
+            label: l10n?.resolved ?? 'Resolved',
             val: '$done',
             icon: Icons.task_alt_rounded,
             color: AppColors.resolved,

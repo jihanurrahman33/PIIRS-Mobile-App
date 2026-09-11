@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/extensions/localization_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../issues/presentation/widgets/quick_report_action_sheet.dart';
 
@@ -21,6 +22,7 @@ class CitizenBottomNavCenterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final label = context.l10n?.navReport ?? 'Report';
     return InkWell(
       onTap: () => _handleTap(context),
       borderRadius: BorderRadius.circular(16),
@@ -55,9 +57,9 @@ class CitizenBottomNavCenterButton extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 2),
-            const Text(
-              'Report',
-              style: TextStyle(
+            Text(
+              label,
+              style: const TextStyle(
                 fontSize: 10,
                 fontWeight: FontWeight.bold,
                 color: AppColors.primarySeed,

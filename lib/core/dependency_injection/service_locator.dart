@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
 
+import '../bloc/locale_bloc.dart';
+import '../bloc/locale_event.dart';
 import '../../features/admin/data/datasources/admin_remote_datasource.dart';
 import '../../features/admin/data/datasources/admin_remote_datasource_impl.dart';
 import '../../features/admin/data/repositories/admin_repository_impl.dart';
@@ -73,6 +75,12 @@ Future<void> setupServiceLocator() async {
   // ---------------------------------------------------------------------------
   sl.registerLazySingleton<SecureStorageService>(
     () => FlutterSecureStorageService(),
+  );
+
+  sl.registerLazySingleton<LocaleBloc>(
+    () =>
+        LocaleBloc(storageService: sl<SecureStorageService>())
+          ..add(const LoadSavedLocaleEvent()),
   );
 
   sl.registerLazySingleton<OnboardingStorage>(

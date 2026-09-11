@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/extensions/localization_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../issues/presentation/bloc/issue_bloc.dart';
 import '../../../issues/presentation/bloc/issue_state.dart';
@@ -20,6 +21,7 @@ class HomeRecentReportsSection extends StatelessWidget {
       issueState = context.watch<IssueBloc>().state;
     } catch (_) {}
 
+    final l10n = context.l10n;
     final isLoading = issueState is IssueLoadingState;
     final hasRealIssues =
         issueState is IssuesLoadedState && issueState.issues.isNotEmpty;
@@ -30,15 +32,15 @@ class HomeRecentReportsSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
-              'Recent Community Reports',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            Text(
+              l10n?.recentCommunityReports ?? 'Recent Community Reports',
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             TextButton(
               onPressed: () => context.push('/issues'),
-              child: const Text(
-                'View All',
-                style: TextStyle(
+              child: Text(
+                l10n?.viewAll ?? 'View All',
+                style: const TextStyle(
                   color: AppColors.primarySeed,
                   fontWeight: FontWeight.w600,
                 ),

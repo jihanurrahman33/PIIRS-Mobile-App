@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/extensions/localization_extension.dart';
 import '../../../auth/domain/entities/user_entity.dart';
 import '../../../auth/presentation/bloc/auth_bloc.dart';
 import '../../../auth/presentation/bloc/auth_state.dart';
@@ -24,7 +25,7 @@ class CitizenProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = _tryGetBloc(context);
     Widget scaffold(UserEntity? activeUser) => Scaffold(
-      appBar: AppBar(title: const Text('My Profile')),
+      appBar: AppBar(title: Text(context.l10n?.myProfile ?? 'My Profile')),
       body: SafeArea(
         child: ListView(
           physics: const BouncingScrollPhysics(

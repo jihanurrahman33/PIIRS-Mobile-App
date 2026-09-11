@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'home_app_bar_action_button.dart';
+import 'home_language_button.dart';
 
-/// Actions bar widget with search and notification action buttons.
+/// Actions bar widget with language toggle, search, and notification action buttons.
 class HomeAppBarActions extends StatelessWidget {
   const HomeAppBarActions({super.key});
 
@@ -12,6 +13,8 @@ class HomeAppBarActions extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
+        const HomeLanguageButton(),
+        const SizedBox(width: 8),
         HomeAppBarActionButton(
           icon: Icons.search_rounded,
           tooltip: 'Search reports',

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/extensions/localization_extension.dart';
 import '../bloc/explore_filter_bloc.dart';
 import '../bloc/explore_filter_event.dart';
 import '../bloc/explore_filter_state.dart';
@@ -34,10 +35,11 @@ class _ExploreIssuesPageState extends State<ExploreIssuesPage> {
 
   @override
   Widget build(BuildContext context) {
+    final title = context.l10n?.exploreTitle ?? 'Explore Public Issues';
     return BlocProvider.value(
       value: _bloc,
       child: Scaffold(
-        appBar: AppBar(title: const Text('Explore Public Issues')),
+        appBar: AppBar(title: Text(title)),
         body: SafeArea(
           child: RefreshIndicator(
             onRefresh: _onRefresh,

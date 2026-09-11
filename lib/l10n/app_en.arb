@@ -1,0 +1,93 @@
+{
+  "@@locale": "en",
+  "appTitle": "PIIRS",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "navHome": "Home",
+  "navExplore": "Explore",
+  "navReport": "Report",
+  "navMyIssues": "My Issues",
+  "navProfile": "Profile",
+  "goodMorning": "Good morning,",
+  "goodAfternoon": "Good afternoon,",
+  "goodEvening": "Good evening,",
+  "welcomeCitizen": "Citizen",
+  "searchHint": "Search reports, road hazards, streetlights...",
+  "cityReportsOverview": "City Reports Overview",
+  "infrastructureCategories": "Infrastructure Categories",
+  "recentCommunityReports": "Recent Community Reports",
+  "viewAll": "View All",
+  "reportAnIssue": "Report an Issue",
+  "reportSubtitle": "Help improve our city by reporting civic infrastructure issues",
+  "totalReports": "Total Reports",
+  "inProgress": "In Progress",
+  "resolved": "Resolved",
+  "critical": "Critical",
+  "categoryRoad": "Roads & Streets",
+  "categoryWater": "Water & Sewage",
+  "categoryLighting": "Street Lighting",
+  "categoryWaste": "Waste & Sanitation",
+  "categorySafety": "Public Safety",
+  "categoryParks": "Parks & Greenery",
+  "categoryHazard": "Hazard",
+  "statusPending": "Pending",
+  "statusInProgress": "In Progress",
+  "statusResolved": "Resolved",
+  "statusRejected": "Rejected",
+  "priorityUrgent": "URGENT",
+  "priorityHigh": "HIGH",
+  "priorityMedium": "MEDIUM",
+  "priorityLow": "LOW",
+  "exploreTitle": "Explore Issues",
+  "exploreSubtitle": "Track live civic infrastructure reports across the city",
+  "allStatus": "All Status",
+  "myProfile": "My Profile",
+  "civicImpact": "My Civic Impact & Badges",
+  "civicImpactSubtitle": "Impact score, tier rankings & badges",
+  "notificationPreferences": "Notification Preferences",
+  "language": "Language",
+  "languageSubtitle": "Choose English or বাংলা",
+  "english": "English",
+  "bangla": "বাংলা (Bangla)",
+  "changeLanguage": "Change Language",
+  "signOut": "Sign Out",
+  "signOutConfirm": "Are you sure you want to sign out?",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "premiumUpgrade": "Upgrade to Premium",
+  "premiumActive": "Premium Active",
+  "reportIssueTitle": "Report Infrastructure Issue",
+  "titleLabel": "Issue Title",
+  "categoryLabel": "Select Category",
+  "descriptionLabel": "Detailed Description",
+  "locationLabel": "Location",
+  "uploadPhoto": "Upload Photo",
+  "submitReport": "Submit Report",
+  "submitting": "Submitting...",
+  "reportSuccess": "Report Submitted Successfully!",
+  "ticketNumber": "Ticket #{id}",
+  "@ticketNumber": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "upvotesCount": "{count} Upvotes",
+  "@upvotesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "commentsCount": "{count} Comments",
+  "@commentsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
+}

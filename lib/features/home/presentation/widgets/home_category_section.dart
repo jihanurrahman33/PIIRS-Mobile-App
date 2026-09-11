@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/extensions/localization_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import 'category_horizontal_list_widget.dart';
 
@@ -10,21 +11,22 @@ class HomeCategorySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
-              'Infrastructure Categories',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            Text(
+              l10n?.infrastructureCategories ?? 'Infrastructure Categories',
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             TextButton(
               onPressed: () => context.push('/categories'),
-              child: const Text(
-                'View All',
-                style: TextStyle(
+              child: Text(
+                l10n?.viewAll ?? 'View All',
+                style: const TextStyle(
                   color: AppColors.primarySeed,
                   fontWeight: FontWeight.w600,
                 ),

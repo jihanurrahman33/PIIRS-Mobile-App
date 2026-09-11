@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/extensions/localization_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import 'home_location_ribbon.dart';
 
@@ -11,9 +12,13 @@ class HomeHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final name = (userName != null && userName!.trim().isNotEmpty)
         ? userName!.trim().split(' ').first
-        : 'Alex';
+        : (l10n?.welcomeCitizen ?? 'Alex');
+    final greeting = l10n != null
+        ? '${l10n.goodMorning} $name 👋'
+        : 'Good morning, $name 👋';
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,7 +26,7 @@ class HomeHeaderWidget extends StatelessWidget {
         const HomeLocationRibbon(),
         const SizedBox(height: 12),
         Text(
-          'Good morning, $name 👋',
+          greeting,
           style: const TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.bold,

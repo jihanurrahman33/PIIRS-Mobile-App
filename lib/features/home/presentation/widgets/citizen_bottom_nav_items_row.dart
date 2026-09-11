@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/extensions/localization_extension.dart';
 import 'citizen_bottom_nav_center_button.dart';
 import 'citizen_bottom_nav_item.dart';
 
@@ -28,10 +29,21 @@ class CitizenBottomNavItemsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Row(
       children: [
-        _tab(0, Icons.home_rounded, Icons.home_outlined, 'Home'),
-        _tab(1, Icons.explore_rounded, Icons.explore_outlined, 'Explore'),
+        _tab(
+          0,
+          Icons.home_rounded,
+          Icons.home_outlined,
+          l10n?.navHome ?? 'Home',
+        ),
+        _tab(
+          1,
+          Icons.explore_rounded,
+          Icons.explore_outlined,
+          l10n?.navExplore ?? 'Explore',
+        ),
         Expanded(
           child: CitizenBottomNavCenterButton(
             isSelected: currentIndex == 2,
@@ -42,9 +54,14 @@ class CitizenBottomNavItemsRow extends StatelessWidget {
           3,
           Icons.assignment_rounded,
           Icons.assignment_outlined,
-          'My Issues',
+          l10n?.navMyIssues ?? 'My Issues',
         ),
-        _tab(4, Icons.person_rounded, Icons.person_outline_rounded, 'Profile'),
+        _tab(
+          4,
+          Icons.person_rounded,
+          Icons.person_outline_rounded,
+          l10n?.navProfile ?? 'Profile',
+        ),
       ],
     );
   }
