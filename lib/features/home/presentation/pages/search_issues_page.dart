@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/widgets/widgets.dart';
+import '../bloc/search_filter_bloc.dart';
+import '../widgets/search_filter_chips_row.dart';
+import '../widgets/search_issues_app_bar.dart';
+import '../widgets/search_issues_results_list.dart';
 
-/// Search Screen displaying query input, filter chips, and search results list.
+/// Search Screen displaying query input, filter chips, and search results.
 class SearchIssuesPage extends StatefulWidget {
   const SearchIssuesPage({super.key});
 
@@ -13,16 +16,6 @@ class SearchIssuesPage extends StatefulWidget {
 
 class _SearchIssuesPageState extends State<SearchIssuesPage> {
   final _searchController = TextEditingController();
-  String _selectedFilter = 'All';
-
-  static const List<String> _filters = [
-    'All',
-    'Pending',
-    'In Progress',
-    'Resolved',
-    'Potholes',
-    'Lighting',
-  ];
 
   @override
   void dispose() {
@@ -32,106 +25,18 @@ class _SearchIssuesPageState extends State<SearchIssuesPage> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_rounded),
-          onPressed: () => context.pop(),
-        ),
-        title: TextField(
-          controller: _searchController,
-          autofocus: true,
-          decoration: const InputDecoration(
-            hintText: 'Search issues by title, tag or area...',
-            border: InputBorder.none,
+    return BlocProvider(
+      create: (_) => SearchFilterBloc(),
+      child: Scaffold(
+        appBar: SearchIssuesAppBar(controller: _searchController),
+        body: const SafeArea(
+          child: Column(
+            children: [
+              SearchFilterChipsRow(),
+              Divider(height: 1),
+              Expanded(child: SearchIssuesResultsList()),
+            ],
           ),
-          onChanged: (_) => setState(() {}),
-        ),
-        actions: [
-          if (_searchController.text.isNotEmpty)
-            IconButton(
-              icon: const Icon(Icons.clear_rounded),
-              onPressed: () {
-                _searchController.clear();
-                setState(() {});
-              },
-            ),
-        ],
-      ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16.0,
-                vertical: 8.0,
-              ),
-              child: Row(
-                children: _filters.map((filter) {
-                  final isSelected = _selectedFilter == filter;
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: ChoiceChip(
-                      label: Text(filter),
-                      selected: isSelected,
-                      onSelected: (selected) {
-                        if (selected) {
-                          setState(() => _selectedFilter = filter);
-                        }
-                      },
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
-            const Divider(height: 1),
-            Expanded(
-              child: ListView.separated(
-                padding: const EdgeInsets.all(16.0),
-                itemCount: 3,
-                separatorBuilder: (context, index) =>
-                    const SizedBox(height: 12),
-                itemBuilder: (context, index) {
-                  final sampleTitles = [
-                    'Pothole near 5th Avenue bakery',
-                    'Flickering street lamp on Sector 2 park boundary',
-                    'Water leakage from municipal pipe line',
-                  ];
-                  final sampleStatuses = ['Pending', 'In Progress', 'Resolved'];
-
-                  return AppCard(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            StatusBadge(status: sampleStatuses[index]),
-                            Text(
-                              'Sector ${index + 1}',
-                              style: theme.textTheme.labelSmall?.copyWith(
-                                color: theme.colorScheme.outline,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          sampleTitles[index],
-                          style: theme.textTheme.titleSmall?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
         ),
       ),
     );

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../bloc/explore_filter_bloc.dart';
+import '../bloc/explore_filter_event.dart';
+import '../bloc/explore_filter_state.dart';
 import '../widgets/explore_filter_header.dart';
 import '../widgets/explore_issues_list_section.dart';
 
@@ -12,29 +16,42 @@ class ExploreIssuesPage extends StatefulWidget {
 }
 
 class _ExploreIssuesPageState extends State<ExploreIssuesPage> {
-  String _selectedStatus = 'All Status';
-  bool _isMapView = false;
+  final ExploreFilterBloc _bloc = ExploreFilterBloc();
+
+  @override
+  void dispose() {
+    _bloc.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Explore Public Issues')),
-      body: SafeArea(
-        child: ListView(
-          physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics(),
-          ),
-          padding: const EdgeInsets.all(16),
-          children: [
-            ExploreFilterHeader(
-              selectedStatus: _selectedStatus,
-              onStatusSelected: (s) => setState(() => _selectedStatus = s),
-              isMapView: _isMapView,
-              onViewToggle: (v) => setState(() => _isMapView = v),
+    return BlocProvider.value(
+      value: _bloc,
+      child: Scaffold(
+        appBar: AppBar(title: const Text('Explore Public Issues')),
+        body: SafeArea(
+          child: ListView(
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
             ),
-            const SizedBox(height: 16),
-            const ExploreIssuesListSection(),
-          ],
+            padding: const EdgeInsets.all(16),
+            children: [
+              BlocBuilder<ExploreFilterBloc, ExploreFilterState>(
+                builder: (context, state) {
+                  return ExploreFilterHeader(
+                    selectedStatus: state.selectedStatus,
+                    onStatusSelected: (s) =>
+                        _bloc.add(SelectExploreStatusEvent(s)),
+                    isMapView: state.isMapView,
+                    onViewToggle: (v) => _bloc.add(ToggleExploreViewEvent(v)),
+                  );
+                },
+              ),
+              const SizedBox(height: 16),
+              const ExploreIssuesListSection(),
+            ],
+          ),
         ),
       ),
     );

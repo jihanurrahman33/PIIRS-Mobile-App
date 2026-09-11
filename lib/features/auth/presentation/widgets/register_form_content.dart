@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/widgets/app_snackbar.dart';
-import 'auth_header_widget.dart';
-import 'register_bottom_actions.dart';
-import 'register_form_fields.dart';
+import '../bloc/register_terms_bloc.dart';
+import 'register_form_body.dart';
 
 /// Form content managing inputs and validation for citizen registration.
 class RegisterFormContent extends StatefulWidget {
   final void Function(String, String, String) onRegister;
   final bool isLoading;
+
   const RegisterFormContent({
     super.key,
     required this.onRegister,
@@ -24,7 +25,6 @@ class _RegisterFormContentState extends State<RegisterFormContent> {
   final _name = TextEditingController(),
       _email = TextEditingController(),
       _pwd = TextEditingController();
-  bool _accepted = false;
 
   @override
   void dispose() {
@@ -34,9 +34,10 @@ class _RegisterFormContentState extends State<RegisterFormContent> {
     super.dispose();
   }
 
-  void _submit() {
+  void _submit(BuildContext ctx) {
     if (!(_formKey.currentState?.validate() ?? false)) return;
-    if (!_accepted) {
+    final accepted = ctx.read<RegisterTermsBloc>().state;
+    if (!accepted) {
       AppSnackBar.showWarning(context, 'Please accept Terms of Service.');
       return;
     }
@@ -45,33 +46,22 @@ class _RegisterFormContentState extends State<RegisterFormContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const AuthHeaderWidget(
-                title: 'Create Account',
-                subtitle: 'Join PIIRS to report and track issues',
-                icon: Icons.person_add_rounded,
-              ),
-              const SizedBox(height: 32),
-              RegisterFormFields(
+    return BlocProvider(
+      create: (_) => RegisterTermsBloc(),
+      child: Builder(
+        builder: (ctx) => Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            child: Form(
+              key: _formKey,
+              child: RegisterFormBody(
                 nameController: _name,
                 emailController: _email,
                 passwordController: _pwd,
-                acceptedTerms: _accepted,
-                onTermsChanged: (v) => setState(() => _accepted = v ?? false),
-              ),
-              const SizedBox(height: 24),
-              RegisterBottomActions(
-                onSubmit: _submit,
+                onSubmit: () => _submit(ctx),
                 isLoading: widget.isLoading,
               ),
-            ],
+            ),
           ),
         ),
       ),

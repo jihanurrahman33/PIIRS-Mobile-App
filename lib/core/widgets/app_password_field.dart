@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../bloc/password_visibility_bloc.dart';
+import '../bloc/password_visibility_event.dart';
 import 'app_text_field.dart';
 
-/// Specialized password text field widget with password visibility toggle.
+/// Specialized password text field widget with password visibility BLoC.
 class AppPasswordField extends StatefulWidget {
   final TextEditingController? controller;
   final String label;
@@ -24,29 +27,38 @@ class AppPasswordField extends StatefulWidget {
 }
 
 class _AppPasswordFieldState extends State<AppPasswordField> {
-  bool _obscureText = true;
+  final PasswordVisibilityBloc _bloc = PasswordVisibilityBloc();
+
+  @override
+  void dispose() {
+    _bloc.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return AppTextField(
-      controller: widget.controller,
-      label: widget.label,
-      prefixIcon: Icons.lock_outline_rounded,
-      obscureText: _obscureText,
-      keyboardType: TextInputType.visiblePassword,
-      textInputAction: widget.textInputAction,
-      validator: widget.validator,
-      onChanged: widget.onChanged,
-      suffixIcon: IconButton(
-        icon: Icon(
-          _obscureText
-              ? Icons.visibility_outlined
-              : Icons.visibility_off_outlined,
-        ),
-        onPressed: () {
-          setState(() {
-            _obscureText = !_obscureText;
-          });
+    return BlocProvider.value(
+      value: _bloc,
+      child: BlocBuilder<PasswordVisibilityBloc, bool>(
+        builder: (context, obscureText) {
+          return AppTextField(
+            controller: widget.controller,
+            label: widget.label,
+            prefixIcon: Icons.lock_outline_rounded,
+            obscureText: obscureText,
+            keyboardType: TextInputType.visiblePassword,
+            textInputAction: widget.textInputAction,
+            validator: widget.validator,
+            onChanged: widget.onChanged,
+            suffixIcon: IconButton(
+              icon: Icon(
+                obscureText
+                    ? Icons.visibility_outlined
+                    : Icons.visibility_off_outlined,
+              ),
+              onPressed: () => _bloc.add(const TogglePasswordVisibilityEvent()),
+            ),
+          );
         },
       ),
     );

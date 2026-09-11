@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/dependency_injection/service_locator.dart';
 import '../../../../core/services/onboarding_storage.dart';
 import '../../domain/entities/onboarding_data.dart';
-import '../widgets/onboarding_carousel_slider.dart';
-import '../widgets/onboarding_footer_controls.dart';
-import '../widgets/onboarding_skip_button.dart';
+import '../bloc/onboarding_bloc.dart';
+import '../widgets/onboarding_content.dart';
 
-/// Interactive 4-slide Onboarding Page for first-time app launch.
+/// Interactive 4-slide Onboarding Page powered by OnboardingBloc.
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
 
@@ -18,7 +18,6 @@ class OnboardingPage extends StatefulWidget {
 
 class _OnboardingPageState extends State<OnboardingPage> {
   final PageController _ctrl = PageController();
-  int _idx = 0;
 
   @override
   void dispose() {
@@ -33,8 +32,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
     if (mounted) context.go('/login');
   }
 
-  void _onNext() {
-    if (_idx < OnboardingData.slides.length - 1) {
+  void _onNext(int idx) {
+    if (idx < OnboardingData.slides.length - 1) {
       _ctrl.nextPage(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
@@ -46,33 +45,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   @override
   Widget build(BuildContext context) {
-    final isLast = _idx == OnboardingData.slides.length - 1;
-
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Align(
-              alignment: Alignment.centerRight,
-              child: OnboardingSkipButton(
-                isLastPage: isLast,
-                onSkip: _complete,
-              ),
-            ),
-            Expanded(
-              child: OnboardingCarouselSlider(
-                controller: _ctrl,
-                onPageChanged: (i) => setState(() => _idx = i),
-              ),
-            ),
-            OnboardingFooterControls(
-              count: OnboardingData.slides.length,
-              currentIndex: _idx,
-              isLastPage: isLast,
-              onNext: _onNext,
-            ),
-          ],
-        ),
+    return BlocProvider(
+      create: (_) => OnboardingBloc(),
+      child: OnboardingContent(
+        controller: _ctrl,
+        onComplete: _complete,
+        onNext: _onNext,
       ),
     );
   }

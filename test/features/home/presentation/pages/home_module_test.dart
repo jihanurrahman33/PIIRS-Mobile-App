@@ -9,6 +9,8 @@ import 'package:zapshift/features/home/presentation/pages/notifications_page.dar
 import 'package:zapshift/features/home/presentation/pages/search_issues_page.dart';
 import 'package:zapshift/features/home/presentation/widgets/category_grid_widget.dart';
 import 'package:zapshift/features/home/presentation/widgets/home_summary_card.dart';
+import 'package:zapshift/features/home/presentation/widgets/home_recent_report_card.dart';
+import 'package:zapshift/features/home/presentation/widgets/home_recent_reports_section.dart';
 import 'package:zapshift/features/home/presentation/widgets/notification_tile.dart';
 import 'package:zapshift/features/home/presentation/widgets/premium_banner_widget.dart';
 
@@ -159,5 +161,59 @@ void main() {
 
       expect(find.text('Infrastructure Categories'), findsOneWidget);
     });
+
+    testWidgets(
+      'HomeRecentReportCard renders social post elements and toggles upvote',
+      (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            theme: AppTheme.lightTheme,
+            home: const Scaffold(
+              body: HomeRecentReportCard(
+                title: 'Hazardous pothole',
+                description: 'Damaging tires daily',
+                location: 'Sector 4',
+                status: 'In Progress',
+                upvotes: 10,
+                commentCount: 5,
+                timeAgo: '2h ago',
+                reporterName: 'Marcus Vance',
+              ),
+            ),
+          ),
+        );
+
+        expect(find.text('Marcus Vance'), findsOneWidget);
+        expect(find.text('Sector 4 • 2h ago'), findsOneWidget);
+        expect(find.text('Hazardous pothole'), findsOneWidget);
+        expect(find.text('Damaging tires daily'), findsOneWidget);
+        expect(find.text('10 upvotes'), findsOneWidget);
+        expect(find.text('5 comments'), findsOneWidget);
+
+        await tester.tap(find.text('10 upvotes'));
+        await tester.pump();
+        expect(find.text('11 upvotes'), findsOneWidget);
+      },
+    );
+
+    testWidgets(
+      'HomeRecentReportsSection renders community issue feed and View All',
+      (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            theme: AppTheme.lightTheme,
+            home: const Scaffold(
+              body: SingleChildScrollView(child: HomeRecentReportsSection()),
+            ),
+          ),
+        );
+
+        expect(find.text('Recent Community Reports'), findsOneWidget);
+        expect(find.text('View All'), findsOneWidget);
+        expect(find.text('Marcus Vance'), findsOneWidget);
+        expect(find.text('Sarah Jenkins'), findsOneWidget);
+        expect(find.text('David Kim'), findsOneWidget);
+      },
+    );
   });
 }
