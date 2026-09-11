@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/app_card.dart';
-import '../../../../core/widgets/status_badge.dart';
+import 'explore_card_actions.dart';
+import 'explore_card_header.dart';
 
 /// Rich public issue card with priority, status, and upvote action from Stitch.
 class ExploreIssueCard extends StatelessWidget {
@@ -31,35 +32,12 @@ class ExploreIssueCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pColor = priority == 'URGENT'
-        ? AppColors.priorityUrgent
-        : AppColors.priorityHigh;
     return AppCard(
       onTap: onTap,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                decoration: BoxDecoration(
-                  color: pColor.withValues(alpha: 0.15),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text(
-                  priority,
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                    color: pColor,
-                  ),
-                ),
-              ),
-              StatusBadge(status: status),
-            ],
-          ),
+          ExploreCardHeader(priority: priority, status: status),
           const SizedBox(height: 8),
           Text(
             title,
@@ -79,42 +57,7 @@ class ExploreIssueCard extends StatelessWidget {
             style: const TextStyle(fontSize: 11, color: AppColors.textMuted),
           ),
           const Divider(height: 14, color: AppColors.borderLight),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ElevatedButton.icon(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primarySeed,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 4,
-                  ),
-                ),
-                icon: const Icon(Icons.arrow_upward_rounded, size: 14),
-                label: Text(
-                  'Upvote ($upvotes)',
-                  style: const TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Text(
-                '💬 $comments',
-                style: const TextStyle(
-                  fontSize: 11,
-                  color: AppColors.textSecondary,
-                ),
-              ),
-              const Icon(
-                Icons.share_outlined,
-                size: 18,
-                color: AppColors.textSecondary,
-              ),
-            ],
-          ),
+          ExploreCardActions(upvotes: upvotes, comments: comments),
         ],
       ),
     );
