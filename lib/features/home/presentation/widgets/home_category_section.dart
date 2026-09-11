@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'category_grid_widget.dart';
+import '../../../../core/theme/app_colors.dart';
+import 'category_horizontal_list_widget.dart';
 
-/// Section showing infrastructure category grid with view-all navigation.
+/// Section showing compact infrastructure categories with view-all navigation.
 class HomeCategorySection extends StatelessWidget {
   const HomeCategorySection({super.key});
 
@@ -17,16 +18,24 @@ class HomeCategorySection extends StatelessWidget {
           children: [
             const Text(
               'Infrastructure Categories',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             TextButton(
               onPressed: () => context.push('/categories'),
-              child: const Text('View All'),
+              child: const Text(
+                'View All',
+                style: TextStyle(
+                  color: AppColors.primarySeed,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
           ],
         ),
-        const SizedBox(height: 10),
-        CategoryGridWidget(onCategoryTap: (_) => context.push('/search')),
+        const SizedBox(height: 8),
+        CategoryHorizontalListWidget(
+          onCategoryTap: (_) => context.push('/search'),
+        ),
       ],
     );
   }
