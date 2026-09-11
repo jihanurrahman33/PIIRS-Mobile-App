@@ -22,4 +22,12 @@ abstract class AuthRepository {
   Future<(Failure?, void)> sendPasswordReset(String email);
 
   Future<(Failure?, UserEntity?)> getCurrentUser();
+
+  Future<(Failure?, UserEntity?)> getUserProfile(String email) async =>
+      (null, null);
+
+  Future<(Failure?, void)> syncUserProfile({
+    required String name,
+    String? photoUrl,
+  }) async => (null, null);
 }

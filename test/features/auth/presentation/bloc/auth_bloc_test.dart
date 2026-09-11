@@ -59,6 +59,16 @@ class MockAuthRepository implements AuthRepository {
   Future<(Failure?, UserEntity?)> getCurrentUser() async {
     return (null, null);
   }
+
+  @override
+  Future<(Failure?, UserEntity?)> getUserProfile(String email) async =>
+      (null, null);
+
+  @override
+  Future<(Failure?, void)> syncUserProfile({
+    required String name,
+    String? photoUrl,
+  }) async => (null, null);
 }
 
 void main() {

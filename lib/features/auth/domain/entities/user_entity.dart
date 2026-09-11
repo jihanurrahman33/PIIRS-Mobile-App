@@ -8,6 +8,7 @@ class UserEntity extends Equatable {
   final String role;
   final bool isBlocked;
   final bool isVerified;
+  final bool isPremium;
   final String? phone;
   final String? avatarUrl;
 
@@ -18,6 +19,7 @@ class UserEntity extends Equatable {
     required this.role,
     this.isBlocked = false,
     this.isVerified = true,
+    this.isPremium = false,
     this.phone,
     this.avatarUrl,
   });
@@ -34,6 +36,7 @@ class UserEntity extends Equatable {
     role,
     isBlocked,
     isVerified,
+    isPremium,
     phone,
     avatarUrl,
   ];

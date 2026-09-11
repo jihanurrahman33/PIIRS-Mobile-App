@@ -48,6 +48,23 @@ class MockIssueRepository implements IssueRepository {
   Future<(Failure?, List<IssueEntity>?)> getMyIssues(String email) async {
     return (null, <IssueEntity>[]);
   }
+
+  @override
+  Future<(Failure?, List<IssueEntity>?)> getAllIssues() async =>
+      (null, <IssueEntity>[]);
+
+  @override
+  Future<(Failure?, List<IssueEntity>?)> getFilteredIssues({
+    int? limit,
+    String? sort,
+    Map<String, dynamic>? filters,
+  }) async => (null, <IssueEntity>[]);
+
+  @override
+  Future<(Failure?, List<IssueEntity>?)> getUserIssues(
+    String email, {
+    int? limit,
+  }) async => (null, <IssueEntity>[]);
 }
 
 void main() {

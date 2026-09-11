@@ -55,6 +55,26 @@ class FakeIssueRepository implements IssueRepository {
     final filtered = _issues.where((i) => i.authorEmail == email).toList();
     return (null, filtered);
   }
+
+  @override
+  Future<(Failure?, List<IssueEntity>?)> getAllIssues() async =>
+      (null, _issues);
+
+  @override
+  Future<(Failure?, List<IssueEntity>?)> getFilteredIssues({
+    int? limit,
+    String? sort,
+    Map<String, dynamic>? filters,
+  }) async => (null, _issues);
+
+  @override
+  Future<(Failure?, List<IssueEntity>?)> getUserIssues(
+    String email, {
+    int? limit,
+  }) async {
+    final filtered = _issues.where((i) => i.authorEmail == email).toList();
+    return (null, filtered);
+  }
 }
 
 void main() {

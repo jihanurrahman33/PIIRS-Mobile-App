@@ -11,27 +11,50 @@ class CitizenDashboardStatsModel extends CitizenDashboardStatsEntity {
   });
 
   factory CitizenDashboardStatsModel.fromJson(Map<String, dynamic> json) {
+    final sub =
+        (json['submittedCount'] ??
+                json['total_submitted'] ??
+                json['total'] ??
+                0)
+            as int;
+    final res =
+        (json['resolvedCount'] ??
+                json['total_resolved'] ??
+                json['resolved'] ??
+                0)
+            as int;
+    final inProg =
+        (json['openCount'] ??
+                json['pendingCount'] ??
+                json['total_in_progress'] ??
+                0)
+            as int;
+    final upvotes =
+        (json['upvotesGiven'] ??
+                json['total_upvotes_given'] ??
+                json['upvotes'] ??
+                0)
+            as int;
+    final pts =
+        (json['impact_points'] ??
+                json['points'] ??
+                (sub * 20 + res * 50 + upvotes * 5))
+            as int;
+
     return CitizenDashboardStatsModel(
-      totalSubmitted:
-          json['total_submitted'] as int? ?? json['total'] as int? ?? 0,
-      totalResolved:
-          json['total_resolved'] as int? ?? json['resolved'] as int? ?? 0,
-      totalInProgress:
-          json['total_in_progress'] as int? ?? json['in_progress'] as int? ?? 0,
-      totalUpvotesGiven:
-          json['total_upvotes_given'] as int? ?? json['upvotes'] as int? ?? 0,
-      impactPoints:
-          json['impact_points'] as int? ?? json['points'] as int? ?? 0,
+      totalSubmitted: sub,
+      totalResolved: res,
+      totalInProgress: inProg,
+      totalUpvotesGiven: upvotes,
+      impactPoints: pts,
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'total_submitted': totalSubmitted,
-      'total_resolved': totalResolved,
-      'total_in_progress': totalInProgress,
-      'total_upvotes_given': totalUpvotesGiven,
-      'impact_points': impactPoints,
-    };
-  }
+  Map<String, dynamic> toJson() => {
+    'total_submitted': totalSubmitted,
+    'total_resolved': totalResolved,
+    'total_in_progress': totalInProgress,
+    'total_upvotes_given': totalUpvotesGiven,
+    'impact_points': impactPoints,
+  };
 }

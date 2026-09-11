@@ -9,6 +9,7 @@ class UserModel extends UserEntity {
     required super.role,
     super.isBlocked = false,
     super.isVerified = true,
+    super.isPremium = false,
     super.phone,
     super.avatarUrl,
   });
@@ -19,8 +20,10 @@ class UserModel extends UserEntity {
       name: json['name']?.toString() ?? json['displayName']?.toString() ?? '',
       email: json['email']?.toString() ?? '',
       role: json['role']?.toString() ?? 'citizen',
-      isBlocked: json['isBlocked'] as bool? ?? false,
+      isBlocked:
+          json['isBlocked'] as bool? ?? json['isBlcoked'] as bool? ?? false,
       isVerified: json['isVerified'] as bool? ?? true,
+      isPremium: json['isPremium'] as bool? ?? false,
       phone: json['phone']?.toString(),
       avatarUrl: json['avatarUrl']?.toString() ?? json['photoURL']?.toString(),
     );
@@ -34,6 +37,7 @@ class UserModel extends UserEntity {
       'role': role,
       'isBlocked': isBlocked,
       'isVerified': isVerified,
+      'isPremium': isPremium,
       if (phone != null) 'phone': phone,
       if (avatarUrl != null) 'avatarUrl': avatarUrl,
     };

@@ -84,10 +84,11 @@ class HttpApiClient implements ApiClient {
   Future<dynamic> patch(
     String path, {
     Map<String, String>? headers,
+    Map<String, dynamic>? queryParameters,
     Object? body,
     bool requiresAuth = true,
   }) async {
-    final uri = _buildUri(path, null);
+    final uri = _buildUri(path, queryParameters);
     final requestHeaders = await _buildHeaders(headers, requiresAuth);
     final encodedBody = body != null ? jsonEncode(body) : null;
 
@@ -210,6 +211,8 @@ class HttpApiClient implements ApiClient {
 
     final errorMessage = parsedData is Map && parsedData.containsKey('message')
         ? parsedData['message'].toString()
+        : parsedData is Map && parsedData.containsKey('error')
+        ? parsedData['error'].toString()
         : responseBody.isNotEmpty
         ? responseBody
         : 'HTTP Error $statusCode';

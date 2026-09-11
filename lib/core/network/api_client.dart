@@ -20,6 +20,7 @@ abstract class ApiClient {
   Future<dynamic> patch(
     String path, {
     Map<String, String>? headers,
+    Map<String, dynamic>? queryParameters,
     Object? body,
     bool requiresAuth = true,
   });

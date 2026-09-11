@@ -16,79 +16,58 @@ class IssueRepositoryImpl implements IssueRepository {
     required this.networkInfo,
   });
 
-  @override
-  Future<(Failure?, List<IssueEntity>?)> getIssues() async {
+  Future<(Failure?, T?)> _execute<T>(Future<T> Function() call) async {
     if (!await networkInfo.isConnected) {
       return (const NetworkFailure('No internet connection'), null);
     }
     try {
-      final models = await remoteDataSource.getIssues();
-      return (null, models);
-    } on ServerException catch (e) {
-      return (ServerFailure(e.message), null);
+      final res = await call();
+      return (null, res);
+    } on AppException catch (e) {
+      return (ServerFailure(e.message, e.statusCode), null);
     } catch (e) {
       return (ServerFailure('Unexpected error: $e'), null);
     }
   }
 
   @override
-  Future<(Failure?, IssueEntity?)> getIssueDetails(String issueId) async {
-    if (!await networkInfo.isConnected) {
-      return (const NetworkFailure('No internet connection'), null);
-    }
-    try {
-      final model = await remoteDataSource.getIssueDetails(issueId);
-      return (null, model);
-    } on ServerException catch (e) {
-      return (ServerFailure(e.message), null);
-    } catch (e) {
-      return (ServerFailure('Unexpected error: $e'), null);
-    }
-  }
+  Future<(Failure?, List<IssueEntity>?)> getIssues() =>
+      _execute(() => remoteDataSource.getIssues());
 
   @override
-  Future<(Failure?, IssueEntity?)> createIssue(IssueEntity issue) async {
-    if (!await networkInfo.isConnected) {
-      return (const NetworkFailure('No internet connection'), null);
-    }
-    try {
-      final model = IssueModel.fromEntity(issue);
-      final createdModel = await remoteDataSource.createIssue(model);
-      return (null, createdModel);
-    } on ServerException catch (e) {
-      return (ServerFailure(e.message), null);
-    } catch (e) {
-      return (ServerFailure('Unexpected error: $e'), null);
-    }
-  }
+  Future<(Failure?, List<IssueEntity>?)> getFilteredIssues({
+    int? limit,
+    String? sort,
+    Map<String, dynamic>? filters,
+  }) => _execute(
+    () =>
+        remoteDataSource.getIssues(limit: limit, sort: sort, filters: filters),
+  );
 
   @override
-  Future<(Failure?, IssueEntity?)> upvoteIssue(String issueId) async {
-    if (!await networkInfo.isConnected) {
-      return (const NetworkFailure('No internet connection'), null);
-    }
-    try {
-      final model = await remoteDataSource.upvoteIssue(issueId);
-      return (null, model);
-    } on ServerException catch (e) {
-      return (ServerFailure(e.message), null);
-    } catch (e) {
-      return (ServerFailure('Unexpected error: $e'), null);
-    }
-  }
+  Future<(Failure?, List<IssueEntity>?)> getAllIssues() =>
+      _execute(() => remoteDataSource.getAllIssues());
 
   @override
-  Future<(Failure?, List<IssueEntity>?)> getMyIssues(String email) async {
-    if (!await networkInfo.isConnected) {
-      return (const NetworkFailure('No internet connection'), null);
-    }
-    try {
-      final models = await remoteDataSource.getMyIssues(email);
-      return (null, models);
-    } on ServerException catch (e) {
-      return (ServerFailure(e.message), null);
-    } catch (e) {
-      return (ServerFailure('Unexpected error: $e'), null);
-    }
-  }
+  Future<(Failure?, IssueEntity?)> getIssueDetails(String issueId) =>
+      _execute(() => remoteDataSource.getIssueDetails(issueId));
+
+  @override
+  Future<(Failure?, IssueEntity?)> createIssue(IssueEntity issue) => _execute(
+    () => remoteDataSource.createIssue(IssueModel.fromEntity(issue)),
+  );
+
+  @override
+  Future<(Failure?, IssueEntity?)> upvoteIssue(String issueId) =>
+      _execute(() => remoteDataSource.upvoteIssue(issueId));
+
+  @override
+  Future<(Failure?, List<IssueEntity>?)> getMyIssues(String email) =>
+      _execute(() => remoteDataSource.getMyIssues(email));
+
+  @override
+  Future<(Failure?, List<IssueEntity>?)> getUserIssues(
+    String email, {
+    int? limit,
+  }) => _execute(() => remoteDataSource.getUserIssues(email, limit: limit));
 }

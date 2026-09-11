@@ -120,4 +120,33 @@ class AuthRepositoryImpl implements AuthRepository {
       return (UnknownFailure(e.toString()), null);
     }
   }
+
+  @override
+  Future<(Failure?, UserEntity?)> getUserProfile(String email) async {
+    if (!await networkInfo.isConnected) {
+      return (const NetworkFailure(), null);
+    }
+    try {
+      final userModel = await remoteDataSource.getUserProfile(email);
+      return (null, userModel?.toEntity());
+    } catch (e) {
+      return (ServerFailure(e.toString()), null);
+    }
+  }
+
+  @override
+  Future<(Failure?, void)> syncUserProfile({
+    required String name,
+    String? photoUrl,
+  }) async {
+    if (!await networkInfo.isConnected) {
+      return (const NetworkFailure(), null);
+    }
+    try {
+      await remoteDataSource.syncUserProfile(name: name, photoUrl: photoUrl);
+      return (null, null);
+    } catch (e) {
+      return (ServerFailure(e.toString()), null);
+    }
+  }
 }
