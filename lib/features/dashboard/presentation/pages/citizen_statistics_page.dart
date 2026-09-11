@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/widgets/app_card.dart';
+import '../widgets/citizen_impact_score_card.dart';
+import '../widgets/citizen_next_tier_card.dart';
+import '../widgets/citizen_stats_metrics_row.dart';
+import '../widgets/civic_badges_showcase_widget.dart';
 
-/// Screen displaying detailed citizen statistics, upvotes, & badge achievements.
+/// Screen displaying detailed citizen impact statistics, upvotes, and badges.
 class CitizenStatisticsPage extends StatelessWidget {
   const CitizenStatisticsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -19,70 +20,19 @@ class CitizenStatisticsPage extends StatelessWidget {
         ),
         title: const Text('My Statistics'),
       ),
-      body: SafeArea(
+      body: const SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AppCard(
-                child: Column(
-                  children: [
-                    const Icon(
-                      Icons.workspace_premium_rounded,
-                      size: 48,
-                      color: Colors.amber,
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Civic Hero Level 3',
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      '450 Community Impact Points',
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurfaceVariant,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
-              Text(
-                'Achievement Badges',
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 12),
-              AppCard(
-                child: Column(
-                  children: [
-                    ListTile(
-                      leading: const CircleAvatar(
-                        child: Icon(Icons.camera_alt_rounded),
-                      ),
-                      title: const Text('First Reporter'),
-                      subtitle: const Text(
-                        'Logged your first infrastructure issue',
-                      ),
-                    ),
-                    const Divider(),
-                    ListTile(
-                      leading: const CircleAvatar(
-                        child: Icon(Icons.thumb_up_rounded),
-                      ),
-                      title: const Text('Community Guardian'),
-                      subtitle: const Text(
-                        'Upvoted over 25 neighborhood reports',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              CitizenImpactScoreCard(),
+              SizedBox(height: 16),
+              CitizenStatsMetricsRow(),
+              SizedBox(height: 16),
+              CivicBadgesShowcaseWidget(),
+              SizedBox(height: 16),
+              CitizenNextTierCard(),
             ],
           ),
         ),

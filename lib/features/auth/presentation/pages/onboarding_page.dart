@@ -3,10 +3,10 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/dependency_injection/service_locator.dart';
 import '../../../../core/services/onboarding_storage.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../domain/entities/onboarding_slide.dart';
-import '../widgets/onboarding_dot_indicator.dart';
-import '../widgets/onboarding_slide_item.dart';
+import '../../domain/entities/onboarding_data.dart';
+import '../widgets/onboarding_carousel_slider.dart';
+import '../widgets/onboarding_footer_controls.dart';
+import '../widgets/onboarding_skip_button.dart';
 
 /// Interactive 4-slide Onboarding Page for first-time app launch.
 class OnboardingPage extends StatefulWidget {
@@ -17,133 +17,59 @@ class OnboardingPage extends StatefulWidget {
 }
 
 class _OnboardingPageState extends State<OnboardingPage> {
-  final PageController _pageController = PageController();
-  int _currentIndex = 0;
-
-  static const List<OnboardingSlide> _slides = [
-    OnboardingSlide(
-      title: 'Report Issues Seamlessly',
-      description:
-          'Snap photos, specify location coordinates, and submit public infrastructure problems to city authorities in seconds.',
-      icon: Icons.camera_alt_rounded,
-      accentColor: AppColors.primarySeed,
-    ),
-    OnboardingSlide(
-      title: 'Track Status Real-Time',
-      description:
-          'Receive instant timeline notifications from pending to in-progress to resolved as staff work on your report.',
-      icon: Icons.timeline_rounded,
-      accentColor: AppColors.inProgress,
-    ),
-    OnboardingSlide(
-      title: 'Community Upvotes',
-      description:
-          'Upvote critical neighborhood issues to boost priority and escalate repairs for your community.',
-      icon: Icons.thumb_up_alt_rounded,
-      accentColor: AppColors.pending,
-    ),
-    OnboardingSlide(
-      title: 'Empowering Citizens & Staff',
-      description:
-          'Collaborate directly with city workers and municipal teams to build cleaner, safer, and better infrastructure.',
-      icon: Icons.groups_rounded,
-      accentColor: AppColors.resolved,
-    ),
-  ];
+  final PageController _ctrl = PageController();
+  int _idx = 0;
 
   @override
   void dispose() {
-    _pageController.dispose();
+    _ctrl.dispose();
     super.dispose();
   }
 
-  Future<void> _completeOnboarding() async {
+  Future<void> _complete() async {
     if (sl.isRegistered<OnboardingStorage>()) {
       await sl<OnboardingStorage>().setOnboardingCompleted();
     }
-    if (mounted) {
-      context.go('/login');
-    }
+    if (mounted) context.go('/login');
   }
 
   void _onNext() {
-    if (_currentIndex < _slides.length - 1) {
-      _pageController.nextPage(
+    if (_idx < OnboardingData.slides.length - 1) {
+      _ctrl.nextPage(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
     } else {
-      _completeOnboarding();
+      _complete();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final isLastPage = _currentIndex == _slides.length - 1;
+    final isLast = _idx == OnboardingData.slides.length - 1;
 
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16.0,
-                vertical: 8.0,
-              ),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: isLastPage
-                    ? const SizedBox(height: 48)
-                    : TextButton(
-                        onPressed: _completeOnboarding,
-                        child: Text(
-                          'Skip',
-                          style: theme.textTheme.titleMedium?.copyWith(
-                            color: theme.colorScheme.onSurfaceVariant,
-                          ),
-                        ),
-                      ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: OnboardingSkipButton(
+                isLastPage: isLast,
+                onSkip: _complete,
               ),
             ),
             Expanded(
-              child: PageView.builder(
-                controller: _pageController,
-                itemCount: _slides.length,
-                onPageChanged: (index) {
-                  setState(() {
-                    _currentIndex = index;
-                  });
-                },
-                itemBuilder: (context, index) {
-                  return OnboardingSlideItem(
-                    slide: _slides[index],
-                    index: index,
-                  );
-                },
+              child: OnboardingCarouselSlider(
+                controller: _ctrl,
+                onPageChanged: (i) => setState(() => _idx = i),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  OnboardingDotIndicator(
-                    count: _slides.length,
-                    currentIndex: _currentIndex,
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(140, 52),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16.0),
-                      ),
-                    ),
-                    onPressed: _onNext,
-                    child: Text(isLastPage ? 'Get Started' : 'Next'),
-                  ),
-                ],
-              ),
+            OnboardingFooterControls(
+              count: OnboardingData.slides.length,
+              currentIndex: _idx,
+              isLastPage: isLast,
+              onNext: _onNext,
             ),
           ],
         ),

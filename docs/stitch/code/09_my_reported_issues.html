@@ -1,0 +1,287 @@
+<!DOCTYPE html><html class="h-full" lang="en" style="width: 390px; height: 1315px; overflow: hidden; position: relative;"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><title>ZapShift</title><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "inverse-primary": "#c0c1ff", "priority-high": "#F59E0B", "status-rejected": "#EF4444", "primary-fixed": "#e1e0ff", "surface-container": "#eaedff", "priority-urgent": "#EF4444", "surface-container-low": "#f2f3ff", "background-dark": "#0F172A", "surface-tint": "#494bd6", "brand-primary-dark": "#818CF8", "surface-light": "#FFFFFF", "inverse-surface": "#283044", "priority-low": "#10B981", "border-light": "#E2E8F0", "surface-container-highest": "#dae2fd", "surface-dark": "#1E293B", "surface-container-lowest": "#ffffff", "secondary-fixed-dim": "#89ceff", "on-tertiary-container": "#fffbff", "on-primary-fixed-variant": "#2f2ebe", "on-primary": "#ffffff", "error": "#ba1a1a", "on-error-container": "#93000a", "tertiary-container": "#b55d00", "on-secondary": "#ffffff", "on-secondary-container": "#004666", "on-tertiary-fixed": "#301400", "surface-container-high": "#e2e7ff", "primary-container": "#6063ee", "background": "#faf8ff", "surface-bright": "#faf8ff", "on-error": "#ffffff", "on-tertiary": "#ffffff", "status-pending": "#F59E0B", "outline-variant": "#c7c4d7", "on-primary-fixed": "#07006c", "surface-dim": "#d2d9f4", "on-secondary-fixed": "#001e2f", "on-surface-variant": "#464554", "status-inprogress": "#3B82F6", "surface": "#faf8ff", "text-muted": "#94A3B8", "background-light": "#F8FAFC", "status-boosted": "#8B5CF6", "error-container": "#ffdad6", "on-primary-container": "#fffbff", "secondary-fixed": "#c9e6ff", "on-secondary-fixed-variant": "#004c6e", "secondary": "#006591", "tertiary-fixed-dim": "#ffb783", "on-tertiary-fixed-variant": "#703700", "priority-normal": "#3B82F6", "on-surface": "#131b2e", "on-background": "#131b2e", "text-secondary": "#64748B", "inverse-on-surface": "#eef0ff", "primary-fixed-dim": "#c0c1ff", "tertiary-fixed": "#ffdcc5", "secondary-container": "#39b8fd", "tertiary": "#904900", "outline": "#767586", "status-resolved": "#10B981", "primary": "#4648d4", "surface-variant": "#dae2fd", "text-primary": "#0F172A" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xs": "0.25rem", "margin": "1rem", "space-lg": "1rem", "gutter": "1rem", "space-md": "0.75rem", "space-xl": "1.5rem", "space-sm": "0.5rem" }, fontFamily: { "title": ["Inter"], "headline": ["Inter"], "display": ["Inter"], "body-lg": ["Inter"], "body": ["Inter"], "caption": ["Inter"], "label": ["Inter"] }, fontSize: { "title": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "headline": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.3px", "fontWeight": "600" }], "display": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.5px", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "body": ["14px", { "lineHeight": "21px", "fontWeight": "400" }], "caption": ["11px", { "lineHeight": "14px", "fontWeight": "400" }], "label": ["12px", { "lineHeight": "16px", "letterSpacing": "0.2px", "fontWeight": "500" }] } } } };</script><style>@layer base{html,body{margin:0;padding:0;min-height:100%;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background font-body text-body text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface-light/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="flex flex-col"><span class="font-title text-title text-text-primary leading-tight tracking-tight">ZapShift</span></div></div><div class="flex items-center gap-space-sm"><button class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors"><span class="material-symbols-outlined text-[22px]">notifications</span></button><a class="w-11 h-11 flex items-center justify-center rounded-full" data-path="profile" href="#"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1ODVOCUTvFhaW9lRgaQmpw-K92MMK4Yr1yuKI3ejQ-tpq28Qvqhhe1wqhTGvlSNB_OjFZYu92xAiNA1D6NQUQhxYU-cNzoWUD61kGkbKa7DbqGvigOVJpaqqwRqPPb4IAIeeEQPTBLw4EXJlmlez5WaiH2yrLdqAfGLENOc4fE0TqZ9pLJdgQUum5AbK4smCM8StaKlEHD7Ne92Rp59N3lw43z4uYGCsMI5fzhim0WRLs3n96vnbffg"></a></div></div></header><main class="flex-1 w-full pt-16 pb-28 px-margin bg-background relative flex flex-col"><div class="flex flex-col w-full space-y-space-lg pb-6">
+<!-- Summary Header & Quick Insight -->
+<div class="flex items-center justify-between pt-1">
+<div>
+<div class="flex items-center gap-space-xs">
+<h1 class="font-headline text-headline text-on-surface">My Reports</h1>
+<span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label text-label">
+          8 Total
+        </span>
+</div>
+<p class="font-body text-body text-text-secondary mt-0.5">Tracking your community contributions</p>
+</div>
+<!-- Mini Civic Impact Pulse -->
+<div class="flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-xl shadow-sm">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: &quot;FILL&quot; 1;">bolt</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label text-label text-text-primary leading-none">88%</span>
+<span class="font-caption text-caption text-text-secondary leading-tight">Resolution</span>
+</div>
+</div>
+</div>
+<!-- Filter Pills (Scrollable Segmented Bar) -->
+<div class="-mx-margin px-margin overflow-x-auto no-scrollbar flex items-center gap-space-sm py-1">
+<button class="tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-primary text-on-primary shadow-sm font-label text-label transition-all shrink-0" id="tab-all" onclick="filterIssues('all')">
+<span class="">All</span>
+<span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center font-caption text-caption">8</span>
+</button>
+<button class="tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-surface-container-low text-text-secondary hover:bg-surface-container font-label text-label transition-all shrink-0" id="tab-in-progress" onclick="filterIssues('in-progress')">
+<span class="">In Progress</span>
+<span class="px-1.5 py-0.5 rounded-full bg-status-inprogress/15 text-status-inprogress font-caption text-caption font-semibold">3</span>
+</button>
+<button class="tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-surface-container-low text-text-secondary hover:bg-surface-container font-label text-label transition-all shrink-0" id="tab-pending" onclick="filterIssues('pending')">
+<span class="">Pending</span>
+<span class="px-1.5 py-0.5 rounded-full bg-status-pending/15 text-status-pending font-caption text-caption font-semibold">2</span>
+</button>
+<button class="tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-surface-container-low text-text-secondary hover:bg-surface-container font-label text-label transition-all shrink-0" id="tab-resolved" onclick="filterIssues('resolved')">
+<span class="">Resolved</span>
+<span class="px-1.5 py-0.5 rounded-full bg-status-resolved/15 text-status-resolved font-caption text-caption font-semibold">2</span>
+</button>
+<button class="tab-btn flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-surface-container-low text-text-secondary hover:bg-surface-container font-label text-label transition-all shrink-0" id="tab-rejected" onclick="filterIssues('rejected')">
+<span class="">Rejected</span>
+<span class="px-1.5 py-0.5 rounded-full bg-status-rejected/15 text-status-rejected font-caption text-caption font-semibold">1</span>
+</button>
+</div>
+<!-- Issue Cards Container -->
+<div class="flex flex-col space-y-space-md" id="issues-list">
+<!-- Card 1: Water Main Leak (In Progress) -->
+<div class="issue-card bg-surface-container-lowest rounded-xl p-space-lg shadow-[0_4px_12px_rgba(15,23,42,0.05)] transition-all flex flex-col space-y-3" data-status="in-progress">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-status-inprogress/10 text-status-inprogress flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[24px]">water_damage</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title text-title text-text-primary">Water Main Leak</span>
+<span class="font-caption text-caption text-text-secondary mt-0.5">Reported Yesterday • 4th Ave &amp; Pine</span>
+</div>
+</div>
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-status-inprogress/10 text-status-inprogress font-label text-label uppercase tracking-wider font-semibold shrink-0">
+          In Progress
+        </span>
+</div>
+<!-- Department & Assignment Tag -->
+<div class="flex items-center justify-between text-text-secondary bg-surface-container-low px-3 py-2 rounded-lg">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary">engineering</span>
+<span class="font-label text-label text-on-surface-variant font-medium">Water Works Dept</span>
+</div>
+<span class="font-caption text-caption text-text-secondary">Crew dispatched</span>
+</div>
+<!-- Multi-step Progress Bar -->
+<div class="flex flex-col space-y-1.5 pt-1">
+<div class="flex justify-between items-center text-text-secondary">
+<span class="font-caption text-caption font-medium text-text-primary">Step 2 of 4: Assessment Done</span>
+<span class="font-caption text-caption text-status-inprogress font-semibold">50%</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden flex">
+<div class="h-full bg-status-inprogress rounded-full transition-all duration-500" style="width: 50%;"></div>
+</div>
+<div class="flex justify-between text-[10px] text-text-muted px-0.5">
+<span class="">Submitted</span>
+<span class="">Inspecting</span>
+<span class="">Repairing</span>
+<span class="">Verified</span>
+</div>
+</div>
+<!-- Footer Quick Action -->
+<div class="flex items-center justify-between pt-1 text-text-secondary font-caption text-caption">
+<span class="flex items-center gap-1 text-text-muted">
+<span class="material-symbols-outlined text-[16px]">chat_bubble_outline</span>
+          3 crew updates
+        </span>
+<button class="text-primary font-label text-label font-medium flex items-center gap-0.5 hover:underline active:scale-95 transition-transform">
+          Live Tracker
+          <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Card 2: Flickering Street Lamp (Resolved) -->
+<div class="issue-card bg-surface-container-lowest rounded-xl p-space-lg shadow-[0_4px_12px_rgba(15,23,42,0.05)] transition-all flex flex-col space-y-3" data-status="resolved">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-status-resolved/10 text-status-resolved flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[24px]">lightbulb</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title text-title text-text-primary">Flickering Street Lamp</span>
+<span class="font-caption text-caption text-status-resolved font-medium mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+              Resolved on Oct 10
+            </span>
+</div>
+</div>
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-status-resolved/10 text-status-resolved font-label text-label uppercase tracking-wider font-semibold shrink-0">
+          Resolved
+        </span>
+</div>
+<!-- Resolution Visual Preview and Action -->
+<div class="flex items-center gap-3 bg-surface-container-low p-2.5 rounded-xl">
+<div class="relative w-14 h-14 rounded-lg overflow-hidden shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Clear daytime photo of a modernized municipal street light pole newly repaired with clean wiring and bright LED fitting on clean city pavement under blue sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASau71coq2vdEhZxsNgK6MI2sih2KClWNQc3L97fTPuz4N66iz8GEfz1quwsj24eD4zUu5q6G4Lcu7XKVVtOFJFU3-cmTIU5lUcOH9qOUVnJZ17-oVVwNaxlfNw3L1pC5J0yVtWpKNyteZDpcDQAIEBBTKYarwACZ0sPUF-_h39la9ycLCyFoP1IgZvvbUdgvNwq9yUrPb4wz8-0bFKK2hhctOmhg41b_umTEuRGiE0r0CwrY25dZBvA">
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end justify-center pb-0.5">
+<span class="material-symbols-outlined text-white text-[14px]">photo_camera</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<span class="font-label text-label text-text-primary truncate">LED Luminaire Replaced</span>
+<span class="font-caption text-caption text-text-secondary truncate">City Lighting • Lamp #A-204</span>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-status-resolved text-on-primary font-label text-label shadow-sm hover:opacity-95 active:scale-95 transition-transform shrink-0">
+          View Solution
+        </button>
+</div>
+<!-- Rating prompt for citizen -->
+<div class="flex items-center justify-between pt-1">
+<span class="font-caption text-caption text-text-secondary">How was the resolution quality?</span>
+<div class="flex items-center gap-1 text-priority-high">
+<span class="material-symbols-outlined text-[18px] cursor-pointer hover:scale-110" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-[18px] cursor-pointer hover:scale-110" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-[18px] cursor-pointer hover:scale-110" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-[18px] cursor-pointer hover:scale-110" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-[18px] cursor-pointer text-outline-variant hover:scale-110">star</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Illegal Dumping (Rejected) with Interactive Accordion -->
+<div class="issue-card bg-surface-container-lowest rounded-xl p-space-lg shadow-[0_4px_12px_rgba(15,23,42,0.05)] transition-all flex flex-col space-y-3" data-status="rejected">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-status-rejected/10 text-status-rejected flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[24px]">delete_sweep</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title text-title text-text-primary">Illegal Dumping</span>
+<span class="font-caption text-caption text-text-secondary mt-0.5">Reported Oct 06 • Elm Alleyway</span>
+</div>
+</div>
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-status-rejected/10 text-status-rejected font-label text-label uppercase tracking-wider font-semibold shrink-0">
+          Rejected
+        </span>
+</div>
+<!-- Expandable Accordion Reason -->
+<div class="bg-error-container/40 rounded-xl overflow-hidden transition-all">
+<button class="w-full flex items-center justify-between px-3 py-2.5 text-left active:bg-error-container/60 transition-colors" onclick="toggleReason()">
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-error">info</span>
+<span class="font-label text-label font-medium">Rejection Reason</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface transition-transform duration-200" id="accordion-icon">expand_more</span>
+</button>
+<div class="px-3 pb-3 pt-0 text-on-surface-variant font-body text-body space-y-2" id="rejection-details">
+<p class="font-label text-label text-on-surface leading-relaxed">
+            Private property — redirected to Oakridge HOA management. Municipal crews cannot enter fenced residential parcels.
+          </p>
+<div class="flex items-center gap-2 pt-1">
+<a class="inline-flex items-center gap-1 text-primary font-label text-label hover:underline" href="tel:5550199">
+<span class="material-symbols-outlined text-[16px]">call</span>
+              Contact Oakridge HOA
+            </a>
+<span class="text-outline-variant">•</span>
+<button class="text-text-secondary font-label text-label hover:text-text-primary">
+              Appeal Decision
+            </button>
+</div>
+</div>
+</div>
+<!-- Card Footer Helper -->
+<div class="flex items-center justify-between text-text-secondary font-caption text-caption pt-0.5">
+<span class="text-text-muted">Case Closed #ZS-9921</span>
+<span class="text-text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">history</span>
+          Reviewed by City Sanitation
+        </span>
+</div>
+</div>
+<!-- Card 4: Pothole Hazard (Pending - for realistic variety) -->
+<div class="issue-card bg-surface-container-lowest rounded-xl p-space-lg shadow-[0_4px_12px_rgba(15,23,42,0.05)] transition-all flex flex-col space-y-3" data-status="pending">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-status-pending/10 text-status-pending flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[24px]">traffic</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title text-title text-text-primary">Deep Road Pothole</span>
+<span class="font-caption text-caption text-text-secondary mt-0.5">Submitted 3 hrs ago • Maple Blvd</span>
+</div>
+</div>
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-status-pending/10 text-status-pending font-label text-label uppercase tracking-wider font-semibold shrink-0">
+          Pending
+        </span>
+</div>
+<div class="flex items-center justify-between bg-surface-container-low px-3 py-2 rounded-lg text-text-secondary">
+<span class="font-label text-label text-on-surface-variant">Awaiting triage by Roads &amp; Transit</span>
+<span class="font-caption text-caption text-status-pending font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+          Est. ~4h
+        </span>
+</div>
+</div>
+</div>
+<!-- Delightful Civic Encouragement Footer Card -->
+<div class="bg-gradient-to-r from-primary/10 via-primary-container/10 to-surface-container p-4 rounded-xl flex items-center gap-3.5 shadow-sm">
+<div class="w-11 h-11 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0 shadow-md">
+<span class="material-symbols-outlined text-[22px]">verified</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title text-title text-text-primary leading-tight">Civic Guardian Level 2</span>
+<span class="font-caption text-caption text-text-secondary mt-0.5">You helped improve neighborhood safety for 1,240 fellow residents this month.</span>
+</div>
+</div>
+<!-- Floating Action Button: Report Issue -->
+<div class="fixed bottom-20 right-4 z-40">
+<a class="flex items-center gap-2 pl-4 pr-5 h-13 py-3 rounded-full bg-primary text-on-primary shadow-[0_8px_24px_rgba(70,72,212,0.45)] active:scale-95 transition-transform" data-path="report-issue" href="#">
+<span class="material-symbols-outlined text-[24px]">add</span>
+<span class="font-label text-label tracking-wide font-semibold">New Report</span>
+</a>
+</div>
+</div>
+<script>
+  function toggleReason() {
+    const details = document.getElementById('rejection-details');
+    const icon = document.getElementById('accordion-icon');
+    if (!details || !icon) return;
+
+    if (details.classList.contains('hidden')) {
+      details.classList.remove('hidden');
+      icon.classList.remove('rotate-180');
+    } else {
+      details.classList.add('hidden');
+      icon.classList.add('rotate-180');
+    }
+  }
+
+  function filterIssues(status) {
+    const cards = document.querySelectorAll('.issue-card');
+    const tabs = document.querySelectorAll('.tab-btn');
+
+    tabs.forEach(tab => {
+      tab.classList.remove('bg-primary', 'text-on-primary');
+      tab.classList.add('bg-surface-container-low', 'text-text-secondary');
+    });
+
+    const activeTab = document.getElementById('tab-' + status);
+    if (activeTab) {
+      activeTab.classList.remove('bg-surface-container-low', 'text-text-secondary');
+      activeTab.classList.add('bg-primary', 'text-on-primary');
+    }
+
+    cards.forEach(card => {
+      if (status === 'all' || card.dataset.status === status) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-light/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(15,23,42,0.06)]" data-active-classes="text-primary font-bold"><div class="h-16 px-space-xs flex items-center justify-around relative"><a class="flex flex-col items-center justify-center w-14 h-14 text-text-secondary transition-colors" data-path="home" href="#"><span class="material-symbols-outlined text-[24px]">home</span><span class="font-caption text-caption mt-0.5">Home</span></a><a class="flex flex-col items-center justify-center w-14 h-14 text-text-secondary transition-colors" data-path="explore" href="#"><span class="material-symbols-outlined text-[24px]">explore</span><span class="font-caption text-caption mt-0.5">Explore</span></a><div class="relative -top-5 flex flex-col items-center"><a class="w-14 h-14 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-[0_4px_16px_rgba(70,72,212,0.4)] active:scale-95 transition-transform" data-path="report-issue" href="#"><span class="material-symbols-outlined text-[28px]">add</span></a><span class="font-caption text-caption text-text-secondary mt-1 font-medium">Report</span></div><a aria-current="page" class="flex flex-col items-center justify-center w-14 h-14 transition-colors text-primary font-bold" data-path="my-issues" href="#"><span class="material-symbols-outlined text-[24px]">assignment</span><span class="font-caption text-caption mt-0.5">My Issues</span></a><a class="flex flex-col items-center justify-center w-14 h-14 text-text-secondary transition-colors" data-path="profile" href="#"><span class="material-symbols-outlined text-[24px]">person</span><span class="font-caption text-caption mt-0.5">Profile</span></a></div></nav>
+
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>

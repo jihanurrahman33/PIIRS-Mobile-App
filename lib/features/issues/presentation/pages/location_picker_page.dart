@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/widgets/app_button.dart';
+import '../widgets/location_bottom_sheet_panel_widget.dart';
+import '../widgets/location_map_viewport_widget.dart';
+import '../widgets/location_picker_search_bar_widget.dart';
 
-/// Map location picker page for selecting issue GPS coordinates.
+/// Full interactive map location picker for pinpointing infrastructure hazards.
 class LocationPickerPage extends StatelessWidget {
   const LocationPickerPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -20,44 +20,21 @@ class LocationPickerPage extends StatelessWidget {
         title: const Text('Select Issue Location'),
       ),
       body: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
-            Expanded(
-              child: Container(
-                color: theme.colorScheme.surfaceContainerHighest,
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.location_on_rounded,
-                        size: 64,
-                        color: theme.colorScheme.primary,
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        'Map Location Picker Placeholder',
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        'GPS Coordinates: 23.8103° N, 90.4125° E',
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: theme.colorScheme.onSurfaceVariant,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+            const LocationMapViewportWidget(),
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: LocationPickerSearchBarWidget(onBack: () => context.pop()),
             ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: AppButton(
-                text: 'Confirm Location',
-                onPressed: () => context.pop(),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: LocationBottomSheetPanelWidget(
+                onConfirm: () => context.pop(),
               ),
             ),
           ],

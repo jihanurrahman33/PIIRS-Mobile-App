@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../widgets/timeline_step_tile.dart';
 
 /// Timeline progress tracker page showing issue status history.
 class IssueTimelinePage extends StatelessWidget {
@@ -11,8 +11,6 @@ class IssueTimelinePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -24,93 +22,38 @@ class IssueTimelinePage extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(24.0),
-          children: [
-            _buildTimelineTile(
-              theme,
+          children: const [
+            TimelineStepTile(
               title: 'Report Submitted',
-              subtitle: 'Report received by system on Aug 1, 10:00 AM',
+              subtitle: 'Report received with 3 photo evidence attachments',
               isCompleted: true,
             ),
-            _buildTimelineTile(
-              theme,
-              title: 'Staff Assigned',
-              subtitle: 'Assigned to Staff Worker (Roads Dept)',
+            TimelineStepTile(
+              title: 'Verified by Staff',
+              subtitle: 'Automated triage approved by Ward 4 Supervisor',
               isCompleted: true,
             ),
-            _buildTimelineTile(
-              theme,
-              title: 'In Progress',
-              subtitle: 'Repair crew dispatched to site',
+            TimelineStepTile(
+              title: 'Crew Dispatched',
+              subtitle: 'Field crew unit #12 en route (PW-TRK-402)',
               isCompleted: true,
               isCurrent: true,
             ),
-            _buildTimelineTile(
-              theme,
-              title: 'Resolved',
-              subtitle: 'Pending site inspection completion',
+            TimelineStepTile(
+              title: 'Repairs in Progress',
+              subtitle: 'Pothole excavation and bitumen application',
               isCompleted: false,
+            ),
+            TimelineStepTile(
+              title: 'Inspection & Resolved',
+              subtitle:
+                  'Quality review check and post-repair photographic clearance',
+              isCompleted: false,
+              isLast: true,
             ),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildTimelineTile(
-    ThemeData theme, {
-    required String title,
-    required String subtitle,
-    required bool isCompleted,
-    bool isCurrent = false,
-  }) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Column(
-          children: [
-            CircleAvatar(
-              radius: 12,
-              backgroundColor: isCompleted
-                  ? AppColors.primarySeed
-                  : theme.colorScheme.outlineVariant,
-              child: Icon(
-                isCurrent ? Icons.sync_rounded : Icons.check_rounded,
-                size: 14,
-                color: Colors.white,
-              ),
-            ),
-            Container(
-              width: 2,
-              height: 48,
-              color: isCompleted
-                  ? AppColors.primarySeed
-                  : theme.colorScheme.outlineVariant,
-            ),
-          ],
-        ),
-        const SizedBox(width: 16),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                subtitle,
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.colorScheme.onSurfaceVariant,
-                ),
-              ),
-              const SizedBox(height: 24),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }
